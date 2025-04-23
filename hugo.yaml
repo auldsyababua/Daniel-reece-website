@@ -183,10 +183,7 @@ menu:
       url: /contact/
       weight: 50
 
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
+# Markup section already defined above
 
 taxonomies:
   category: Categories
@@ -218,4 +215,4 @@ privacy:
 module:
   hugoVersion:
     extended: true
-    min: "0.114.0"
+    min: "0.146.0"
