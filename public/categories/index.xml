@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Daniel Reece | Executive Speech Coach</title>
-    <link>//localhost:5000/categories/</link>
+    <link>http://localhost:5000/categories/</link>
     <description>Recent content in Categories on Daniel Reece | Executive Speech Coach</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 23 Apr 2025 02:12:41 +0000</lastBuildDate>
-    <atom:link href="//localhost:5000/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:5000/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Blog</title>
-      <link>//localhost:5000/categories/blog/</link>
+      <link>http://localhost:5000/categories/blog/</link>
       <pubDate>Sat, 18 Jun 2022 11:10:36 +0800</pubDate>
-      <guid>//localhost:5000/categories/blog/</guid>
+      <guid>http://localhost:5000/categories/blog/</guid>
       <description></description>
     </item>
     <item>
       <title>News</title>
-      <link>//localhost:5000/categories/news/</link>
+      <link>http://localhost:5000/categories/news/</link>
       <pubDate>Wed, 18 May 2022 11:10:36 +0800</pubDate>
-      <guid>//localhost:5000/categories/news/</guid>
+      <guid>http://localhost:5000/categories/news/</guid>
       <description></description>
     </item>
   </channel>

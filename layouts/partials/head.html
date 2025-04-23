@@ -19,26 +19,21 @@
     }
 </script>
 
-<!-- Direct CSS file with no processing -->
-<link rel="stylesheet" href="/css/fixed.css" type="text/css">
+<!-- Main stylesheet -->
+{{ $style := resources.Get "css/style.css" }}
+{{ $style = $style | css.PostCSS }}
 
-<!-- For debugging/testing -->
-<style>
-  /* Inline CSS for immediate effect */
-  body {
-    border-top: 5px solid #E3A008;
-  }
-  
-  h1, h2, h3 {
-    color: #0A1F44;
-  }
-  
-  a.btn {
-    display: inline-block;
-    background-color: #E3A008;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 4px;
-  }
-</style>
+{{ if hugo.IsProduction }}
+  {{ $style = $style | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
+{{ else }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+{{ end }}
+
+<!-- Custom CSS -->
+{{ $mainStyle := resources.Get "css/main.css" | css.PostCSS }}
+<link rel="stylesheet" href="{{ $mainStyle.RelPermalink }}">
+
+<!-- Testing CSS -->
+{{ $testStyle := resources.Get "css/test.css" | css.PostCSS }}
+<link rel="stylesheet" href="{{ $testStyle.RelPermalink }}">

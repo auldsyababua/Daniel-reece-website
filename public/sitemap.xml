@@ -2,82 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:5000/categories/blog/</loc>
+    <loc>http://localhost:5000/categories/blog/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/tags/blog/</loc>
+    <loc>http://localhost:5000/tags/blog/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/blog-post-1/</loc>
+    <loc>http://localhost:5000/posts/blog-post-1/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/categories/</loc>
+    <loc>http://localhost:5000/categories/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/</loc>
+    <loc>http://localhost:5000/posts/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/tags/</loc>
+    <loc>http://localhost:5000/tags/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/categories/news/</loc>
+    <loc>http://localhost:5000/categories/news/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/tags/news/</loc>
+    <loc>http://localhost:5000/tags/news/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/news-post-1/</loc>
+    <loc>http://localhost:5000/posts/news-post-1/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/news-post-2/</loc>
+    <loc>http://localhost:5000/posts/news-post-2/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/news-post-4/</loc>
+    <loc>http://localhost:5000/posts/news-post-4/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/news-post-5/</loc>
+    <loc>http://localhost:5000/posts/news-post-5/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/news-post-6/</loc>
+    <loc>http://localhost:5000/posts/news-post-6/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/news-post-7/</loc>
+    <loc>http://localhost:5000/posts/news-post-7/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/about/</loc>
+    <loc>http://localhost:5000/about/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/blog-post-2/</loc>
+    <loc>http://localhost:5000/posts/blog-post-2/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/blog-post-3/</loc>
+    <loc>http://localhost:5000/posts/blog-post-3/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/blog-post-4/</loc>
+    <loc>http://localhost:5000/posts/blog-post-4/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/blog-post-5/</loc>
+    <loc>http://localhost:5000/posts/blog-post-5/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/blog-post-6/</loc>
+    <loc>http://localhost:5000/posts/blog-post-6/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/blog-post-7/</loc>
+    <loc>http://localhost:5000/posts/blog-post-7/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/contact/</loc>
+    <loc>http://localhost:5000/contact/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/posts/news-post-3/</loc>
+    <loc>http://localhost:5000/posts/news-post-3/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/prose/</loc>
+    <loc>http://localhost:5000/prose/</loc>
     <lastmod>2025-04-23T02:12:41+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/debug/</loc>
+    <loc>http://localhost:5000/debug/</loc>
     <lastmod>2025-04-23T02:14:23+00:00</lastmod>
   </url><url>
-    <loc>//localhost:5000/</loc>
+    <loc>http://localhost:5000/</loc>
     <lastmod>2025-04-23T02:22:40+00:00</lastmod>
   </url>
 </urlset>
