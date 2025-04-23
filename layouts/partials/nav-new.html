@@ -1,0 +1,42 @@
+<!-- New navigation bar based on provided design -->
+<nav class="bg-white py-4 px-6 border-b border-gray-200" style="z-index: 50; position: relative;">
+  <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+    <!-- Logo -->
+    <a href="/" class="flex items-center">
+      <span class="font-bold text-2xl text-navy">DRES</span>
+      <span class="ml-2 text-xs text-gray-500 mt-1">building a speech coach</span>
+    </a>
+    
+    <!-- Main Navigation -->
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="/books" class="font-medium text-gray-600 hover:text-navy transition">BOOKS</a>
+      <a href="/courses" class="font-medium text-gray-600 hover:text-navy transition">COURSES</a>
+      <a href="/membership" class="font-medium text-gray-600 hover:text-navy transition">MEMBERSHIP</a>
+      <a href="/events" class="font-medium text-gray-600 hover:text-navy transition">EVENTS</a>
+      <div class="relative group">
+        <a href="/resources" class="font-medium text-gray-600 hover:text-navy transition flex items-center">
+          RESOURCES
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+        <!-- Dropdown menu -->
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden group-hover:block">
+          <div class="py-1">
+            <a href="/resource-1" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Resource 1</a>
+            <a href="/resource-2" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Resource 2</a>
+            <a href="/resource-3" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Resource 3</a>
+          </div>
+        </div>
+      </div>
+      <a href="/wall-of-love" class="font-medium text-gray-600 hover:text-navy transition">WALL OF LOVE</a>
+    </div>
+    
+    <!-- Mobile menu button -->
+    <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" type="button">
+      <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+</nav>
