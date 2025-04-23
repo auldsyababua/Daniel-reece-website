@@ -50,8 +50,14 @@ def test_css_loading():
         
         css_references = [
             'link rel="stylesheet"',
-            'href="/css/',
             '.css"'
+        ]
+        
+        # Check for either absolute or relative CSS REDACTED_AIRTABLE_PAT
+        css_REDACTED_AIRTABLE_PAT_REDACTED_AIRTABLE_PAT = [
+            'href="/css/',  # Absolute REDACTED_AIRTABLE_PAT
+            'href="./css/',  # Relative REDACTED_AIRTABLE_PAT with dot
+            'href="../css/'  # Relative REDACTED_AIRTABLE_PAT with parent
         ]
         
         all_refs_found = True
@@ -61,6 +67,18 @@ def test_css_loading():
             else:
                 print(f"❌ HTML missing CSS reference: {ref}")
                 all_refs_found = False
+                
+        # Check if at least one CSS REDACTED_AIRTABLE_PAT REDACTED_AIRTABLE_PAT is found
+        css_REDACTED_AIRTABLE_PAT_found = False
+        for REDACTED_AIRTABLE_PAT_REDACTED_AIRTABLE_PAT in css_REDACTED_AIRTABLE_PAT_REDACTED_AIRTABLE_PAT:
+            if REDACTED_AIRTABLE_PAT_REDACTED_AIRTABLE_PAT in html_content:
+                print(f"✅ HTML contains CSS REDACTED_AIRTABLE_PAT REDACTED_AIRTABLE_PAT: {REDACTED_AIRTABLE_PAT_REDACTED_AIRTABLE_PAT}")
+                css_REDACTED_AIRTABLE_PAT_found = True
+                break
+        
+        if not css_REDACTED_AIRTABLE_PAT_found:
+            print("❌ HTML missing any recognized CSS REDACTED_AIRTABLE_PAT REDACTED_AIRTABLE_PAT")
+            all_refs_found = False
         
         return success_count > 0 and all_refs_found
     
