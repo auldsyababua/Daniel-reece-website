@@ -5,10 +5,19 @@ channel = "stable-24_05"
 packages = ["unzip"]
 
 [workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Hugo Server"
 
 [[workflows.workflow]]
 name = "Hugo Server"
-mode = "parallel"
 author = "agent"
 
 [workflows.workflow.metadata]
@@ -19,7 +28,7 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "hugo server --bind=0.0.0.0 --port=5000"
+args = "./start_hugo.sh"
 waitForPort = 5000
 
 [deployment]
