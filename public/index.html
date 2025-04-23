@@ -429,15 +429,20 @@
     font-size: 16px !important;
   }
   
-  .cta-container {
-    grid-template-columns: 1fr !important;
+  ._2-column-content {
+    flex-direction: column !important;
   }
   
-  .testimonial-content {
-    margin-top: 50px !important;
+  .hero-right {
+    margin-top: 30px !important;
+    width: 100% !important;
   }
   
-  .testimonial-content p {
+  .enlarged-h2 {
+    font-size: 28px !important;
+  }
+  
+  .testimonial-text-container p {
     font-size: 14px !important;
   }
 }
@@ -557,35 +562,41 @@
 </div>
 
 
-<div class="cta-section" style="padding: 60px 0; background-color: #0A1F44; color: white;">
-  <div class="cta-container" style="max-width: 1000px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-    
-    <div class="cta-content">
-      <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 20px; line-height: 1.2;">
-        Ready to transform <span style="font-style: italic;">your</span><br>
-        speaking skills?
-      </h2>
-      <p style="font-size: 17px; line-height: 1.6; margin-bottom: 30px;">
-        Book a 1-hour virtual speech coaching session to help
-        you gain confidence, refine your delivery, and develop
-        a powerful executive presence that gets results.
-      </p>
-      <a href="http://localhost:5000/book-session" class="cta-button" style="display: inline-block; background-color: #F5D742; color: #0A1F44; font-weight: 700; font-size: 14px; text-transform: uppercase; padding: 14px 24px; border-radius: 4px; text-decoration: none; letter-spacing: 1px;">
-        YES, I WANT TO IMPROVE MY SPEAKING SKILLS
-      </a>
-    </div>
-    
-    
-    <div class="testimonial-content" style="background-color: white; border-radius: 8px; padding: 40px 20px 30px; color: #333; position: relative; overflow: hidden;">
-      <div class="testimonial-avatar" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden; position: absolute; top: -35px; left: 50%; transform: translateX(-50%); border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <img src="https://via.placeholder.com/70" alt="Sammy Anand" style="width: 100%; height: 100%; object-fit: cover;">
+<div class="cta-section" style="padding: 80px 0; background-color: #0A1F44; color: white;">
+  <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+    <div class="_2-column-content" style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px;">
+      
+      <div class="hero-left" style="flex: 1; min-width: 300px;">
+        <h2 class="enlarged-h2" style="font-size: 36px; font-weight: 700; margin-bottom: 24px; line-height: 1.2;">
+          Ready to transform <span style="font-style: italic;">your</span><br>
+          speaking skills?
+        </h2>
+        <h4 style="font-size: 18px; font-weight: 400; line-height: 1.6; margin-bottom: 30px;">
+          Book a 1-hour virtual speech coaching session to help
+          you gain confidence, refine your delivery, and develop
+          a powerful executive presence that gets results.
+        </h4>
+        <div>
+          <a href="http://localhost:5000/book-session" class="cta-button" style="display: inline-block; background-color: #F5D742; color: #0A1F44; font-weight: 700; font-size: 14px; text-transform: uppercase; padding: 14px 24px; border-radius: 4px; text-decoration: none; letter-spacing: 1px;">
+            YES, I WANT TO IMPROVE MY SPEAKING SKILLS
+          </a>
+        </div>
       </div>
-      <div style="margin-top: 20px; text-align: center;">
-        <p style="font-style: italic; margin-bottom: 20px; font-size: 15px; line-height: 1.5; color: #444; max-width: 100%;">
-          "My experience with Daniel as a speech coach has been nothing short of transformative. His holistic approach helped me improve my speech and taught me to be a better communicator."
-        </p>
-        <p style="font-weight: 700; margin-bottom: 4px; font-size: 16px;">Sammy Anand</p>
-        <p style="font-size: 14px; color: #555; margin: 0;">Software Engineering Consultant, Moment</p>
+      
+      
+      <div class="hero-right" style="flex: 1; min-width: 280px;">
+        <div class="testimonial-headshot" style="background-color: white; border-radius: 8px; overflow: hidden; color: #333; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <div class="testimonial-headshot-image" style="height: 100px; background-color: #f5f5f5; position: relative;">
+            
+          </div>
+          <div class="testimonial-text-container" style="padding: 25px 20px 20px;">
+            <p style="font-style: italic; margin-bottom: 20px; font-size: 15px; line-height: 1.5; color: #444;">
+              "My experience with Daniel as a speech coach has been nothing short of transformative. His holistic approach helped me improve my speech and taught me to be a better communicator."
+            </p>
+            <p style="font-weight: 700; margin-bottom: 4px; font-size: 16px;">Sammy Anand</p>
+            <p style="font-size: 14px; color: #555; margin: 0;">Software Engineering Consultant, Moment</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
