@@ -50,8 +50,14 @@ def test_css_loading():
         
         css_references = [
             'link rel="stylesheet"',
-            'href="/css/',
             '.css"'
+        ]
+        
+        # Check for either absolute or relative CSS paths
+        css_path_patterns = [
+            'href="/css/',  # Absolute path
+            'href="./css/',  # Relative path with dot
+            'href="../css/'  # Relative path with parent
         ]
         
         all_refs_found = True
@@ -61,6 +67,18 @@ def test_css_loading():
             else:
                 print(f"❌ HTML missing CSS reference: {ref}")
                 all_refs_found = False
+                
+        # Check if at least one CSS path pattern is found
+        css_path_found = False
+        for path_pattern in css_path_patterns:
+            if path_pattern in html_content:
+                print(f"✅ HTML contains CSS path pattern: {path_pattern}")
+                css_path_found = True
+                break
+        
+        if not css_path_found:
+            print("❌ HTML missing any recognized CSS path pattern")
+            all_refs_found = False
         
         return success_count > 0 and all_refs_found
     

@@ -1,11 +1,12 @@
-baseURL: 'https://executivespeechcoachingnyc.com/'
+baseURL: '/'
 title: Daniel Reece | Executive Speech Coach
 languageCode: en-us
 DefaultContentLanguage: en
 enableEmoji: true
 enableGitInfo: true
 enableRobotsTXT: true
-canonifyURLs: true
+canonifyURLs: false
+relativeURLs: true
 pagination:
   pagerSize: 6
 darkmode_js:
