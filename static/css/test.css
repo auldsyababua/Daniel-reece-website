@@ -1,0 +1,41 @@
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #ff0000;
+  font-size: 48px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 5px solid blue;
+}
+
+.bg-navy {
+  background-color: #0A1F44;
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-5xl {
+  font-size: 3rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.font-black {
+  font-weight: 900;
+}
