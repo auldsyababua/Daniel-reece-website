@@ -1,9 +1,19 @@
-{{ define "main" }}
-  {{ partial "hero.html" . }}
-  {{ partial "intro.html" . }}
-  {{ partial "services.html" . }}
-  {{ partial "testimonials.html" . }}
-  {{ partial "cta-footer.html" . }}
-{{ end }}
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}">
+<head>
+    {{ partial "head.html" . }}
+</head>
+<body class="bg-zinc-100 dark:bg-gray-800">
+    {{ partial "nav.html" . }}
+    <main>
+        {{ partial "hero.html" . }}
+        {{ partial "intro.html" . }}
+        {{ partial "services.html" . }}
+        {{ partial "testimonials.html" . }}
+        {{ partial "cta-footer.html" . }}
+    </main>
+    {{ partial "footer.html" . }}
+</body>
+</html>
 
 <!-- Tailwind layout structure follows Building a Second Brain homepage -->
