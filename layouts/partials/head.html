@@ -27,13 +27,13 @@
   {{ $style = $style | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
 {{ else }}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  <link rel="stylesheet" href="/css/style.css">
 {{ end }}
 
 <!-- Custom CSS -->
 {{ $mainStyle := resources.Get "css/main.css" | css.PostCSS }}
-<link rel="stylesheet" href="{{ $mainStyle.RelPermalink }}">
+<link rel="stylesheet" href="/css/main.css">
 
 <!-- Testing CSS -->
 {{ $testStyle := resources.Get "css/test.css" | css.PostCSS }}
-<link rel="stylesheet" href="{{ $testStyle.RelPermalink }}">
+<link rel="stylesheet" href="/css/test.css">
