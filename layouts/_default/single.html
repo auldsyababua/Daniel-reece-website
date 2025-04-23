@@ -1,26 +1,24 @@
 {{define "main"}}
-<main id="content" class="site-main">
-  <article>
-    <header class="mb-4 bg-primary-600 bg-navy">
-      <span class="py-96">
-        <h1 class="py-16 text-5xl font-black text-center text-white capitalize">
-          {{ .Title }}
-        </h1>
-      </span>
-    </header>
-    <div class="max-w-4xl mx-auto mt-8 mb-2">
-      <div class="px-6">
-        {{ with .Params.featured_image }}
-        <img src="{{ . }}"
-           class="object-fill overflow-hidden rounded-lg shadow-lg ring-4 ring-zinc-300/40 dark:ring-gray-900/40 shadow-neutral-100/20 dark:shadow-neutral-800/40"
-           width="100%" alt="{{ $.Title }}" />
-        {{ end }}
-      </div>
+<article>
+  <header class="mb-4 bg-primary-600 bg-navy">
+    <span class="py-96">
+      <h1 class="py-16 text-5xl font-black text-center text-white capitalize">
+        {{ .Title }}
+      </h1>
+    </span>
+  </header>
+  <div class="max-w-4xl mx-auto mt-8 mb-2">
+    <div class="px-6">
+      {{ with .Params.featured_image }}
+      <img src="{{ . }}"
+         class="object-fill overflow-hidden rounded-lg shadow-lg ring-4 ring-zinc-300/40 dark:ring-gray-900/40 shadow-neutral-100/20 dark:shadow-neutral-800/40"
+         width="100%" alt="{{ $.Title }}" />
+      {{ end }}
     </div>
-    <!-- " {{.Content}}" pulls from the markdown content of the corresponding _index.md -->
-    <div class="max-w-2xl px-6 pt-6 pb-16 mx-auto prose dark:prose-invert dark:text-white">
-      {{.Content}}
-    </div>
-  </article>
-</main>
+  </div>
+  <!-- " {{.Content}}" pulls from the markdown content of the corresponding _index.md -->
+  <div class="max-w-2xl px-6 pt-6 pb-16 mx-auto prose dark:prose-invert dark:text-white">
+    {{.Content}}
+  </div>
+</article>
 {{end}}
