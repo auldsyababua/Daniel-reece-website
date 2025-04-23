@@ -1,7 +1,58 @@
+<style>
+/* Navigation responsive styles */
+@media (max-width: 991px) {
+  .nav-menu {
+    display: none !important;
+  }
+  
+  .menu-button {
+    display: block !important;
+    cursor: pointer;
+  }
+  
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+  }
+  
+  .mobile-nav.open {
+    display: flex;
+  }
+  
+  .mobile-nav .nav-link {
+    margin: 10px 0 !important;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .mobile-dropdown {
+    padding-left: 20px;
+    margin-top: 5px;
+    border-top: 1px solid #f5f5f5;
+  }
+  
+  .mobile-dropdown a {
+    padding: 8px 0;
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+  }
+}
+</style>
+
 <!-- New navigation bar based on Building a Second Brain site -->
 <div class="section" style="padding: 20px 0; background-color: white; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100;">
   <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-    <div class="nav-wrapper" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="nav-wrapper" style="display: flex; justify-content: space-between; align-items: center; position: relative;">
       <!-- Logo -->
       <a href="/" class="brand" style="text-decoration: none; display: flex; align-items: center;">
         <div class="logo-wrapper" style="display: flex; align-items: center;">
@@ -21,14 +72,14 @@
         
         <!-- Resources Dropdown -->
         <div class="nav-dropdown" x-data="{ open: false }" style="position: relative; margin: 0 16px;">
-          <a href="/resources" @click="open = !open" class="nav-link dropdown" style="display: flex; align-items: center; font-weight: 500; color: #333; text-decoration: none; text-transform: uppercase; font-size: 14px;">
+          <a href="/resources" @click="open = !open" @mouseenter="open = true" @mouseleave="open = false" class="nav-link dropdown" style="display: flex; align-items: center; font-weight: 500; color: #333; text-decoration: none; text-transform: uppercase; font-size: 14px;">
             Resources
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" style="margin-left: 4px;">
               <path fill="currentColor" d="M7 10l5 5 5-5z"/>
             </svg>
           </a>
           <!-- Dropdown menu -->
-          <div x-show="open" style="position: absolute; background: white; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 8px 0; min-width: 180px; z-index: 100; top: 100%; left: 0;">
+          <div x-show="open" @mouseenter="open = true" @mouseleave="open = false" style="position: absolute; background: white; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 8px 0; min-width: 180px; z-index: 100; top: 100%; left: 0;">
             <a href="/blog" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px;">Blog</a>
             <a href="/podcast" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px;">Podcast</a>
             <a href="/newsletter" style="display: block; padding: 8px 16px; color: #333; text-decoration: none; font-size: 14px;">Newsletter</a>
@@ -39,10 +90,34 @@
       </div>
       
       <!-- Mobile menu button -->
-      <div class="menu-button" style="display: none;">
+      <div class="menu-button" x-data="{ mobileOpen: false }" @click="mobileOpen = !mobileOpen" style="display: none; cursor: pointer;">
         <div class="menu-icon" style="width: 24px; height: 3px; background-color: #333; margin: 5px 0;"></div>
         <div class="menu-icon" style="width: 24px; height: 3px; background-color: #333; margin: 5px 0;"></div>
         <div class="menu-icon" style="width: 24px; height: 3px; background-color: #333; margin: 5px 0;"></div>
+        
+        <!-- Mobile Nav -->
+        <div x-show="mobileOpen" class="mobile-nav" :class="{ 'open': mobileOpen }">
+          <a href="/books" class="nav-link">Books</a>
+          <a href="/courses" class="nav-link">Courses</a>
+          <a href="/membership" class="nav-link">Membership</a>
+          <a href="/events" class="nav-link">Events</a>
+          
+          <div x-data="{ subOpen: false }">
+            <a href="/resources" @click.prevent="subOpen = !subOpen" class="nav-link" style="display: flex; justify-content: space-between;">
+              Resources
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+              </svg>
+            </a>
+            <div x-show="subOpen" class="mobile-dropdown">
+              <a href="/blog">Blog</a>
+              <a href="/podcast">Podcast</a>
+              <a href="/newsletter">Newsletter</a>
+            </div>
+          </div>
+          
+          <a href="/wall-of-love" class="nav-link">Wall of Love</a>
+        </div>
       </div>
     </div>
   </div>
