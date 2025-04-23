@@ -1,0 +1,36 @@
+<div class="hero-section" style="padding: 80px 0; background-color: #fafafa;">
+  <div class="container">
+    <div class="_2-column-content">
+      <div class="hero-left">
+        <h1 style="font-size: 48px; font-weight: 700; color: #0A1F44; margin-bottom: 24px; line-height: 1.1;">
+          {{ .Site.Params.hero.title | default "Transform Your Executive Presence Through Speech" | safeHTML }}
+        </h1>
+        <p style="font-size: 20px; line-height: 1.6; color: #444; margin-bottom: 30px; max-width: 540px;">
+          {{ .Site.Params.hero.subtitle | default "Professional speech coaching for executives who want to communicate with clarity, confidence, and impact." | safeHTML }}
+        </p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <a href="{{ .Site.Params.hero.primaryButtonLink | default "/book-session" }}" class="medium-button gold">
+            {{ .Site.Params.hero.primaryButtonText | default "Book a Session" | safeHTML }}
+          </a>
+          {{ if .Site.Params.hero.secondaryButtonLink }}
+          <a href="{{ .Site.Params.hero.secondaryButtonLink }}" style="display: inline-flex; align-items: center; color: #0A1F44; font-weight: 600; text-decoration: none;">
+            <span>{{ .Site.Params.hero.secondaryButtonText | default "Learn More" }}</span>
+            <svg style="margin-left: 5px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          {{ end }}
+        </div>
+      </div>
+      <div class="hero-right">
+        {{ if .Site.Params.hero.videoEmbed }}
+        <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+          {{ .Site.Params.hero.videoEmbed | safeHTML }}
+        </div>
+        {{ else }}
+        <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+          <img src="{{ .Site.Params.hero.image | default "/images/hero-image.jpg" }}" alt="Executive Speech Coaching" style="width: 100%; height: auto; display: block;">
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>

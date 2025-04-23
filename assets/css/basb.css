@@ -1,0 +1,184 @@
+/* Building a Second Brain styles */
+body {
+  -webkit-font-smoothing: antialiased;
+}      
+
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="phone"],
+input[type="email"],
+input[type="tel"],
+.input-checkbox {
+  -webkit-appearance: none;
+} 
+
+/* Section styles */
+.section {
+  padding: 60px 0;
+}
+
+.section.black {
+  background-color: #000;
+  color: #fff;
+  padding: 15px 0;
+}
+
+/* Container styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Top bar */
+.top-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 15px;
+}
+
+._600 {
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Button styles */
+.small-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #F5D742;
+  color: #0A1F44;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+
+.small-button.gold {
+  background-color: #F5D742;
+}
+
+.medium-button {
+  display: inline-block;
+  padding: 14px 24px;
+  background-color: #F5D742;
+  color: #0A1F44;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.medium-button.gold {
+  background-color: #F5D742;
+}
+
+.w-button {
+  line-height: inherit;
+}
+
+/* Typography */
+.white-text {
+  color: white;
+}
+
+.enlarged-h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+._5em-bottom-margin {
+  margin-bottom: 1.5em;
+}
+
+._1-5em-bottom-margin {
+  margin-bottom: 1.5em;
+}
+
+._1em-bottom-margin {
+  margin-bottom: 1em;
+}
+
+.smaller-text {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Layout components */
+._2-column-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.hero-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-right {
+  flex: 1;
+  min-width: 280px;
+}
+
+.testimonial-headshot {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.testimonial-headshot-image {
+  height: 100px; 
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.testimonial-text-container {
+  padding: 25px 20px 20px;
+}
+
+/* Container spacings */
+.giant-bottom {
+  margin-bottom: 80px;
+}
+
+.letter-2 {
+  padding: 60px 0;
+  background-color: #0A1F44;
+  color: white;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 767px) {
+  ._2-column-content {
+    flex-direction: column;
+  }
+  
+  .hero-right {
+    margin-top: 30px;
+    width: 100%;
+  }
+  
+  .enlarged-h2 {
+    font-size: 28px;
+  }
+  
+  .testimonial-text-container p {
+    font-size: 14px;
+  }
+}
