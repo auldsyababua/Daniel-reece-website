@@ -37,6 +37,10 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
 args = "npx hugo --minify"
 
 [[workflows.workflow.tasks]]
