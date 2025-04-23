@@ -97,15 +97,30 @@
   .shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
 </style>
 
+    <style>
+         
+        body {
+            position: relative;
+        }
+        .site-nav {
+            position: relative;
+            z-index: 100;
+        }
+        .site-content {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body class="bg-zinc-100 dark:bg-gray-800">
-    <div class="top-0 z-50 w-full text-gray-200 bg-gray-900 bg-navy border-2 border-gray-900 md:sticky border-b-stone-200/10" style="position: sticky; z-index: 50;">
+    <div class="site-nav">
+        <div class="top-0 z-50 w-full text-gray-200 bg-gray-900 bg-navy border-2 border-gray-900 md:sticky border-b-stone-200/10" style="position: sticky; z-index: 50;">
     <div x-data="{ open: false }" class="flex flex-col max-w-full px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <div class="flex flex-row items-center justify-between p-4">
             <a href="http://localhost:5000/" class="flex text-gray-100 transition duration-1000 ease-in-out group">
-                <img src="http://localhost:5000/images/site-logo.svg" class="transition-opacity h-9 w-9 group-hover:opacity-50 group-focus:opacity-70" alt="Daniel Reece | Executive Speech Coach Logo" />
-                <div class="mt-1 ml-3 text-xl font-black tracking-tight text-gray-100 uppercase transition-colors group-hover:text-gray-400/60">
-                    Daniel Reece | Executive Speech Coach</div>
+                <div class="mt-1 text-xl font-black tracking-tight text-gray-100 uppercase transition-colors group-hover:text-gray-400/60">
+                    Daniel Reece
+                </div>
             </a>
             <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline focus:ring-gold" @click="open = !open" role="navigation" aria-expanded="false" aria-label="Main" aria-controls="menuItems">
                 <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6 text-gold">
@@ -236,7 +251,9 @@
         </nav>
     </div>
 </div>
-    
+    </div>
+    <div class="site-content">
+        
 <main>
     <article>
         <header class="mb-4 bg-primary-600">
@@ -400,6 +417,7 @@
     </div>
 </main>
 
+    </div>
     
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
