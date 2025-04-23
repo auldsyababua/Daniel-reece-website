@@ -1,6 +1,6 @@
 ---
-title: "Executive Speech Coaching NYC"
-layout: "index-basb"
+title: "Home"
+description: "Welcome to TailBliss - A Hugo site with Tailwind CSS and Alpine.js"
 ---
 
-This page uses the Building a Second Brain template for the Executive Speech Coaching website.
+Welcome to our Hugo site powered by Tailwind CSS and Alpine.js!
