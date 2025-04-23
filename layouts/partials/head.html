@@ -21,7 +21,7 @@
 
 <!-- Main stylesheet -->
 {{ $style := resources.Get "css/style.css" }}
-{{ $style = $style | resources.PostCSS }}
+{{ $style = $style | css.PostCSS }}
 
 {{ if hugo.IsProduction }}
   {{ $style = $style | minify | fingerprint }}
@@ -31,9 +31,9 @@
 {{ end }}
 
 <!-- Custom CSS -->
-{{ $mainStyle := resources.Get "css/main.css" | resources.PostCSS }}
+{{ $mainStyle := resources.Get "css/main.css" | css.PostCSS }}
 <link rel="stylesheet" href="{{ $mainStyle.RelPermalink }}">
 
 <!-- Testing CSS -->
-{{ $testStyle := resources.Get "css/test.css" | resources.PostCSS }}
+{{ $testStyle := resources.Get "css/test.css" | css.PostCSS }}
 <link rel="stylesheet" href="{{ $testStyle.RelPermalink }}">

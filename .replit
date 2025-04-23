@@ -4,31 +4,7 @@ modules = ["nodejs-20", "python-3.11"]
 channel = "stable-24_05"
 
 [workflows]
-runButton = "Debug CSS"
-
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Web Server"
-
-[[workflows.workflow]]
-name = "Web Server"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python -m http.server 5000"
-waitForPort = 5000
+runButton = "Project"
 
 [[workflows.workflow]]
 name = "Hugo Server"
@@ -48,32 +24,32 @@ task = "shell.exec"
 args = "python -m http.server 5000 --directory ./public"
 
 [[workflows.workflow]]
-name = "Debug CSS"
-author = 40860523
+name = "Hugo Server"
+author = "agent"
 mode = "sequential"
 
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
 [[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm install"
+task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npx hugo --minify --verbose"
+args = "cd public && python -m http.server 5000"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
 
 [[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "ls -la public/css/"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cat public/css/style.css | head -n 30"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python -m http.server 5000 --directory ./public"
+task = "workflow.run"
+args = "Hugo Server"
 
 [deployment]
-run = ["sh", "-c", "python -m http.server 5000 --directory ./public"]
+run = ["sh", "-c", "cd public && python -m http.server 5000"]
 build = ["sh", "-c", "hugo --minify"]
 
 [[deployment.responseHeaders]]
