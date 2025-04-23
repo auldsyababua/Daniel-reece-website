@@ -4,20 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TESTING CSS - REMOVE AFTER DEBUGGING */
-body {
-  border: 10px solid hotpink !important;
-}
-
-button {
-  background-color: lime !important;
-}
-
-h1 {
-  text-decoration: underline wavy red !important;
-}
-/* END TESTING CSS */
-
 /* Font family definition */
 html {
   font-family: ui-sans-serif,
@@ -41,4 +27,13 @@ html {
 /* Custom styles */
 .prose :where(h1):not(:where([class~="not-prose"] *)) {
   color: white !important;
+}
+
+/* Add more custom styles below */
+body {
+  color: #374151;
+}
+
+a:hover {
+  text-decoration: underline;
 }
