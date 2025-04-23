@@ -18,11 +18,14 @@
     }
 </script>
 {{ $styles := resources.Get "/css/style.css" | postCSS }}
+{{ $testStyles := resources.Get "/css/test.css" | postCSS }}
 
 {{ if hugo.IsProduction }}
 {{ $styles := $styles | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" />
+<link rel="stylesheet" href="{{ $testStyles.RelPermalink }}" />
 {{ else }}
 {{ $styles := $styles | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" />
+<link rel="stylesheet" href="{{ $testStyles.RelPermalink }}" />
 {{ end }}

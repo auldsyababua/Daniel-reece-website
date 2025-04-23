@@ -4,7 +4,7 @@ modules = ["nodejs-20", "python-3.11"]
 channel = "stable-24_05"
 
 [workflows]
-runButton = "Hugo Server"
+runButton = "Debug CSS"
 
 [[workflows.workflow]]
 name = "Project"
@@ -47,9 +47,44 @@ args = "npx hugo --minify"
 task = "shell.exec"
 args = "python -m http.server 5000 --directory ./public"
 
+[[workflows.workflow]]
+name = "Debug CSS"
+author = 40860523
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx hugo --minify --verbose"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "ls -la public/css/"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cat public/css/style.css | head -n 30"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python -m http.server 5000 --directory ./public"
+
 [deployment]
 run = ["sh", "-c", "python -m http.server 5000 --directory ./public"]
 build = ["sh", "-c", "hugo --minify"]
+
+[[deployment.responseHeaders]]
+path = "*.css"
+name = "Cache-Control"
+value = "no-cache, no-store, must-revalidate"
+
+[[deployment.responseHeaders]]
+path = "/css/*"
+name = "Cache-Control" 
+value = "no-cache, no-store, must-revalidate"
 
 [[ports]]
 localPort = 5000
