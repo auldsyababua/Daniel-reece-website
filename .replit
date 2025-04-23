@@ -44,7 +44,8 @@ task = "shell.exec"
 args = "python -m http.server 5000 --directory ./public"
 
 [deployment]
-run = ["sh", "-c", "python -m http.server 5000"]
+run = ["sh", "-c", "python -m http.server 5000 --directory ./public"]
+build = ["sh", "-c", "hugo --minify"]
 
 [[ports]]
 localPort = 5000
