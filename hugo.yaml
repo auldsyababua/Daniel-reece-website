@@ -47,97 +47,13 @@ markup:
       xhtml: false
 
 params:
-  author: Daniel Reece
+  author: Nusser Studios
   authorimage: ../assets/images/global/author.webp
-  og_image: /images/executive-speech-coach.jpg
-  moto: "Elevate Your Speaking Potential"
-  description: "Professional speech coaching for executives who want to communicate with clarity, confidence, and impact."
+  og_image: /images/tailbliss-cover.png
+  moto: "Super Fast, and Flexible"
+  description: "A Hugo theme built with love, using TailwindCSS 3, Alpine.JS, and Hugo Pipes. Images are optimized for use with Hugo Pipes for WebP format."
   disable_theme_toggle: false
   disable_stay_uptodate: false
-  
-  # Building a Second Brain template parameters
-  logo: "/images/logo.png"
-  
-  # Announcement bar
-  announcement:
-    text: "Book a free 15-minute consultation call today!"
-    buttonText: "Schedule Now"
-    buttonLink: "/contact"
-  
-  # Navigation
-  nav:
-    ctaText: "Book a Session"
-    ctaLink: "/book-session"
-  
-  # Hero section
-  hero:
-    title: "Transform Your Executive Presence Through Speech"
-    subtitle: "Professional speech coaching for executives who want to communicate with clarity, confidence, and impact."
-    primaryButtonText: "Book a Session"
-    primaryButtonLink: "/book-session"
-    secondaryButtonText: "Learn More"
-    secondaryButtonLink: "/about"
-    image: "/images/hero-image.jpg"
-  
-  # Benefits section
-  benefits:
-    title: "Executive Speech Coaching helps you"
-    subtitle: "unlock your true communication potential"
-    tagline: "Working with me will help you:"
-    items:
-      - title: "Master public speaking"
-        description: "and overcome the nerves that hold you back"
-        highlight: "to engage any audience with confidence"
-      - title: "Develop executive presence"
-        description: "that commands attention and"
-        highlight: "cultivates the poise that defines great leaders"
-      - title: "Master impromptu speaking"
-        description: "to think clearly and"
-        highlight: "speak on your feet with ease and confidence"
-      - title: "Deliver powerful presentations"
-        description: "that engage and persuade"
-        highlight: "to achieve your professional goals"
-      - title: "Master storytelling techniques"
-        description: "that captivate and connect with"
-        highlight: "audiences on a deeper emotional level"
-      - title: "Enhance your vocal presence,"
-        description: "with improved projection, clarity,"
-        highlight: "and a voice that commands attention"
-  
-  # CTA section
-  cta:
-    title: "Ready to transform"
-    emphasis: "your"
-    subtitle: "speaking skills?"
-    description: "Book a 1-hour virtual speech coaching session to help you gain confidence, refine your delivery, and develop a powerful executive presence that gets results."
-    buttonText: "YES, I WANT TO IMPROVE MY SPEAKING SKILLS"
-    buttonLink: "/book-session"
-  
-  # Testimonial
-  testimonial:
-    quote: "My experience with Daniel as a speech coach has been nothing short of transformative. His holistic approach helped me improve my speech and taught me to be a better communicator."
-    name: "Sammy Anand"
-    title: "Software Engineering Consultant, Moment"
-    image: "/images/testimonial.jpg"
-  
-  # Footer
-  footer:
-    description: "Professional speech coaching for executives who want to elevate their communication skills and make a lasting impact."
-    email: "daniel@executivespeechcoachingnyc.com"
-    resources:
-      - name: "Speaking Tips"
-        url: "/blog/speaking-tips"
-      - name: "Workshop Schedule"
-        url: "/workshops"
-      - name: "Free Resources"
-        url: "/resources"
-    socialLinks:
-      - icon: "fa-linkedin"
-        url: "https://linkedin.com/"
-      - icon: "fa-twitter"
-        url: "https://twitter.com/"
-      - icon: "fa-instagram"
-        url: "https://instagram.com/"
 
   p1:
     heading: "Our mission"
@@ -197,21 +113,21 @@ params:
 
 menu:
   main:
+    - identifier: prose
+      name: Prose
+      url: /prose/
+      weight: 10
     - identifier: about
       name: About
       url: /about/
-      weight: 10
-    - identifier: services
-      name: Services
-      url: /services/
       weight: 20
-    - identifier: testimonials
-      name: Testimonials
-      url: /testimonials/
+    - identifier: categories
+      pre: dropdown
+      name: Categories
       weight: 30
-    - identifier: blog
-      name: Blog
-      url: /blog/
+    - identifier: dropdown
+      pre: complexdropdown
+      name: Dropdown
       weight: 40
     - identifier: contact
       name: Contact
