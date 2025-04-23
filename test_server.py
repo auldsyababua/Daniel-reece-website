@@ -18,33 +18,54 @@ def test_server_status():
 def test_css_loading():
     """Test if CSS files are being properly served from Hugo build"""
     try:
-        # Check for CSS in the css directory (Hugo standard)
-        response = requests.get('http://localhost:5000/css/')
+        # Check various CSS files
+        css_files = [
+            'fixed.css',
+            'style.css',
+            'main.css',
+            'base.css'
+        ]
         
-        if response.status_code == 200:
-            print("✅ CSS directory is accessible")
-            
-            # Look for any CSS file in the directory listing
-            content = response.text.lower()
-            if '.css' in content:
-                print("✅ CSS files found in the css directory")
-                return True
+        success_count = 0
+        
+        for css_file in css_files:
+            css_url = f'http://localhost:5000/css/{css_file}'
+            response = requests.get(css_url)
+            if response.status_code == 200:
+                print(f"✅ Found CSS file: {css_file}")
+                
+                # Check if the file actually contains CSS content
+                content = response.text.lower()
+                if '{' in content and '}' in content:
+                    print(f"✅ {css_file} contains valid CSS content")
+                    success_count += 1
+                else:
+                    print(f"❌ {css_file} appears to be empty or invalid")
             else:
-                print("❌ No CSS files found in the css directory")
-                return False
-        else:
-            print(f"❌ CSS directory request returned status code {response.status_code}")
-            
-            # Try direct access to a potential main CSS file
-            alt_response = requests.get('http://localhost:5000/css/styles.css')
-            if alt_response.status_code == 200:
-                print("✅ Found CSS file at /css/styles.css")
-                return True
+                print(f"❌ CSS file {css_file} returned status code {response.status_code}")
+        
+        # Check for CSS references in the HTML
+        html_response = requests.get('http://localhost:5000')
+        html_content = html_response.text.lower()
+        
+        css_references = [
+            'link rel="stylesheet"',
+            'href="/css/',
+            '.css"'
+        ]
+        
+        all_refs_found = True
+        for ref in css_references:
+            if ref in html_content:
+                print(f"✅ HTML contains CSS reference: {ref}")
             else:
-                print("❌ Could not find CSS files")
-                return False
+                print(f"❌ HTML missing CSS reference: {ref}")
+                all_refs_found = False
+        
+        return success_count > 0 and all_refs_found
+    
     except requests.exceptions.ConnectionError:
-        print("❌ Failed to connect to server for CSS file")
+        print("❌ Failed to connect to server for CSS testing")
         return False
 
 def test_html_content():
@@ -53,8 +74,8 @@ def test_html_content():
         response = requests.get('http://localhost:5000')
         content = response.text.lower()
         
-        # For a Hugo site, we should check for different elements
-        sections = {
+        # Basic HTML structure tests
+        basic_sections = {
             "html document": "<!doctype html" in content,
             "head section": "<head" in content,
             "body section": "<body" in content,
@@ -62,15 +83,60 @@ def test_html_content():
             "javascript": "<script" in content
         }
         
-        all_passed = True
-        for section, passed in sections.items():
+        # Specific content tests for our site
+        specific_elements = {
+            "site title": "daniel reece" in content,
+            "navigation elements": "<nav" in content,
+            "main content area": "<main" in content,
+            "bg-navy class": "bg-navy" in content,
+            "text-gold class": "text-gold" in content
+        }
+        
+        # Check for the presence of key site sections
+        site_sections = {
+            "hero section": ("hero" in content) or ("<section" in content and "class=" in content),
+            "intro section": "intro" in content,
+            "services": "services" in content or "coaching" in content,
+            "footer": "<footer" in content
+        }
+        
+        print("\n--- Basic HTML Structure ---")
+        basic_passed = True
+        for section, passed in basic_sections.items():
             if passed:
                 print(f"✅ Found {section} in HTML")
             else:
                 print(f"❌ Could not find {section} in HTML")
-                all_passed = False
+                basic_passed = False
         
-        return all_passed
+        print("\n--- Specific Site Elements ---")
+        elements_passed = True
+        for element, passed in specific_elements.items():
+            if passed:
+                print(f"✅ Found {element} in HTML")
+            else:
+                print(f"❌ Could not find {element} in HTML")
+                elements_passed = False
+        
+        print("\n--- Site Sections ---")
+        sections_passed = True
+        for section, passed in site_sections.items():
+            if passed:
+                print(f"✅ Found {section} in HTML")
+            else:
+                print(f"❌ Could not find {section} in HTML")
+                sections_passed = False
+        
+        # Check for YouTube embed as seen in the screenshot
+        if "youtube" in content and "iframe" in content:
+            print("✅ Found YouTube embed in HTML")
+            youtube_passed = True
+        else:
+            print("❌ Could not find YouTube embed in HTML")
+            youtube_passed = False
+            
+        return basic_passed and elements_passed and sections_passed and youtube_passed
+    
     except requests.exceptions.ConnectionError:
         print("❌ Failed to connect to server for HTML content test")
         return False
