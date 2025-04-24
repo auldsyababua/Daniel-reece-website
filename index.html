@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Reece | Executive Speech Coach</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #4a6cf7;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #3a56d4;
+        }
+        .services {
+            padding: 3rem 0;
+        }
+        .services h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: white;
+            border-radius: 5px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .service-card h3 {
+            margin-top: 0;
+        }
+        .testimonials {
+            background: #f9f9f9;
+            padding: 3rem 0;
+            border-radius: 5px;
+        }
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .testimonial {
+            background: white;
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .testimonial p:first-child {
+            font-style: italic;
+        }
+        .testimonial p:last-child {
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .footer-content div {
+            margin-bottom: 1.5rem;
+        }
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .footer-content div {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">Daniel Reece</a>
+            <div>
+                <!-- Toggle button could go here -->
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Executive Speech Coaching</h1>
+            <p>Transform your communication skills and deliver impactful presentations with professional coaching.</p>
+            <a href="/contact" class="cta-button">Schedule a Consultation</a>
+        </section>
+
+        <section class="services">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Executive Coaching</h3>
+                    <p>Personalized coaching for executives and leaders to enhance communication effectiveness.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Presentation Skills</h3>
+                    <p>Learn techniques to create and deliver compelling presentations that engage your audience.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Speech Writing</h3>
+                    <p>Expert assistance in crafting impactful speeches for any occasion or audience.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Testimonials</h2>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <p>"Daniel's coaching transformed my public speaking abilities. I now feel confident presenting to large audiences and executive boards."</p>
+                    <p>- Sarah Johnson, CEO</p>
+                </div>
+                <div class="testimonial">
+                    <p>"The techniques I learned from Daniel have been invaluable in my career. My presentation skills improved dramatically after just a few sessions."</p>
+                    <p>- Michael Chen, Marketing Director</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">Daniel Reece</div>
+                <p>Executive Speech Coach</p>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <p>Email: info@danielreece.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Daniel Reece. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

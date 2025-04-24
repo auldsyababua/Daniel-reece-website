@@ -49,26 +49,22 @@
     {{ partial "head.html" . }}
   </head>
 
-  <body class="bg-white">
+  <body class="flex flex-col min-h-screen">
     <!-- Announcement Bar -->
-    {{ partial "top-announcement.html" . }}
+    {{ partial "announcement-bar.html" . }}
     
     <!-- Navigation -->
-    {{ partial "nav.html" . }}
+    {{ partial "nav-new.html" . }}
     
     <!-- Main content -->
-    <main>
-      {{ partial "hero.html" . }}
-      {{ partial "benefits-list.html" . }}
-      {{ partial "benefits-section.html" . }}
-      {{ partial "services.html" . }}
-      {{ partial "testimonials.html" . }}
-      {{ partial "cta-footer.html" . }}
+    <main class="flex-grow">
+      {{ block "main" . }}{{ end }}
     </main>
     
     <!-- Footer -->
     {{ partial "footer.html" . }}
+    
+    <!-- Scripts -->
+    {{ block "scripts" . }}{{ end }}
   </body>
 </html>
-
-<!-- Tailwind layout structure follows Building a Second Brain homepage -->
