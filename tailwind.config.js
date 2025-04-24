@@ -2,7 +2,11 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 // tailwind.config.js
 module.exports = {
-  content: ['./layouts/**/*.html', './content/**/*.md'],
+  content: [
+    './layouts/**/*.html', 
+    './content/**/*.md',
+    './assets/css/main.css'  // Added main.css to be processed by Tailwind
+  ],
   darkMode: 'class',
   theme: {
     extend: {
@@ -10,7 +14,7 @@ module.exports = {
         transparent: 'transparent',
         current: 'currentColor',
         'navy': { DEFAULT: '#0A1F44' },
-        'gold': { DEFAULT: '#E3A008' },
+        'gold': { DEFAULT: '#f59e0b' }, // Updated to match what's used in main.css
         'primary': {
           DEFAULT: '#6366F1',
           50: '#FFFFFF',
