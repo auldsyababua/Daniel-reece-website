@@ -62,64 +62,151 @@
     
     <div class="section">
         <div class="container">
-            
-<div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; width: 100%;">
-  <div style="flex: 0 0 auto;">
-    <a href="http://localhost:5000/" aria-current="page" style="text-decoration: none; color: inherit;">
-      <span style="font-size: 24px; font-weight: 700;">Daniel Reece | Executive Speech Coach</span>
-      
-      
+            <div
+  style="
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    width: 100%;
+  "
+>
+  
+  <div style="flex: 0 0 auto">
+    <a
+      href="http://localhost:5000/"
+      aria-current="page"
+      style="text-decoration: none; color: inherit"
+    >
+      <span style="font-size: 24px; font-weight: 700">Daniel Reece</span>
     </a>
   </div>
-  <nav style="display: flex; gap: 30px; align-items: center;">
-    <a href="http://localhost:5000/" style="text-decoration: none; color: #333; font-weight: 500;">Home</a>
-    <div data-hover="false" data-delay="0" style="z-index: 901; position: relative;">
-      <div class="nav-link-dropdown" id="services-dropdown-toggle" aria-controls="services-dropdown-list" aria-haspopup="menu" aria-expanded="false" role="button" tabindex="0" style="cursor: pointer; display: flex; align-items: center; text-decoration: none; color: #333; font-weight: 500;">
-        <div>Services</div>
-        <div class="dropdown-icon" aria-hidden="true" style="transform: rotate(0deg); transition: transform 0.3s; font-size: 10px; margin-left: 4px;">▼</div>
-      </div>
-      <nav class="dropdown-list" id="services-dropdown-list" aria-labelledby="services-dropdown-toggle" style="position: absolute; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: none; min-width: 200px; padding: 10px 0; border-radius: 4px; margin-top: 5px;">
-        <a href="http://localhost:5000/services" class="dropdown-link" tabindex="0" style="display: block; padding: 8px 15px; text-decoration: none; color: #333;">All Services</a>
-        <a href="http://localhost:5000/services/virtual-speech-coaching" class="dropdown-link" tabindex="0" style="display: block; padding: 8px 15px; text-decoration: none; color: #333;">1-on-1 Virtual Coaching</a>
-        <a href="http://localhost:5000/services/live-speech-coaching" class="dropdown-link" tabindex="0" style="display: block; padding: 8px 15px; text-decoration: none; color: #333;">1-on-1 In-Person Coaching</a>
-        <a href="http://localhost:5000/services/team-coaching" class="dropdown-link" tabindex="0" style="display: block; padding: 8px 15px; text-decoration: none; color: #333;">Team Coaching Packages</a>
+
+  
+  <nav
+    style="
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      font-weight: bold;
+      text-transform: uppercase;
+    "
+  >
+    <a href="http://localhost:5000/" style="text-decoration: none; color: #333">Home</a>
+
+    
+    <div style="position: relative">
+      <a
+        href="#"
+        id="services-dropdown-toggle"
+        role="button"
+        style="
+          text-decoration: none;
+          color: #333;
+          display: flex;
+          align-items: center;
+        "
+      >
+        <span>Services</span>
+        <span style="margin-left: 4px">▾</span>
+      </a>
+      <nav
+        id="services-dropdown-list"
+        style="
+          position: absolute;
+          background: white;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+          display: none;
+          min-width: 200px;
+          padding: 10px 0;
+          border-radius: 4px;
+          margin-top: 5px;
+          z-index: 1000;
+        "
+      >
+        <a
+          href="http://localhost:5000/services/virtual-speech-coaching"
+          style="
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+          "
+          >1-on-1 Virtual Coaching</a
+        >
+        <a
+          href="http://localhost:5000/services/live-speech-coaching"
+          style="
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+          "
+          >1-on-1 In-Person Coaching</a
+        >
+        <a
+          href="http://localhost:5000/services/team-coaching"
+          style="
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+          "
+          >Team Coaching Packages</a
+        >
       </nav>
     </div>
-    <a href="http://localhost:5000/about" style="text-decoration: none; color: #333; font-weight: 500;">About</a>
-    <a href="http://localhost:5000/testimonials" style="text-decoration: none; color: #333; font-weight: 500;">Testimonials</a>
-    <a href="http://localhost:5000/blog" style="text-decoration: none; color: #333; font-weight: 500;">Blog</a>
-    <a href="http://localhost:5000/contact" style="text-decoration: none; color: #333; font-weight: 500;">Contact</a>
-    <a href="http://localhost:5000/booking" class="small-button gold w-button" style="margin-left: 15px;">Book a Call</a>
+
+    <a href="http://localhost:5000/about" style="text-decoration: none; color: #333">About</a>
+    <a href="http://localhost:5000/testimonials" style="text-decoration: none; color: #333"
+      >Testimonials</a
+    >
+    <a href="http://localhost:5000/blog" style="text-decoration: none; color: #333">Blog</a>
+    <a href="http://localhost:5000/contact" style="text-decoration: none; color: #333">Contact</a>
+    <a
+      href="http://localhost:5000/booking"
+      class="small-button gold w-button"
+      style="margin-left: 15px"
+      >Book a Call</a
+    >
   </nav>
-  <div class="menu-button" style="display: none;">
-    <div style="width: 24px; height: 3px; background-color: #333; margin-bottom: 5px;"></div>
-    <div style="width: 24px; height: 3px; background-color: #333; margin-bottom: 5px;"></div>
-    <div style="width: 24px; height: 3px; background-color: #333;"></div>
+
+  
+  <div class="menu-button" style="display: none">
+    <div
+      style="
+        width: 24px;
+        height: 3px;
+        background-color: #333;
+        margin-bottom: 5px;
+      "
+    ></div>
+    <div
+      style="
+        width: 24px;
+        height: 3px;
+        background-color: #333;
+        margin-bottom: 5px;
+      "
+    ></div>
+    <div style="width: 24px; height: 3px; background-color: #333"></div>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    
-    const servicesToggle = document.getElementById('services-dropdown-toggle');
-    const servicesDropdown = document.getElementById('services-dropdown-list');
-    const dropdownIcon = servicesToggle.querySelector('.dropdown-icon');
-    
-    
-    servicesToggle.addEventListener('click', function(e) {
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("services-dropdown-toggle");
+    const dropdown = document.getElementById("services-dropdown-list");
+
+    toggle.addEventListener("click", function (e) {
       e.preventDefault();
-      const expanded = servicesToggle.getAttribute('aria-expanded') === 'true';
-      servicesToggle.setAttribute('aria-expanded', !expanded);
-      servicesDropdown.style.display = expanded ? 'none' : 'block';
-      dropdownIcon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+      const isOpen = dropdown.style.display === "block";
+      dropdown.style.display = isOpen ? "none" : "block";
     });
-    
-    
-    document.addEventListener('click', function(e) {
-      if (!servicesToggle.contains(e.target) && !servicesDropdown.contains(e.target)) {
-        servicesToggle.setAttribute('aria-expanded', 'false');
-        servicesDropdown.style.display = 'none';
-        dropdownIcon.style.transform = 'rotate(0deg)';
+
+    document.addEventListener("click", function (e) {
+      if (!toggle.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = "none";
       }
     });
   });
@@ -297,7 +384,6 @@
         <h2 class="_5em-bottom-margin">
           Executive speech coaching will teach you to:
         </h2>
-        <h4>Practical outcomes from working with Dan</h4>
       </div>
     </div>
   </div>
@@ -522,57 +608,55 @@
 </div>
 
 
-<div class="section" style="background-color: #f5f5f5; padding: 60px 0">
+<div class="section" style="background-color: #f5f5f5; padding: 80px 0 60px">
   <div class="container small-top small-bottom">
-    <div class="_5-column-content">
-      <div class="center-align-text">
-        <h2 class="enlarged-h2 _5em-bottom-margin">
-          People from all industries have benefited from executive speech
-          coaching
-        </h2>
-      </div>
+    <div style="max-width: 500px; margin: 0 auto 50px;">
+      <h2 style="font-size: 32px; line-height: 1.2; font-weight: 700; margin-bottom: 30px; text-align: center;">
+        People from all industries have benefited from executive speech coaching
+      </h2>
     </div>
   </div>
   <div class="container">
-    <div class="testimonials-slider" style="margin: 0 auto; max-width: 800px">
+    <div class="testimonials-slider" style="margin: 0 auto; max-width: 800px;">
       <div
-        class="testimonial-headshot-2 _1"
+        class="testimonial-card"
         style="
           background-color: white;
-          padding: 30px;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+          padding: 40px;
+          border-radius: 24px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          position: relative;
+          overflow: hidden;
         "
       >
-        <div
-          class="testimonial-headshot-image-2"
+        <div 
+          class="testimonial-badge" 
           style="
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: #f0f0f0;
-            margin: 0 auto 20px;
-            overflow: hidden;
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
           "
         >
-          <img
-            src="http://localhost:5000/images/testimonial1.jpg"
-            alt="Testimonial"
-            style="width: 100%; height: 100%; object-fit: cover"
-          />
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="29" stroke="#EEEEEE" stroke-width="2"/>
+            <path d="M30 15 C23 15, 17 21, 17 28 C17 35, 23 41, 30 41 C37 41, 43 35, 43 28 C43 21, 37 15, 30 15" stroke="#EEEEEE" stroke-width="2" fill="none" stroke-dasharray="2 2"/>
+            <text x="23" y="31" fill="#CCCCCC" style="font-size: 6px; font-family: Arial;">testimonial</text>
+          </svg>
         </div>
+        
         <div
-          class="testimonial-headshot-2-text-container"
-          style="text-align: center"
+          class="testimonial-content"
+          style="text-align: left; margin-right: 70px;"
         >
-          <p class="_1em-bottom-margin">
-            "Dan's coaching gave me a
-            <strong>noticeable boost in self-confidence</strong> when speaking
-            to our board. It's hard to understate the growth I've experienced –
-            both in how I present and in what I believe I can accomplish."
+          <p style="margin-bottom: 24px; font-size: 16px; line-height: 1.6;">
+            "Dan's coaching gave me a <strong style="color: #000;">noticeable boost in self-confidence</strong> when speaking to our
+            board. It's hard to understate the growth I've experienced – both in how I present and in
+            what I believe I can accomplish."
           </p>
-          <p style="font-weight: 600; margin-bottom: 5px">Sarah Johnson</p>
-          <p class="smaller-text">Chief Marketing Officer</p>
+          <p style="font-weight: 600; margin-bottom: 5px; font-size: 18px;">Sarah Johnson</p>
+          <p style="color: #666; font-size: 14px;">Chief Marketing Officer</p>
         </div>
       </div>
     </div>
@@ -604,13 +688,13 @@
   "
 >
   <div class="container large-top large-bottom">
-    <div class="_8-column">
+    <div style="max-width: 900px; margin: 0 auto;">
       <div class="letter-1">
-        <div class="center-align-text _2em-bottom-margin">
-          <h2 class="_5em-bottom-margin">
+        <div class="center-align-text" style="margin-bottom: 50px;">
+          <h2 style="font-size: 36px; margin-bottom: 20px; font-weight: 700;">
             What people ask us about Executive Speech Coaching
           </h2>
-          <h4>
+          <h4 style="font-size: 20px; color: #555; font-weight: 500;">
             These are the questions that might pop into your head right now.
           </h4>
         </div>
