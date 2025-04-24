@@ -2,9 +2,9 @@
 <div class="section">
   <div class="container">
     <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
-      <div class="brand-wrapper-large">
-        <a href="/" aria-current="page" class="navigation-brand w-inline-block w--current">
-          <span style="font-size: 24px; font-weight: 700;">Daniel Reece | Executive Speech Coach</span>
+      <div style="padding: 0; margin: 0; background: none;">
+        <a href="/" style="text-decoration: none; display: inline-block; background: none; border: none;">
+          <h3 style="font-size: 24px; font-weight: 700; color: #333; margin: 0; background: none;">Daniel Reece | Executive Speech Coach</h3>
         </a>
       </div>
       <nav role="navigation" class="nav-menu w-nav-menu">
@@ -34,6 +34,46 @@
   </div>
 </div>
 
-<!-- Include Webflow JS for dropdown functionality -->
+<!-- Custom dropdown functionality -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.prod.website-files.com/626139f53a0980144e9432ff/js/webflow.62f7979a9.js" type="text/javascript"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Dropdown functionality
+    const dropdowns = document.querySelectorAll('.w-dropdown-toggle');
+    
+    dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdownList = this.nextElementSibling;
+        
+        // Toggle this dropdown
+        if (dropdownList.style.display === 'block') {
+          dropdownList.style.display = 'none';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          // Close all dropdowns first
+          document.querySelectorAll('.w-dropdown-list').forEach(list => {
+            list.style.display = 'none';
+            list.previousElementSibling.setAttribute('aria-expanded', 'false');
+          });
+          
+          // Open this dropdown
+          dropdownList.style.display = 'block';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.w-dropdown')) {
+        document.querySelectorAll('.w-dropdown-list').forEach(list => {
+          list.style.display = 'none';
+          if (list.previousElementSibling) {
+            list.previousElementSibling.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+    });
+  });
+</script>
