@@ -15,7 +15,6 @@
 
 
 <link href="https://cdn.prod.website-files.com/626139f53a0980144e9432ff/css/basb-8325e2-be0914764c009861bd25ebec31e.webflow.shared.b085c22b4.css" rel="stylesheet" type="text/css" />
-<link href="http://localhost:5000/css/custom.css" rel="stylesheet" type="text/css" />
 
 
 <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -63,22 +62,24 @@
     
     <div class="section">
         <div class="container">
-            <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease"
-role="banner" class="navbar w-nav" style="position: relative; z-index: 10;">
-  <div class="brand-wrapper-large" style="position: relative; z-index: 10;">
-    <a href="http://localhost:5000/" aria-current="page" class="navigation-brand w-inline-block w--current" style="position: relative; z-index: 10;">
-      <img src="http://localhost:5000/images/site-logo.svg" alt="Dan Reece Logo" style="height: 40px; width: auto; display: block;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; width: 100%;">
+  <div style="flex: 0 0 auto;">
+    <a href="http://localhost:5000/" aria-current="page" style="text-decoration: none; color: inherit;">
+      <span style="font-size: 24px; font-weight: 700;">Dan Reece</span>
     </a>
   </div>
-  <nav role="navigation" class="nav-menu w-nav-menu" style="position: relative; z-index: 5;">
-    <a href="http://localhost:5000/" class="nav-link w-nav-link">Home</a>
-    <a href="http://localhost:5000/coaching" class="nav-link w-nav-link">Coaching</a>
-    <a href="http://localhost:5000/speaking" class="nav-link w-nav-link">Speaking</a>
-    <a href="http://localhost:5000/about" class="nav-link w-nav-link">About</a>
-    <a href="http://localhost:5000/contact" class="nav-link w-nav-link">Contact</a>
+  <nav style="display: flex; gap: 30px; align-items: center;">
+    <a href="http://localhost:5000/" style="text-decoration: none; color: #333; font-weight: 500;">Home</a>
+    <a href="http://localhost:5000/coaching" style="text-decoration: none; color: #333; font-weight: 500;">Coaching</a>
+    <a href="http://localhost:5000/speaking" style="text-decoration: none; color: #333; font-weight: 500;">Speaking</a>
+    <a href="http://localhost:5000/about" style="text-decoration: none; color: #333; font-weight: 500;">About</a>
+    <a href="http://localhost:5000/contact" style="text-decoration: none; color: #333; font-weight: 500;">Contact</a>
+    <a href="http://localhost:5000/booking" class="small-button gold w-button" style="margin-left: 15px;">Book a Call</a>
   </nav>
-  <div class="menu-button w-nav-button" style="position: relative; z-index: 10;">
-    <div class="w-icon-nav-menu"></div>
+  <div class="menu-button" style="display: none;">
+    <div style="width: 24px; height: 3px; background-color: #333; margin-bottom: 5px;"></div>
+    <div style="width: 24px; height: 3px; background-color: #333; margin-bottom: 5px;"></div>
+    <div style="width: 24px; height: 3px; background-color: #333;"></div>
   </div>
 </div>
         </div>
