@@ -1,29 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ .Language.Lang }}">
-<head>
-    {{ partial "head.html" . }}
-    <style>
-        /* Additional fixes for z-index and structure */
-        body {
-            position: relative;
-        }
-        .site-nav {
-            position: relative;
-            z-index: 100;
-        }
-        .site-content {
-            position: relative;
-            z-index: 1;
-        }
-    </style>
-</head>
-<body class="bg-zinc-100 dark:bg-gray-800">
-    <div class="site-nav">
-        {{ partial "nav.html" . }}
-    </div>
-    <div class="site-content">
-        {{ block "main" . }}{{ end }}
-    </div>
-    {{ partial "footer.html" . }}
-</body>
+    <head>
+        {{ partial "head.html" . }}
+        <style>
+            /* Additional fixes for z-index and structure */
+            body {
+                position: relative;
+            }
+            .site-nav {
+                position: relative;
+                z-index: 100;
+            }
+            .site-content {
+                position: relative;
+                z-index: 1;
+            }
+        </style>
+    </head>
+    <body class="bg-zinc-100 dark:bg-gray-800">
+        {{ partial "default/top-bar.html" . }} 
+        {{ partial "default/navbar.html" . }}
+        <div class="site-content">{{ block "main" . }}{{ end }}</div>
+        {{ partial "footer.html" . }}
+    </body>
 </html>
