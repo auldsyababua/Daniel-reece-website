@@ -1,12 +1,12 @@
-<svg width="1600" height="600" viewBox="0 0 1600 600" xmlns="http://www.w3.org/2000/svg">
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#0a4b78;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#1a89c9;stop-opacity:1" />
     </linearGradient>
   </defs>
-  <rect width="1600" height="600" fill="#f0f7fc" />
-  <path d="M0,200 C300,100 650,300 1600,100 L1600,600 L0,600 Z" fill="url(#blueGradient)" />
-  <path d="M0,250 C300,150 650,350 1600,150 L1600,600 L0,600 Z" fill="url(#blueGradient)" opacity="0.7" />
-  <path d="M0,300 C300,250 650,400 1600,200 L1600,600 L0,600 Z" fill="url(#blueGradient)" opacity="0.5" />
+  <rect width="1600" height="900" fill="#f0f7fc" />
+  <path d="M0,400 C400,300 800,500 1600,380 L1600,900 L0,900 Z" fill="url(#blueGradient)" opacity="0.4" />
+  <path d="M0,500 C400,400 900,550 1600,450 L1600,900 L0,900 Z" fill="url(#blueGradient)" opacity="0.3" />
+  <path d="M0,600 C500,550 1000,650 1600,550 L1600,900 L0,900 Z" fill="url(#blueGradient)" opacity="0.2" />
 </svg>
