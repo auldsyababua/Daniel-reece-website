@@ -38,6 +38,69 @@ a:hover {
   text-decoration: underline;
 }
 
+/* BASB Layout Overrides */
+.section {
+  @apply py-16;
+}
+
+.black {
+  @apply bg-black text-white;
+}
+
+.container {
+  @apply max-w-screen-xl mx-auto px-5;
+}
+
+.top-bar {
+  @apply flex justify-between items-center py-4;
+}
+
+._600 {
+  @apply font-semibold;
+}
+
+.small-button {
+  @apply px-4 py-2 text-sm;
+}
+
+.gold {
+  @apply bg-gold text-black;
+}
+
+.w-button {
+  @apply rounded shadow hover:shadow-md transition;
+}
+
+.navbar {
+  @apply flex justify-between items-center;
+}
+
+.nav-menu {
+  @apply flex gap-6 items-center;
+}
+
+.nav-link {
+  @apply text-black hover:text-gold transition;
+}
+
+.menu-button {
+  @apply hidden;
+}
+
+.hero-left-1,
+.hero-right-2 {
+  @apply w-full md:w-1/2;
+}
+
+.hero-highlight-1 {
+  @apply text-gold;
+}
+
+.hero-video iframe {
+  @apply rounded-lg;
+}
+
+
 /* Aspect ratio utilities */
 .aspect-w-16 {
   position: relative;
