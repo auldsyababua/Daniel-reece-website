@@ -62,17 +62,32 @@
     
     <div class="section">
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; width: 100%;">
+            
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; width: 100%;">
   <div style="flex: 0 0 auto;">
     <a href="http://localhost:5000/" aria-current="page" style="text-decoration: none; color: inherit;">
-      <span style="font-size: 24px; font-weight: 700;">Dan Reece</span>
+      <span style="font-size: 24px; font-weight: 700;">Daniel Reece | Executive Speech Coach</span>
+      
+      
     </a>
   </div>
   <nav style="display: flex; gap: 30px; align-items: center;">
     <a href="http://localhost:5000/" style="text-decoration: none; color: #333; font-weight: 500;">Home</a>
-    <a href="http://localhost:5000/coaching" style="text-decoration: none; color: #333; font-weight: 500;">Coaching</a>
-    <a href="http://localhost:5000/speaking" style="text-decoration: none; color: #333; font-weight: 500;">Speaking</a>
+    <div data-hover="false" data-delay="0" class="dropdown w-dropdown" style="z-index: 901; position: relative;">
+      <div class="nav-link-dropdown w-dropdown-toggle" id="services-dropdown-toggle" aria-controls="services-dropdown-list" aria-haspopup="menu" aria-expanded="false" role="button" tabindex="0" style="cursor: pointer; display: flex; align-items: center; text-decoration: none; color: #333; font-weight: 500;">
+        <div style="margin-right: 4px;">Services</div>
+        <div class="dropdown-icon w-icon-dropdown-toggle" aria-hidden="true" style="transform: rotate(0deg); transition: transform 0.3s;">▼</div>
+      </div>
+      <nav class="dropdown-list w-dropdown-list" id="services-dropdown-list" aria-labelledby="services-dropdown-toggle" style="position: absolute; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: none; min-width: 200px; padding: 10px 0; border-radius: 4px; margin-top: 5px;">
+        <a href="http://localhost:5000/services" class="dropdown-link w-dropdown-link" tabindex="0" style="display: block; padding: 8px 15px; text-decoration: none; color: #333;">All Services</a>
+        <a href="http://localhost:5000/services/virtual-speech-coaching" class="dropdown-link w-dropdown-link" tabindex="0" style="display: block; padding: 8px 15px; text-decoration: none; color: #333;">1-on-1 Virtual Coaching</a>
+        <a href="http://localhost:5000/services/live-speech-coaching" class="dropdown-link w-dropdown-link" tabindex="0" style="display: block; padding: 8px 15px; text-decoration: none; color: #333;">1-on-1 In-Person Coaching</a>
+        <a href="http://localhost:5000/services/team-coaching" class="dropdown-link w-dropdown-link" tabindex="0" style="display: block; padding: 8px 15px; text-decoration: none; color: #333;">Team Coaching Packages</a>
+      </nav>
+    </div>
     <a href="http://localhost:5000/about" style="text-decoration: none; color: #333; font-weight: 500;">About</a>
+    <a href="http://localhost:5000/testimonials" style="text-decoration: none; color: #333; font-weight: 500;">Testimonials</a>
+    <a href="http://localhost:5000/blog" style="text-decoration: none; color: #333; font-weight: 500;">Blog</a>
     <a href="http://localhost:5000/contact" style="text-decoration: none; color: #333; font-weight: 500;">Contact</a>
     <a href="http://localhost:5000/booking" class="small-button gold w-button" style="margin-left: 15px;">Book a Call</a>
   </nav>
@@ -82,6 +97,34 @@
     <div style="width: 24px; height: 3px; background-color: #333;"></div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    const servicesToggle = document.getElementById('services-dropdown-toggle');
+    const servicesDropdown = document.getElementById('services-dropdown-list');
+    const dropdownIcon = servicesToggle.querySelector('.dropdown-icon');
+    
+    
+    servicesToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const expanded = servicesToggle.getAttribute('aria-expanded') === 'true';
+      servicesToggle.setAttribute('aria-expanded', !expanded);
+      servicesDropdown.style.display = expanded ? 'none' : 'block';
+      dropdownIcon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+    
+    
+    document.addEventListener('click', function(e) {
+      if (!servicesToggle.contains(e.target) && !servicesDropdown.contains(e.target)) {
+        servicesToggle.setAttribute('aria-expanded', 'false');
+        servicesDropdown.style.display = 'none';
+        dropdownIcon.style.transform = 'rotate(0deg)';
+      }
+    });
+  });
+</script>
+
         </div>
     </div>
     
