@@ -36,6 +36,40 @@
   </div>
 </div>
 
-<!-- Include Webflow JS for dropdown functionality -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.prod.website-files.com/626139f53a0980144e9432ff/js/webflow.62f7979a9.js" type="text/javascript"></script>
+<!-- Custom dropdown functionality -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.w-dropdown');
+    
+    dropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector('.w-dropdown-toggle');
+      const dropdownList = dropdown.querySelector('.w-dropdown-list');
+      
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Close all other dropdowns
+        dropdowns.forEach(otherDropdown => {
+          if (otherDropdown !== dropdown) {
+            otherDropdown.querySelector('.w-dropdown-list').classList.remove('w--open');
+            otherDropdown.querySelector('.w-dropdown-toggle').classList.remove('w--open');
+          }
+        });
+        
+        // Toggle this dropdown
+        dropdownList.classList.toggle('w--open');
+        toggle.classList.toggle('w--open');
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.w-dropdown')) {
+        dropdowns.forEach(dropdown => {
+          dropdown.querySelector('.w-dropdown-list').classList.remove('w--open');
+          dropdown.querySelector('.w-dropdown-toggle').classList.remove('w--open');
+        });
+      }
+    });
+  });
+</script>
