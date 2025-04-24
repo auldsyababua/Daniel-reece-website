@@ -1,0 +1,15 @@
+/* Custom styling overrides */
+
+.section.parchment-with-texture-1 {
+  background-image: url('/images/bg/bg-wide.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.section.with-texture-1 {
+  background-image: url('/images/bg/bg-wide.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
