@@ -9,10 +9,10 @@
   </div>
   <nav style="display: flex; gap: 30px; align-items: center;">
     <a href="/" style="text-decoration: none; color: #333; font-weight: 500;">Home</a>
-    <div data-hover="false" data-delay="0" style="z-index: 901; position: relative;">
-      <div class="nav-link-dropdown" id="services-dropdown-toggle" aria-controls="services-dropdown-list" aria-haspopup="menu" aria-expanded="false" role="button" tabindex="0" style="cursor: pointer; display: flex; align-items: center; text-decoration: none; color: #333; font-weight: 500;">
-        <div>Services</div>
-        <div class="dropdown-icon" aria-hidden="true" style="transform: rotate(0deg); transition: transform 0.3s; font-size: 10px; margin-left: 4px;">▼</div>
+    <div data-hover="false" data-delay="0" style="z-index: 901; position: relative; margin: 0; padding: 0;">
+      <div class="nav-link-dropdown" id="services-dropdown-toggle" aria-controls="services-dropdown-list" aria-haspopup="menu" aria-expanded="false" role="button" tabindex="0" style="cursor: pointer; display: flex; align-items: center; text-decoration: none; color: #333; font-weight: 500; text-transform: none; font-size: inherit; padding: 0; line-height: normal;">
+        <span>Services</span>
+        <span class="dropdown-icon" aria-hidden="true" style="transform: rotate(0deg); transition: transform 0.3s; font-size: 8px; margin-left: 4px; color: #666;">▼</span>
       </div>
       <nav class="dropdown-list" id="services-dropdown-list" aria-labelledby="services-dropdown-toggle" style="position: absolute; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: none; min-width: 200px; padding: 10px 0; border-radius: 4px; margin-top: 5px;">
         <a href="/services" class="dropdown-link" tabindex="0" style="display: block; padding: 8px 15px; text-decoration: none; color: #333;">All Services</a>
