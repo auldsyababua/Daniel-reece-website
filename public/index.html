@@ -126,53 +126,98 @@
   }
   
    
+  .section {
+    margin-bottom: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
   .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 0;
+  }
+  
+  .navigation-brand {
+    display: block;
+  }
+  
+  .brand-wrapper-large {
+    display: flex;
+    align-items: center;
   }
   
   .nav-menu {
     display: flex;
     align-items: center;
+    gap: 0;
   }
   
   .nav-link {
     font-weight: 500;
-    padding: 10px 0px;
-    margin: 0 15px;
+    padding: 15px 15px;
+    margin: 0;
     text-decoration: none;
     font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    display: inline-block;
+    color: #333;
+  }
+  
+  .nav-link:hover {
+    color: #000;
+  }
+  
+  .dropdown {
+    padding: 0;
+    margin: 0;
   }
   
   .nav-link-dropdown {
     display: flex;
     align-items: center;
     position: relative;
-    padding: 10px 0px;
-    margin: 0 15px;
+    padding: 15px 15px;
+    margin: 0;
     font-weight: 500;
     font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .nav-link-dropdown:hover {
+    color: #000;
   }
   
   .dropdown-icon {
     position: relative;
     display: inline-block;
-    width: 1em;
-    height: 1em;
-    margin-left: 8px;
-    font-size: 0.7em;
+    width: 10px;
+    height: 10px;
+    margin-left: 6px;
   }
   
    
-  .w-dropdown-toggle .w-icon-dropdown-toggle:before {
-    content: "▼";
+  .w-icon-dropdown-toggle:before {
+    content: "";
     position: absolute;
-    display: inline-block;
-    font-size: 8px;
-    font-family: sans-serif;
-    color: #666;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #333;
     transition: transform 0.3s ease;
   }
   
@@ -183,11 +228,15 @@
   
   .dropdown-list {
     background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 8px 0;
-    min-width: 200px;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    min-width: 220px;
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0;
   }
   
   .dropdown-list.w--open {
@@ -196,13 +245,18 @@
   
   .dropdown-link {
     display: block;
-    padding: 8px 20px;
+    padding: 10px 20px;
     text-decoration: none;
     transition: background-color 0.2s;
+    font-size: 13px;
+    color: #333;
+    text-transform: none;
+    letter-spacing: normal;
   }
   
   .dropdown-link:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.03);
+    color: #000;
   }
   
   .small-button.gold {
@@ -313,10 +367,10 @@
         </a>
       </div>
       <nav role="navigation" class="nav-menu w-nav-menu">
-        <a href="http://localhost:5000/" class="nav-link w-nav-link">Home</a>
+        <a href="http://localhost:5000/" class="nav-link w-nav-link">HOME</a>
         <div data-hover="false" data-delay="0" class="dropdown w-dropdown">
           <div class="nav-link-dropdown w-dropdown-toggle">
-            <div>Services</div>
+            <div>SERVICES</div>
             <div class="dropdown-icon w-icon-dropdown-toggle"></div>
           </div>
           <nav class="dropdown-list w-dropdown-list">
@@ -326,10 +380,10 @@
             <a href="http://localhost:5000/services/team-coaching" class="dropdown-link w-dropdown-link">Team Coaching Packages</a>
           </nav>
         </div>
-        <a href="http://localhost:5000/about" class="nav-link w-nav-link">About</a>
-        <a href="http://localhost:5000/testimonials" class="nav-link w-nav-link">Testimonials</a>
-        <a href="http://localhost:5000/blog" class="nav-link w-nav-link">Blog</a>
-        <a href="http://localhost:5000/contact" class="nav-link w-nav-link">Contact</a>
+        <a href="http://localhost:5000/about" class="nav-link w-nav-link">ABOUT</a>
+        <a href="http://localhost:5000/testimonials" class="nav-link w-nav-link">TESTIMONIALS</a>
+        <a href="http://localhost:5000/blog" class="nav-link w-nav-link">BLOG</a>
+        <a href="http://localhost:5000/contact" class="nav-link w-nav-link">CONTACT</a>
         <a href="http://localhost:5000/booking" class="small-button gold w-button">Book a Call</a>
       </nav>
       <div class="menu-button w-nav-button">
