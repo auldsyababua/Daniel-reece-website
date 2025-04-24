@@ -1,15 +1,13 @@
 <!doctype html>
-<html lang="{{ .Language.Lang }}">
+<html lang="{{ .Language.Lang }}" class="scroll-smooth">
     <head>
         {{ partial "head.html" . }}
         <style>
             /* Additional fixes for z-index and structure */
             body {
                 position: relative;
-            }
-            .site-nav {
-                position: relative;
-                z-index: 100;
+                background-color: white;
+                color: #333;
             }
             .site-content {
                 position: relative;
@@ -17,10 +15,38 @@
             }
         </style>
     </head>
-    <body class="bg-zinc-100 dark:bg-gray-800">
-        {{ partial "default/top-bar.html" . }} 
-        {{ partial "default/navbar.html" . }}
+    <body>
         <div class="site-content">{{ block "main" . }}{{ end }}</div>
-        {{ partial "footer.html" . }}
+        <footer class="section">
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-column">
+                        <h4>ExecutiveSpeechCoach</h4>
+                        <p>Empowering leaders to communicate with confidence, clarity, and charisma.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Navigation</h5>
+                        <ul>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/services">Services</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/book-session">Book a Session</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Follow</h5>
+                        <ul>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">YouTube</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; {{ now.Format "2006" }} ExecutiveSpeechCoach. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
