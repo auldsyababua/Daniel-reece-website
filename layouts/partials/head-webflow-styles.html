@@ -122,6 +122,12 @@
     font-size: 8px;
     font-family: sans-serif;
     color: #666;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Rotate arrow when dropdown is open */
+  .w-dropdown-toggle.w--open .w-icon-dropdown-toggle:before {
+    transform: rotate(180deg);
   }
   
   .dropdown-list {
@@ -130,6 +136,11 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     padding: 8px 0;
     min-width: 200px;
+    display: none;
+  }
+  
+  .dropdown-list.w--open {
+    display: block;
   }
   
   .dropdown-link {
