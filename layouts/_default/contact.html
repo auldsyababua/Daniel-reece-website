@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="contact">
+    <div class="bg-gray-200 dark:bg-gray-900">
+        <div class="max-w-screen-xl mx-auto px-4 pt-[50px] pb-[60px] text-center">
+            {{ with .Params.contact_intro }}
+                <h1 class="text-3xl md:text-4xl xl:text-5xl font-semibold tracking-tight capitalize text-gray-800 dark:text-white my-0">
+                    <span class="inline font-bold bg-gold-gradient">{{ .title }}</span>
+                </h1>
+            {{ end }}
+        </div>
+    </div>
+    {{ .Content }}
+</section>
+{{ end }}
