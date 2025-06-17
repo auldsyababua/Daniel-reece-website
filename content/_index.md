@@ -75,8 +75,8 @@ feedback:
   title: "Ready to transform the way you speak?"
   text: "Book a complimentary consultation to map your personalized coaching plan."
   button:
-    text: "Start now"
-    url: "#"
+    text: "Book Consultation"
+    url: "/contact"
   quote:
     text: "“Within three sessions my board presentations went from stiff to standout. Dan’s guidance gave me the confidence to own the room.”"
     author: "Nat Eliason"
