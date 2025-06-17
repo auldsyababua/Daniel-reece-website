@@ -1,9 +1,46 @@
-node_modules/
-resources/
-public/
+# Hugo default output directory
+/public/
+/resources/_gen/
 .hugo_build.lock
-.vercel
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Node
+node_modules/
+npm-debug.log
 yarn-error.log
-# Local Netlify folder
-.netlify
-yarn-error.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Netlify
+.netlify/
+.vercel/
+
+# Build artifacts
+dist/
+
+# Logs
+logs/
+*.log
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+.cache/
+*.bak
+.env.backup
