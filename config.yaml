@@ -55,6 +55,7 @@ params:
   description: "Personalized coaching and executive skills training"
   after_title: "The Art of Communication with Daniel Reece"
   disable_theme_toggle: false
+  hide_phone_number: false
   disable_stay_uptodate: false
 
   p1:
@@ -113,7 +114,7 @@ params:
       url: 'https://twitter.com/nusserstudios'
     linkedin:
       enabled: true
-      url: '#'
+      url: 'https://www.linkedin.com/company/elevatingvoicesnyc/?viewAsMember=true'
 
 
 menu:
@@ -214,10 +215,10 @@ menu:
       url: /contact/
       weight: 50
 
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
+# markup:
+#   goldmark:
+#     renderer:
+#       unsafe: true
 
 taxonomies:
   category: Categories
