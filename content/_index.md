@@ -13,7 +13,7 @@ intro:
     text: "Get the starter kit"
     url: "#"
   video:
-    url: "https://www.youtube.com/embed/i5mYphUoOCs"
+    url: "https://www.youtube.com/embed/GGpveVYPhMc"
     title: "Public Speaking For Beginners"
 
 partners:
