@@ -1,0 +1,27 @@
+<!-- DNS Prefetch and Preconnect for external resources -->
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Preload critical assets -->
+{{ $styles := resources.Get "/css/style.css" | postCSS }}
+<link rel="preload" href="{{ $styles.RelPermalink }}" as="style">
+
+<!-- Preload fonts if any -->
+{{- range .Site.Params.fonts -}}
+<link rel="preload" href="{{ . }}" as="font" type="font/woff2" crossorigin>
+{{- end -}}
+
+<!-- Resource hints for likely next navigation -->
+{{- if .IsHome -}}
+<link rel="prefetch" href="/services/">
+<link rel="prefetch" href="/about/">
+{{- else if eq .Section "services" -}}
+<link rel="prefetch" href="/contact/">
+{{- end -}}

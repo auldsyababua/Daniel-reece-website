@@ -1,0 +1,52 @@
+{{/* FAQ Accordion Shortcode */}}
+{{/* Usage: {{< faq-accordion >}} */}}
+<div class="faq-accordion space-y-4 my-8">
+    {{ range $index, $item := .Params }}
+    <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200" 
+                onclick="toggleFAQ({{ $index }})" 
+                aria-expanded="false" 
+                aria-controls="faq-answer-{{ $index }}">
+            <span class="font-semibold text-gray-900 dark:text-gray-100 pr-4">{{ index $item "q" }}</span>
+            <svg class="faq-icon w-5 h-5 text-gray-500 transition-transform duration-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <div id="faq-answer-{{ $index }}" class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+            <div class="px-6 py-4 text-gray-600 dark:text-gray-400">
+                {{ index $item "a" | markdownify }}
+            </div>
+        </div>
+    </div>
+    {{ end }}
+</div>
+
+<script>
+function toggleFAQ(index) {
+    const answer = document.getElementById(`faq-answer-${index}`);
+    const button = answer.previousElementSibling;
+    const icon = button.querySelector('.faq-icon');
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    
+    // Close all other FAQs
+    document.querySelectorAll('.faq-answer').forEach((el, i) => {
+        if (i !== index && el.style.maxHeight !== '0px') {
+            el.style.maxHeight = '0px';
+            const btn = el.previousElementSibling;
+            btn.setAttribute('aria-expanded', 'false');
+            btn.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+        }
+    });
+    
+    // Toggle current FAQ
+    if (isExpanded) {
+        answer.style.maxHeight = '0px';
+        button.setAttribute('aria-expanded', 'false');
+        icon.style.transform = 'rotate(0deg)';
+    } else {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        button.setAttribute('aria-expanded', 'true');
+        icon.style.transform = 'rotate(180deg)';
+    }
+}
+</script>

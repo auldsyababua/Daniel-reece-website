@@ -43,4 +43,4 @@ coverage/
 # Misc
 .cache/
 *.bak
-.env.backup
+.env.backup.env.staging

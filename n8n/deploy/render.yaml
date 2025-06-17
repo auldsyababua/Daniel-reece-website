@@ -1,0 +1,70 @@
+services:
+  - type: web
+    name: n8n-automation
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    repo: https://github.com/yourusername/daniel-reece-n8n
+    branch: main
+    envVars:
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: true
+      - key: N8N_BASIC_AUTH_USER
+        fromDatabase:
+          name: n8n-secrets
+          property: username
+      - key: N8N_BASIC_AUTH_PASSWORD
+        fromDatabase:
+          name: n8n-secrets
+          property: password
+      - key: N8N_HOST
+        fromService:
+          name: n8n-automation
+          type: web
+          property: host
+      - key: N8N_PORT
+        value: 5678
+      - key: N8N_PROTOCOL
+        value: https
+      - key: WEBHOOK_URL
+        fromService:
+          name: n8n-automation
+          type: web
+          property: hostHttps
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+      - key: DB_TYPE
+        value: sqlite
+      - key: DB_SQLITE_DATABASE
+        value: /data/database.sqlite
+      - key: N8N_USER_FOLDER
+        value: /data
+      - key: GENERIC_TIMEZONE
+        value: America/New_York
+      - key: N8N_DEFAULT_BINARY_DATA_MODE
+        value: filesystem
+      - key: N8N_BINARY_DATA_STORAGE_PATH
+        value: /data/binaryData
+      - key: N8N_METRICS
+        value: false
+      - key: N8N_VERSION_NOTIFICATIONS_ENABLED
+        value: false
+      - key: N8N_DIAGNOSTICS_ENABLED
+        value: false
+      - key: EXECUTIONS_DATA_PRUNE
+        value: true
+      - key: EXECUTIONS_DATA_MAX_AGE
+        value: 168
+      - key: EXECUTIONS_DATA_SAVE_ON_ERROR
+        value: all
+      - key: EXECUTIONS_DATA_SAVE_ON_SUCCESS
+        value: all
+      - key: EXECUTIONS_DATA_SAVE_ON_PROGRESS
+        value: false
+      - key: EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS
+        value: true
+    disk:
+      name: n8n-data
+      mountPath: /data
+      sizeGB: 1
+    healthCheckPath: /healthz
+    plan: starter

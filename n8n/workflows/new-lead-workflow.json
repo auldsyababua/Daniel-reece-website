@@ -1,0 +1,286 @@
+{
+  "name": "New Lead Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "contact-form",
+        "authentication": "headerAuth",
+        "responseMode": "onReceived",
+        "responseData": "{ \"success\": true, \"message\": \"Contact form received\" }",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Contact Form Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "contact-form",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "1",
+          "name": "Webhook Token Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_LEADS_TABLE}}",
+        "options": {
+          "typecast": true
+        },
+        "fields": {
+          "Name": "={{$json.name}}",
+          "Email": "={{$json.email}}",
+          "Phone": "={{$json.phone}}",
+          "Company": "={{$json.company}}",
+          "Service Interest": "={{$json.service}}",
+          "Message": "={{$json.message}}",
+          "Source": "Website Contact Form",
+          "Status": "New",
+          "Created Date": "={{$now.format('YYYY-MM-DD HH:mm:ss')}}",
+          "Lead Score": "=IF(OR(FIND('CEO', {Company}), FIND('Director', {Company}), FIND('VP', {Company})), 10, 5)"
+        }
+      },
+      "id": "airtable-create",
+      "name": "Create Lead in Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.EMAIL_FROM}}",
+        "toEmail": "={{$env.ADMIN_EMAIL}}",
+        "subject": "New Lead: {{$json.name}} - {{$json.company}}",
+        "text": "=You have a new lead!\n\nName: {{$node['webhook-trigger'].json.name}}\nEmail: {{$node['webhook-trigger'].json.email}}\nPhone: {{$node['webhook-trigger'].json.phone}}\nCompany: {{$node['webhook-trigger'].json.company}}\nService Interest: {{$node['webhook-trigger'].json.service}}\n\nMessage:\n{{$node['webhook-trigger'].json.message}}\n\nAirtable Record: https://airtable.com/{{$env.AIRTABLE_BASE_ID}}/{{$env.AIRTABLE_LEADS_TABLE}}/{{$json.id}}\n\nRespond within 24 hours for best conversion!",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "email-admin",
+      "name": "Email Admin Notification",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [650, 200],
+      "credentials": {
+        "smtp": {
+          "id": "3",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.EMAIL_FROM}}",
+        "toEmail": "={{$node['webhook-trigger'].json.email}}",
+        "subject": "Thank you for contacting Executive Speech Coaching NYC",
+        "text": "=Hi {{$node['webhook-trigger'].json.name.split(' ')[0]}},\n\nThank you for reaching out about executive speech coaching.\n\nI received your message and appreciate your interest in {{$node['webhook-trigger'].json.service}}. I'll review your inquiry and get back to you within 24 hours with next steps.\n\nIn the meantime, you might find these resources helpful:\n\n• My approach to executive communication: https://executivespeechcoachingnyc.com/approach\n• Client success stories: https://executivespeechcoachingnyc.com/testimonials\n• Service details: https://executivespeechcoachingnyc.com/services\n\nIf you have an urgent need or would like to schedule a conversation sooner, feel free to call me directly at (917) 300-9337.\n\nLooking forward to speaking with you soon!\n\nBest regards,\nDaniel Reece\nExecutive Speech Coach\n\nP.S. Check your spam folder if you don't see my response within 24 hours.",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "email-client",
+      "name": "Email Client Confirmation",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [650, 400],
+      "credentials": {
+        "smtp": {
+          "id": "3",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 24,
+        "unit": "hours"
+      },
+      "id": "wait-24h",
+      "name": "Wait 24 Hours",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "webhookId": "follow-up-timer"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_LEADS_TABLE}}",
+        "options": {
+          "filterByFormula": "=AND({Email} = '{{$node['webhook-trigger'].json.email}}', {Status} = 'New')"
+        }
+      },
+      "id": "check-status",
+      "name": "Check Lead Status",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1050, 300],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.length}}",
+              "operation": "larger",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "id": "if-no-response",
+      "name": "If Still New",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.EMAIL_FROM}}",
+        "toEmail": "={{$node['webhook-trigger'].json.email}}",
+        "subject": "Quick follow-up on your speech coaching inquiry",
+        "text": "=Hi {{$node['webhook-trigger'].json.name.split(' ')[0]}},\n\nI wanted to follow up on your inquiry about {{$node['webhook-trigger'].json.service}} from yesterday.\n\nI understand executive schedules can be demanding, so I wanted to make sure my initial response didn't get lost in your inbox.\n\nWould you be available for a brief 15-minute call this week to discuss your communication goals? I have slots available:\n\n• Tomorrow between 2-4 PM EST\n• Thursday between 10 AM-12 PM EST\n• Friday between 3-5 PM EST\n\nYou can book directly here: https://executivespeechcoachingnyc.com/book-call\n\nOr simply reply with a time that works better for you.\n\nLooking forward to connecting!\n\nBest,\nDaniel\n\nP.S. I'm currently booking sessions for Q1 2025 and spots are filling quickly. Happy to discuss priority scheduling if you have upcoming presentations or important meetings.",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "follow-up-email",
+      "name": "Send Follow-up Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [1450, 200],
+      "credentials": {
+        "smtp": {
+          "id": "3",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_LEADS_TABLE}}",
+        "id": "={{$json.id}}",
+        "fields": {
+          "Status": "Follow-up Sent",
+          "Last Contact": "={{$now.format('YYYY-MM-DD HH:mm:ss')}}",
+          "Notes": "=24hr follow-up email sent automatically"
+        }
+      },
+      "id": "update-status",
+      "name": "Update Lead Status",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1450, 400],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Contact Form Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create Lead in Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Lead in Airtable": {
+      "main": [
+        [
+          {
+            "node": "Email Admin Notification",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email Client Confirmation",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait 24 Hours",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 24 Hours": {
+      "main": [
+        [
+          {
+            "node": "Check Lead Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Lead Status": {
+      "main": [
+        [
+          {
+            "node": "If Still New",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Still New": {
+      "main": [
+        [
+          {
+            "node": "Send Follow-up Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update Lead Status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "executionTimeout": 900
+  },
+  "tags": [
+    {
+      "name": "lead-management"
+    }
+  ]
+}

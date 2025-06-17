@@ -1,0 +1,56 @@
+{{- $serviceName := .Params.title | default .Title -}}
+{{- $serviceDescription := .Params.description | default .Summary -}}
+{{- $servicePrice := .Params.pricing -}}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{{ $serviceName }}",
+  "description": "{{ $serviceDescription }}",
+  "provider": {
+    "@type": "LocalBusiness",
+    "@id": "{{ site.BaseURL }}#organization",
+    "name": "{{ site.Title }}"
+  },
+  "serviceType": "{{ .Params.serviceType | default "Executive Speech Coaching" }}",
+  "areaServed": {
+    "@type": "City",
+    "name": "New York City"
+  },
+  {{- if $servicePrice }}
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ $servicePrice.amount | default "" }}",
+    "priceCurrency": "USD",
+    {{- if $servicePrice.description }}
+    "description": "{{ $servicePrice.description }}",
+    {{- end }}
+    "availability": "https://schema.org/InStock"
+  },
+  {{- end }}
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Executive Speech Coaching Services",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "{{ $serviceName }}",
+        "itemListElement": [
+          {{- $features := .Params.features | default slice -}}
+          {{- range $i, $feature := $features }}
+          {{- if $i }},{{ end }}
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "{{ $feature }}"
+            }
+          }
+          {{- end }}
+        ]
+      }
+    ]
+  }
+}
+</script>

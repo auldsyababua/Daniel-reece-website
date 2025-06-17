@@ -1,0 +1,100 @@
+{{/* Related Services Carousel Shortcode */}}
+{{ $currentPage := .Page }}
+{{ $services := where .Site.RegularPages "Section" "services" }}
+{{ $relatedServices := where $services "Permalink" "ne" $currentPage.Permalink }}
+
+{{ if $relatedServices }}
+<div class="related-services my-12">
+    <h2 class="text-2xl font-bold mb-6">Related Services</h2>
+    
+    {{/* Mobile Carousel */}}
+    <div class="lg:hidden relative">
+        <div class="related-services-carousel overflow-x-auto flex space-x-4 pb-4 snap-x snap-mandatory">
+            {{ range $relatedServices }}
+            <div class="flex-shrink-0 w-80 snap-center">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                    {{ end }}
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">{{ .Title }}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{{ .Summary }}</p>
+                        <a href="{{ .Permalink }}" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-300">
+                            Learn More
+                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    
+    {{/* Desktop Grid */}}
+    <div class="hidden lg:grid lg:grid-cols-3 gap-6">
+        {{ range first 3 $relatedServices }}
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            {{ if .Params.image }}
+            <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+            {{ end }}
+            <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">{{ .Title }}</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{{ .Summary }}</p>
+                <a href="{{ .Permalink }}" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-300">
+                    Learn More
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+
+<style>
+.related-services-carousel {
+    scrollbar-width: thin;
+    scrollbar-color: #CBD5E0 #F7FAFC;
+}
+
+.related-services-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.related-services-carousel::-webkit-scrollbar-track {
+    background: #F7FAFC;
+    border-radius: 4px;
+}
+
+.related-services-carousel::-webkit-scrollbar-thumb {
+    background: #CBD5E0;
+    border-radius: 4px;
+}
+
+.related-services-carousel::-webkit-scrollbar-thumb:hover {
+    background: #A0AEC0;
+}
+
+.dark .related-services-carousel::-webkit-scrollbar-track {
+    background: #2D3748;
+}
+
+.dark .related-services-carousel::-webkit-scrollbar-thumb {
+    background: #4A5568;
+}
+
+.dark .related-services-carousel::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+</style>
+{{ end }}

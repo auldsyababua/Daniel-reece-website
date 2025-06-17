@@ -1,0 +1,185 @@
+<!-- Stripe Payment Integration -->
+<div id="stripe-payment-section" class="py-8">
+  <!-- Loading Indicator -->
+  <div id="checkout-loading" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg p-8">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+      <p class="mt-4 text-gray-600">Preparing your checkout...</p>
+    </div>
+  </div>
+
+  <!-- Error Display -->
+  <div id="checkout-error" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+    <span class="block sm:inline"></span>
+  </div>
+
+  <!-- Package Selection UI -->
+  <div id="package-selection" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <!-- Single Session -->
+    <div class="package-card border rounded-lg p-6 cursor-pointer hover:shadow-lg transition-shadow" data-package-type="single">
+      <h3 class="text-xl font-bold mb-2">Single Session</h3>
+      <p class="text-3xl font-bold text-blue-600 mb-4">$250</p>
+      <ul class="text-sm text-gray-600 mb-4">
+        <li class="mb-2">✓ 90-minute intensive session</li>
+        <li class="mb-2">✓ Personalized feedback</li>
+        <li class="mb-2">✓ Action plan</li>
+      </ul>
+      <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors">
+        Select
+      </button>
+    </div>
+
+    <!-- Launch Package -->
+    <div class="package-card border-2 border-blue-600 rounded-lg p-6 cursor-pointer hover:shadow-lg transition-shadow relative" data-package-type="launch">
+      <span class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-sm">
+        Most Popular
+      </span>
+      <h3 class="text-xl font-bold mb-2">Launch Package</h3>
+      <p class="text-3xl font-bold text-blue-600 mb-4">$1,800</p>
+      <ul class="text-sm text-gray-600 mb-4">
+        <li class="mb-2">✓ 8 coaching sessions</li>
+        <li class="mb-2">✓ Comprehensive program</li>
+        <li class="mb-2">✓ Email support</li>
+        <li class="mb-2">✓ Payment plans available</li>
+      </ul>
+      <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors">
+        Select
+      </button>
+    </div>
+
+    <!-- Scale Package -->
+    <div class="package-card border rounded-lg p-6 cursor-pointer hover:shadow-lg transition-shadow" data-package-type="scale">
+      <h3 class="text-xl font-bold mb-2">Scale Package</h3>
+      <p class="text-3xl font-bold text-blue-600 mb-4">$2,250</p>
+      <ul class="text-sm text-gray-600 mb-4">
+        <li class="mb-2">✓ 10 coaching sessions</li>
+        <li class="mb-2">✓ Extended support</li>
+        <li class="mb-2">✓ Priority scheduling</li>
+        <li class="mb-2">✓ Payment plans available</li>
+      </ul>
+      <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors">
+        Select
+      </button>
+    </div>
+  </div>
+
+  <!-- Payment Options (dynamically populated) -->
+  <div id="payment-options" class="hidden bg-gray-50 rounded-lg p-6 mb-8"></div>
+
+  <!-- Client Information Form -->
+  <div id="client-info-form" class="hidden bg-white rounded-lg shadow p-6">
+    <h3 class="text-xl font-bold mb-4">Your Information</h3>
+    <form id="checkout-form" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+        <input type="text" id="client-name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="email" id="client-email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Session Date</label>
+        <input type="date" id="session-date" required min="{{ now.Format "2006-01-02" }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <div class="hidden" id="team-size-field">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Team Size</label>
+        <select id="team-size" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+          <option value="">Select team size</option>
+          <option value="5">Up to 5 people</option>
+          <option value="10">Up to 10 people</option>
+          <option value="15">Up to 15 people</option>
+        </select>
+      </div>
+      <input type="hidden" id="client-id" value="">
+    </form>
+  </div>
+</div>
+
+<!-- Include Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
+
+<!-- Set Stripe publishable key -->
+<script>
+  window.STRIPE_PUBLISHABLE_KEY = '{{ .Site.Params.stripe.publishableKey }}';
+  
+  // Price IDs from config
+  window.STRIPE_PRICE_SESSION = '{{ .Site.Params.stripe.prices.session }}';
+  window.STRIPE_PRICE_LAUNCH = '{{ .Site.Params.stripe.prices.launch }}';
+  window.STRIPE_PRICE_SCALE = '{{ .Site.Params.stripe.prices.scale }}';
+  window.STRIPE_PRICE_STARTUP = '{{ .Site.Params.stripe.prices.startup }}';
+  window.STRIPE_PRICE_VENTURE = '{{ .Site.Params.stripe.prices.venture }}';
+  window.STRIPE_PRICE_ENTERPRISE = '{{ .Site.Params.stripe.prices.enterprise }}';
+  
+  // Payment plan price IDs
+  window.STRIPE_PRICE_LAUNCH_PAYMENT_PLAN = '{{ .Site.Params.stripe.prices.launchPaymentPlan }}';
+  window.STRIPE_PRICE_SCALE_PAYMENT_PLAN = '{{ .Site.Params.stripe.prices.scalePaymentPlan }}';
+  window.STRIPE_PRICE_STARTUP_PAYMENT_PLAN = '{{ .Site.Params.stripe.prices.startupPaymentPlan }}';
+  window.STRIPE_PRICE_VENTURE_PAYMENT_PLAN = '{{ .Site.Params.stripe.prices.venturePaymentPlan }}';
+  window.STRIPE_PRICE_ENTERPRISE_PAYMENT_PLAN = '{{ .Site.Params.stripe.prices.enterprisePaymentPlan }}';
+</script>
+
+<!-- Include our Stripe checkout script -->
+<script src="/js/stripe-checkout.js"></script>
+
+<style>
+.package-card {
+  transition: all 0.3s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-4px);
+}
+
+.package-card.selected {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.payment-plan {
+  display: block;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.payment-plan:hover {
+  border-color: #3b82f6;
+}
+
+.payment-plan input[type="radio"]:checked + .plan-details {
+  font-weight: 600;
+}
+
+.plan-price {
+  display: block;
+  color: #3b82f6;
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.checkout-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.checkout-button:hover {
+  background-color: #2563eb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #package-selection {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

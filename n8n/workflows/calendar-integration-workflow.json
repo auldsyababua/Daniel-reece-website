@@ -1,0 +1,390 @@
+{
+  "name": "Calendar Integration Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Poll Every 15 Minutes",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$env.CAL_COM_API_KEY}}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "check-calendar-type",
+      "name": "Check Calendar Type",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.cal.com/v1/bookings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "qs": {
+            "apiKey": "={{$env.CAL_COM_API_KEY}}",
+            "startTime": "={{$now.minus(15, 'minutes').toISO()}}",
+            "endTime": "={{$now.toISO()}}"
+          }
+        }
+      },
+      "id": "calcom-bookings",
+      "name": "Get Cal.com Bookings",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [650, 200]
+    },
+    {
+      "parameters": {
+        "resource": "event",
+        "operation": "getAll",
+        "calendar": "={{$env.GOOGLE_CALENDAR_ID || 'primary'}}",
+        "returnAll": false,
+        "limit": 50,
+        "options": {
+          "timeMin": "={{$now.minus(15, 'minutes').toISO()}}",
+          "timeMax": "={{$now.toISO()}}",
+          "singleEvents": true,
+          "orderBy": "startTime"
+        }
+      },
+      "id": "google-calendar",
+      "name": "Get Google Calendar Events",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [650, 400],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "4",
+          "name": "Google Calendar"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "mergeByKey",
+        "options": {
+          "mergeByKey": {
+            "propertiesToMatchOn": "email"
+          }
+        }
+      },
+      "id": "merge-events",
+      "name": "Merge Calendar Events",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process calendar events into Airtable format\nconst items = [];\n\nfor (const item of $input.all()) {\n  const event = item.json;\n  \n  // Extract client info based on source\n  let clientEmail, clientName, eventTitle, startTime, endTime, eventId;\n  \n  if (event.attendees) {\n    // Google Calendar format\n    const attendee = event.attendees.find(a => a.email !== $env.ADMIN_EMAIL) || {};\n    clientEmail = attendee.email;\n    clientName = attendee.displayName || attendee.email?.split('@')[0] || 'Unknown';\n    eventTitle = event.summary;\n    startTime = event.start.dateTime || event.start.date;\n    endTime = event.end.dateTime || event.end.date;\n    eventId = event.id;\n  } else if (event.user) {\n    // Cal.com format\n    clientEmail = event.user.email;\n    clientName = event.user.name;\n    eventTitle = event.title;\n    startTime = event.startTime;\n    endTime = event.endTime;\n    eventId = event.uid;\n  }\n  \n  // Only process if we have required data\n  if (clientEmail && startTime) {\n    items.push({\n      json: {\n        clientEmail,\n        clientName,\n        eventTitle,\n        startTime,\n        endTime,\n        eventId,\n        source: event.attendees ? 'Google Calendar' : 'Cal.com',\n        status: 'Scheduled',\n        duration: Math.round((new Date(endTime) - new Date(startTime)) / 1000 / 60)\n      }\n    });\n  }\n}\n\nreturn items;"
+      },
+      "id": "process-events",
+      "name": "Process Calendar Events",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_SESSIONS_TABLE}}",
+        "options": {
+          "filterByFormula": "={{`{Calendar Event ID} = '${$json.eventId}'`}}"
+        }
+      },
+      "id": "check-existing",
+      "name": "Check Existing Session",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1250, 300],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.length}}",
+              "operation": "equal",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "id": "if-new-session",
+      "name": "If New Session",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_CLIENTS_TABLE}}",
+        "options": {
+          "filterByFormula": "={{`{Email} = '${$json.clientEmail}'`}}"
+        }
+      },
+      "id": "find-client",
+      "name": "Find Client in Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1650, 200],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_SESSIONS_TABLE}}",
+        "options": {
+          "typecast": true
+        },
+        "fields": {
+          "Client": "={{$json.records[0] ? [$json.records[0].id] : []}}",
+          "Client Email": "={{$node['process-events'].json.clientEmail}}",
+          "Client Name": "={{$node['process-events'].json.clientName}}",
+          "Session Date": "={{$node['process-events'].json.startTime}}",
+          "End Time": "={{$node['process-events'].json.endTime}}",
+          "Duration (minutes)": "={{$node['process-events'].json.duration}}",
+          "Session Type": "={{$node['process-events'].json.eventTitle}}",
+          "Status": "Scheduled",
+          "Calendar Event ID": "={{$node['process-events'].json.eventId}}",
+          "Calendar Source": "={{$node['process-events'].json.source}}",
+          "Payment Status": "Pending",
+          "Created Date": "={{$now.format('YYYY-MM-DD HH:mm:ss')}}"
+        }
+      },
+      "id": "create-session",
+      "name": "Create Session Record",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1850, 200],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_SESSIONS_TABLE}}",
+        "id": "={{$json.records[0].id}}",
+        "fields": {
+          "Session Date": "={{$node['process-events'].json.startTime}}",
+          "End Time": "={{$node['process-events'].json.endTime}}",
+          "Duration (minutes)": "={{$node['process-events'].json.duration}}",
+          "Last Updated": "={{$now.format('YYYY-MM-DD HH:mm:ss')}}"
+        }
+      },
+      "id": "update-session",
+      "name": "Update Existing Session",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1650, 400],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "calendar-sync",
+        "authentication": "headerAuth",
+        "responseMode": "onReceived",
+        "responseData": "{ \"success\": true, \"message\": \"Calendar sync initiated\" }",
+        "options": {}
+      },
+      "id": "webhook-calendar",
+      "name": "Manual Calendar Sync Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 500],
+      "webhookId": "calendar-sync",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "1",
+          "name": "Webhook Token Auth"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Poll Every 15 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Check Calendar Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual Calendar Sync Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check Calendar Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Calendar Type": {
+      "main": [
+        [
+          {
+            "node": "Get Cal.com Bookings",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Google Calendar Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Cal.com Bookings": {
+      "main": [
+        [
+          {
+            "node": "Merge Calendar Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Google Calendar Events": {
+      "main": [
+        [
+          {
+            "node": "Merge Calendar Events",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Calendar Events": {
+      "main": [
+        [
+          {
+            "node": "Process Calendar Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Calendar Events": {
+      "main": [
+        [
+          {
+            "node": "Check Existing Session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Existing Session": {
+      "main": [
+        [
+          {
+            "node": "If New Session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If New Session": {
+      "main": [
+        [
+          {
+            "node": "Find Client in Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Existing Session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Client in Airtable": {
+      "main": [
+        [
+          {
+            "node": "Create Session Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "executionTimeout": 300
+  },
+  "tags": [
+    {
+      "name": "calendar-sync"
+    }
+  ]
+}

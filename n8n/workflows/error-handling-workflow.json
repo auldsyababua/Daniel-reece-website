@@ -1,0 +1,366 @@
+{
+  "name": "Error Handling and Notifications",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "error-notification",
+        "authentication": "headerAuth",
+        "responseMode": "onReceived",
+        "responseData": "{ \"success\": true, \"message\": \"Error logged\" }",
+        "options": {}
+      },
+      "id": "error-webhook",
+      "name": "Error Notification Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "error-notification",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "1",
+          "name": "Webhook Token Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "={{$execution.workflowId}}"
+      },
+      "id": "error-trigger",
+      "name": "On Workflow Error",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [250, 500]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process error information\nconst errorData = $input.all()[0].json;\nconst now = new Date();\n\n// Determine error source and severity\nlet source = 'Unknown';\nlet severity = 'Medium';\nlet workflow = '';\nlet nodeName = '';\nlet errorMessage = '';\nlet errorDetails = '';\n\nif (errorData.workflow) {\n  // From error trigger\n  workflow = errorData.workflow.name || 'Unknown Workflow';\n  nodeName = errorData.node?.name || 'Unknown Node';\n  errorMessage = errorData.error?.message || 'Unknown error';\n  errorDetails = JSON.stringify(errorData.error, null, 2);\n  \n  // Determine severity based on workflow\n  if (workflow.includes('Payment') || workflow.includes('Daily')) {\n    severity = 'High';\n  } else if (workflow.includes('Email')) {\n    severity = 'Low';\n  }\n} else {\n  // From webhook\n  source = errorData.source || 'External';\n  severity = errorData.severity || 'Medium';\n  errorMessage = errorData.message || 'Unknown error';\n  errorDetails = errorData.details || '';\n  workflow = errorData.workflow || 'N/A';\n}\n\n// Format for notifications\nconst shortMessage = `n8n Error: ${workflow} - ${errorMessage.substring(0, 100)}...`;\nconst emailSubject = `[${severity}] n8n Error in ${workflow}`;\nconst emailBody = `\nError Details:\n--------------\nTime: ${now.toLocaleString('en-US', {timeZone: 'America/New_York'})}\nWorkflow: ${workflow}\nNode: ${nodeName}\nSeverity: ${severity}\nSource: ${source}\n\nError Message:\n${errorMessage}\n\nFull Details:\n${errorDetails}\n\nAction Required:\n${severity === 'High' ? 'IMMEDIATE ATTENTION NEEDED - Payment or critical workflow affected' : 'Review when possible'}\n\nn8n Instance: ${process.env.N8N_HOST || 'Unknown'}\n`;\n\nreturn [{\n  json: {\n    severity,\n    workflow,\n    nodeName,\n    errorMessage,\n    shortMessage,\n    emailSubject,\n    emailBody,\n    timestamp: now.toISOString(),\n    requiresSMS: severity === 'High'\n  }\n}];"
+      },
+      "id": "process-error",
+      "name": "Process Error Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [450, 400]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.requiresSMS}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "check-sms",
+      "name": "If High Severity",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 400]
+    },
+    {
+      "parameters": {
+        "resource": "sms",
+        "operation": "send",
+        "from": "n8n",
+        "to": "={{$env.ADMIN_SMS}}",
+        "message": "={{$json.shortMessage}}"
+      },
+      "id": "send-sms",
+      "name": "Send SMS Alert",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "credentials": {
+        "twilioApi": {
+          "id": "6",
+          "name": "Twilio API"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.EMAIL_FROM}}",
+        "toEmail": "={{$env.ADMIN_EMAIL}}",
+        "subject": "={{$json.emailSubject}}",
+        "text": "={{$json.emailBody}}",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "send-email",
+      "name": "Send Email Alert",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [850, 500],
+      "credentials": {
+        "smtp": {
+          "id": "3",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "Error Logs",
+        "options": {
+          "typecast": true
+        },
+        "fields": {
+          "Timestamp": "={{$json.timestamp}}",
+          "Workflow": "={{$json.workflow}}",
+          "Node": "={{$json.nodeName}}",
+          "Severity": "={{$json.severity}}",
+          "Error Message": "={{$json.errorMessage}}",
+          "Status": "Logged",
+          "SMS Sent": "={{$json.requiresSMS}}",
+          "Resolution": "Pending"
+        }
+      },
+      "id": "log-error",
+      "name": "Log Error to Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1050, 400],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "daily-check",
+      "name": "Daily Error Summary",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 700]
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "Error Logs",
+        "returnAll": true,
+        "options": {
+          "filterByFormula": "=AND(IS_AFTER({Timestamp}, DATEADD(NOW(), -1, 'day')), {Status} = 'Logged')"
+        }
+      },
+      "id": "get-daily-errors",
+      "name": "Get Last 24h Errors",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [450, 700],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Create daily summary\nconst errors = $input.all()[0].json.records || [];\nconst errorCount = errors.length;\n\nif (errorCount === 0) {\n  return [{\n    json: {\n      sendSummary: false\n    }\n  }];\n}\n\n// Group by severity\nconst bySeverity = {\n  High: errors.filter(e => e.fields.Severity === 'High').length,\n  Medium: errors.filter(e => e.fields.Severity === 'Medium').length,\n  Low: errors.filter(e => e.fields.Severity === 'Low').length\n};\n\n// Group by workflow\nconst byWorkflow = {};\nerrors.forEach(e => {\n  const workflow = e.fields.Workflow || 'Unknown';\n  byWorkflow[workflow] = (byWorkflow[workflow] || 0) + 1;\n});\n\n// Create summary\nconst summary = `\nDaily Error Summary\n==================\n\nTotal Errors: ${errorCount}\n\nBy Severity:\n- High: ${bySeverity.High}\n- Medium: ${bySeverity.Medium}\n- Low: ${bySeverity.Low}\n\nBy Workflow:\n${Object.entries(byWorkflow).map(([w, c]) => `- ${w}: ${c}`).join('\\n')}\n\nRecent High Severity Errors:\n${errors.filter(e => e.fields.Severity === 'High').slice(0, 5).map(e => `- ${e.fields['Error Message']}`).join('\\n') || 'None'}\n\nAction Items:\n${bySeverity.High > 0 ? '⚠️  Review high severity errors immediately' : '✅ No critical errors'}\n${errorCount > 10 ? '⚠️  High error volume detected - investigate patterns' : ''}\n\nView all errors: https://airtable.com/${process.env.AIRTABLE_BASE_ID}/Error%20Logs\n`;\n\nreturn [{\n  json: {\n    sendSummary: true,\n    summary,\n    errorCount,\n    hasHighSeverity: bySeverity.High > 0\n  }\n}];"
+      },
+      "id": "create-summary",
+      "name": "Create Error Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [650, 700]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.sendSummary}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "if-errors",
+      "name": "If Errors Exist",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 700]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.EMAIL_FROM}}",
+        "toEmail": "={{$env.ADMIN_EMAIL}}",
+        "subject": "Daily n8n Error Summary - {{$json.hasHighSeverity ? '⚠️ ATTENTION REQUIRED' : '✅ All Good'}}",
+        "text": "={{$json.summary}}",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "send-summary",
+      "name": "Send Daily Summary",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [1050, 700],
+      "credentials": {
+        "smtp": {
+          "id": "3",
+          "name": "Gmail SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Error Notification Webhook": {
+      "main": [
+        [
+          {
+            "node": "Process Error Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On Workflow Error": {
+      "main": [
+        [
+          {
+            "node": "Process Error Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Error Data": {
+      "main": [
+        [
+          {
+            "node": "If High Severity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If High Severity": {
+      "main": [
+        [
+          {
+            "node": "Send SMS Alert",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Email Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Email Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email Alert": {
+      "main": [
+        [
+          {
+            "node": "Log Error to Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send SMS Alert": {
+      "main": [
+        [
+          {
+            "node": "Log Error to Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Error Summary": {
+      "main": [
+        [
+          {
+            "node": "Get Last 24h Errors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Last 24h Errors": {
+      "main": [
+        [
+          {
+            "node": "Create Error Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Error Summary": {
+      "main": [
+        [
+          {
+            "node": "If Errors Exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Errors Exist": {
+      "main": [
+        [
+          {
+            "node": "Send Daily Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "executionTimeout": 300
+  },
+  "tags": [
+    {
+      "name": "error-handling"
+    },
+    {
+      "name": "monitoring"
+    }
+  ]
+}

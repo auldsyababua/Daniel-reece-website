@@ -1,0 +1,85 @@
+{{- $businessHours := dict 
+  "Monday" (site.Params.seo.businessHours.monday | default "9:00-18:00")
+  "Tuesday" (site.Params.seo.businessHours.tuesday | default "9:00-18:00")
+  "Wednesday" (site.Params.seo.businessHours.wednesday | default "9:00-18:00")
+  "Thursday" (site.Params.seo.businessHours.thursday | default "9:00-18:00")
+  "Friday" (site.Params.seo.businessHours.friday | default "9:00-18:00")
+  "Saturday" (site.Params.seo.businessHours.saturday | default "10:00-16:00")
+  "Sunday" (site.Params.seo.businessHours.sunday | default "closed")
+-}}
+
+{{- $openingHours := slice -}}
+{{- range $day, $hours := $businessHours -}}
+  {{- if ne $hours "closed" -}}
+    {{- $openingHours = $openingHours | append (printf "%s %s" (substr $day 0 2) $hours) -}}
+  {{- end -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "{{ site.Title }}",
+  "description": "{{ site.Params.description }}",
+  "image": "{{ site.Params.seo.organizationLogo | default "/images/logo.png" | absURL }}",
+  "logo": "{{ site.Params.seo.organizationLogo | default "/images/logo.png" | absURL }}",
+  "@id": "{{ site.BaseURL }}#organization",
+  "url": "{{ site.BaseURL }}",
+  "telephone": "+1-917-300-9337",
+  "email": "daniel@executivespeechcoachingnyc.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1178 Broadway, 3rd Floor",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "postalCode": "10001",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.7449,
+    "longitude": -73.9886
+  },
+  "openingHoursSpecification": [
+    {{- range $i, $spec := $openingHours -}}
+    {{- if $i -}},{{- end }}
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "{{ index (split $spec " ") 0 }}",
+      "opens": "{{ index (split (index (split $spec " ") 1) "-") 0 }}",
+      "closes": "{{ index (split (index (split $spec " ") 1) "-") 1 }}"
+    }
+    {{- end }}
+  ],
+  "priceRange": "$$$",
+  {{- if site.Params.seo.aggregateRating }}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ site.Params.seo.aggregateRating.value | default "4.9" }}",
+    "reviewCount": "{{ site.Params.seo.aggregateRating.count | default "47" }}"
+  },
+  {{- end }}
+  "areaServed": {
+    "@type": "City",
+    "name": "New York City"
+  },
+  "sameAs": [
+    {{- $social := slice -}}
+    {{- with site.Params.seo.social.facebook -}}{{ $social = $social | append . }}{{- end -}}
+    {{- with site.Params.seo.social.linkedin -}}{{ $social = $social | append . }}{{- end -}}
+    {{- with site.Params.seo.social.twitter -}}{{ $social = $social | append (printf "https://twitter.com/%s" (strings.TrimPrefix "@" .)) }}{{- end -}}
+    {{- with site.Params.seo.social.instagram -}}{{ $social = $social | append . }}{{- end -}}
+    {{- with site.Params.seo.social.youtube -}}{{ $social = $social | append . }}{{- end -}}
+    {{- range $i, $url := $social -}}
+    {{- if $i -}},{{- end -}}
+    "{{ $url }}"
+    {{- end }}
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Daniel Reece",
+    "jobTitle": "Executive Speech Coach",
+    "url": "{{ site.BaseURL }}about/"
+  }
+}
+</script>

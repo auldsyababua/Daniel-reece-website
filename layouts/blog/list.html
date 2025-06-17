@@ -1,0 +1,101 @@
+{{ define "main" }}
+<main>
+    <!-- Blog Header -->
+    <section class="bg-gray-200 dark:bg-gray-900">
+        <div class="max-w-screen-xl mx-auto px-4 py-[50px] md:py-[75px]">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+                    Insights on Executive Communication
+                </h1>
+                <p class="text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+                    Practical strategies for leaders who want to speak with clarity, confidence, and conviction.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="max-w-screen-xl mx-auto px-4 py-[50px]">
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {{ range .Paginator.Pages }}
+            <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02]">
+                {{ if .Params.featured_image }}
+                <a href="{{ .RelPermalink }}" class="block">
+                    <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                </a>
+                {{ end }}
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <time datetime="{{ .Date.Format "2006-01-02" }}">
+                            {{ .Date.Format "January 2, 2006" }}
+                        </time>
+                        <span class="mx-2">·</span>
+                        <span>{{ math.Round (div (countwords .Content) 220.0) }} min read</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-3">
+                        <a href="{{ .RelPermalink }}" class="text-gray-900 dark:text-white hover:text-gold transition-colors">
+                            {{ .Title }}
+                        </a>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                        {{ .Summary | truncate 150 }}
+                    </p>
+                    <a href="{{ .RelPermalink }}" class="inline-flex items-center text-gold hover:text-yellow-600 font-semibold transition-colors">
+                        Read more
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+
+        <!-- Pagination -->
+        {{ if gt .Paginator.TotalPages 1 }}
+        <div class="mt-12 flex justify-center">
+            <nav class="flex items-center space-x-2">
+                {{ if .Paginator.HasPrev }}
+                <a href="{{ .Paginator.Prev.URL }}" class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    Previous
+                </a>
+                {{ end }}
+                
+                {{ range .Paginator.Pagers }}
+                <a href="{{ .URL }}" class="px-4 py-2 {{ if eq . $.Paginator }}bg-gold text-gray-900{{ else }}border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700{{ end }} rounded-md transition-colors">
+                    {{ .PageNumber }}
+                </a>
+                {{ end }}
+                
+                {{ if .Paginator.HasNext }}
+                <a href="{{ .Paginator.Next.URL }}" class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    Next
+                </a>
+                {{ end }}
+            </nav>
+        </div>
+        {{ end }}
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="bg-gray-200 dark:bg-gray-900">
+        <div class="max-w-screen-xl mx-auto px-4 py-[50px]">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                    Get Speaking Tips Delivered to Your Inbox
+                </h2>
+                <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                    Join executives who receive weekly insights on communication and leadership.
+                </p>
+                <form action="/.netlify/functions/newsletter" method="POST" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" name="email" placeholder="Enter your email" required
+                        class="flex-1 px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-gold focus:border-transparent">
+                    <button type="submit" class="px-6 py-3 bg-gold text-gray-900 font-bold rounded-md hover:bg-yellow-500 transition-colors">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+{{ end }}

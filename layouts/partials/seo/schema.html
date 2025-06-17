@@ -1,0 +1,14 @@
+{{- if .IsHome -}}
+  {{- partial "schema/local-business.html" . -}}
+  {{- partial "schema/person.html" . -}}
+{{- else if eq .Section "services" -}}
+  {{- partial "schema/service.html" . -}}
+  {{- partial "schema/breadcrumb.html" . -}}
+{{- else if eq .Section "posts" -}}
+  {{- partial "schema/article.html" . -}}
+  {{- partial "schema/breadcrumb.html" . -}}
+{{- else if .IsPage -}}
+  {{- partial "schema/breadcrumb.html" . -}}
+{{- end -}}
+
+{{- partial "schema/faq.html" . -}}

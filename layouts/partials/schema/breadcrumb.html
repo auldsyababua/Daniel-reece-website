@@ -1,0 +1,37 @@
+{{- if not .IsHome -}}
+{{- $url := replace .Permalink ( printf "%s" site.BaseURL) "" -}}
+{{- $parts := split (trim $url "/") "/" -}}
+{{- $items := slice -}}
+{{- $currentURL := site.BaseURL -}}
+
+{{- $items = $items | append (dict "name" "Home" "url" $currentURL "position" 1) -}}
+
+{{- range $i, $part := $parts -}}
+  {{- $currentURL = printf "%s%s/" $currentURL $part -}}
+  {{- $name := humanize $part -}}
+  {{- if eq $part "services" -}}
+    {{- $name = "Services" -}}
+  {{- else if eq $part "posts" -}}
+    {{- $name = "Blog" -}}
+  {{- end -}}
+  {{- $items = $items | append (dict "name" $name "url" $currentURL "position" (add $i 2)) -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{- range $i, $item := $items -}}
+    {{- if $i -}},{{- end }}
+    {
+      "@type": "ListItem",
+      "position": {{ $item.position }},
+      "name": "{{ $item.name }}",
+      "item": "{{ $item.url }}"
+    }
+    {{- end -}}
+  ]
+}
+</script>
+{{- end -}}

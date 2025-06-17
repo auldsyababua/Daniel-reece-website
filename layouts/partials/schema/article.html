@@ -1,0 +1,53 @@
+{{- $author := .Params.author | default site.Params.author | default "Daniel Reece" -}}
+{{- $publishDate := .PublishDate.Format "2006-01-02T15:04:05-07:00" -}}
+{{- $modifiedDate := .Lastmod.Format "2006-01-02T15:04:05-07:00" -}}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "description": "{{ .Params.description | default .Summary | truncate 160 }}",
+  "image": [
+    {{- if .Params.image -}}
+    "{{ .Params.image | absURL }}"
+    {{- else if .Params.featured_image -}}
+    "{{ .Params.featured_image | absURL }}"
+    {{- else -}}
+    "{{ site.Params.seo.defaultImage | default "/images/default-article.jpg" | absURL }}"
+    {{- end -}}
+  ],
+  "datePublished": "{{ $publishDate }}",
+  "dateModified": "{{ $modifiedDate }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $author }}",
+    "url": "{{ site.BaseURL }}about/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.Params.seo.organizationLogo | default "/images/logo.png" | absURL }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  {{- if .Params.categories }}
+  "articleSection": "{{ index .Params.categories 0 }}",
+  {{- end }}
+  {{- if .Params.tags }}
+  "keywords": [
+    {{- range $i, $tag := .Params.tags -}}
+    {{- if $i -}}, {{ end -}}
+    "{{ $tag }}"
+    {{- end -}}
+  ],
+  {{- end }}
+  "wordCount": {{ .WordCount }},
+  "inLanguage": "en-US"
+}
+</script>

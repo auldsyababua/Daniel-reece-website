@@ -1,0 +1,180 @@
+{{/* Floating CTA Button */}}
+<div id="floating-cta" class="fixed bottom-8 right-8 z-50 opacity-0 translate-y-4 transition-all duration-500 ease-out invisible">
+    <div class="relative">
+        <a href="{{ .Site.Params.ui.floating_cta_url | default "/contact" }}" 
+           class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200">
+            <span>{{ .Site.Params.ui.floating_cta_text | default "Book Free Consultation" }}</span>
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+        </a>
+        <button id="close-floating-cta" class="absolute -top-2 -right-2 bg-white dark:bg-gray-800 rounded-full p-1 shadow-md hover:shadow-lg transition-shadow duration-200">
+            <svg class="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+</div>
+
+{{/* Mobile Sticky Footer - Only shown on mobile */}}
+<div id="mobile-footer-cta" class="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg lg:hidden">
+    <div class="grid grid-cols-2 gap-0">
+        <a href="tel:{{ .Site.Params.ui.mobile_footer_phone | default "+19173009337" }}" 
+           class="flex items-center justify-center py-4 bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-200">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            <span>{{ .Site.Params.ui.mobile_footer_call_text | default "Call Now" }}</span>
+        </a>
+        <a href="{{ .Site.Params.ui.mobile_footer_book_url | default "/services/discovery-call" }}" 
+           class="flex items-center justify-center py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>{{ .Site.Params.ui.mobile_footer_book_text | default "Book Session" }}</span>
+        </a>
+    </div>
+</div>
+
+{{/* Trust Indicators */}}
+<div id="trust-indicators" class="fixed top-20 right-4 z-40 opacity-0 transition-opacity duration-500">
+    {{/* Executive Counter */}}
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 mb-3">
+        <div class="text-center">
+            <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                <span id="counter-number" data-target="{{ .Site.Params.ui.trust_counter_number | default "500" }}">0</span>+
+            </div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">{{ .Site.Params.ui.trust_counter_text | default "Executives Coached" }}</div>
+        </div>
+    </div>
+    
+    {{/* Urgency Marker */}}
+    {{ if .Site.Params.ui.trust_show_urgency | default true }}
+    <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg shadow-lg p-3 text-center">
+        <div class="text-xs font-semibold flex items-center justify-center">
+            <svg class="w-4 h-4 mr-1 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+            </svg>
+            {{ .Site.Params.ui.trust_urgency_text | default "Limited Q1 2025 Availability" }}
+        </div>
+    </div>
+    {{ end }}
+</div>
+
+<script>
+// Floating CTA Logic
+document.addEventListener('DOMContentLoaded', function() {
+    const floatingCTA = document.getElementById('floating-cta');
+    const closeBtn = document.getElementById('close-floating-cta');
+    const trustIndicators = document.getElementById('trust-indicators');
+    const scrollTrigger = {{ .Site.Params.ui.floating_cta_scroll_trigger | default 30 }};
+    let ctaDismissed = localStorage.getItem('floatingCTADismissed') === 'true';
+    
+    // Check if CTA was dismissed in the last 24 hours
+    const dismissedTime = localStorage.getItem('floatingCTADismissedTime');
+    if (dismissedTime) {
+        const timeDiff = Date.now() - parseInt(dismissedTime);
+        if (timeDiff > 24 * 60 * 60 * 1000) { // 24 hours
+            ctaDismissed = false;
+            localStorage.removeItem('floatingCTADismissed');
+            localStorage.removeItem('floatingCTADismissedTime');
+        }
+    }
+    
+    // Show/hide floating CTA based on scroll
+    function handleScroll() {
+        if (ctaDismissed) return;
+        
+        const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        
+        if (scrollPercentage > scrollTrigger) {
+            floatingCTA.classList.remove('opacity-0', 'translate-y-4', 'invisible');
+            floatingCTA.classList.add('opacity-100', 'translate-y-0');
+            
+            // Show trust indicators after a delay
+            setTimeout(() => {
+                trustIndicators.classList.remove('opacity-0');
+                trustIndicators.classList.add('opacity-100');
+                animateCounter();
+            }, 500);
+        } else {
+            floatingCTA.classList.add('opacity-0', 'translate-y-4', 'invisible');
+            floatingCTA.classList.remove('opacity-100', 'translate-y-0');
+            trustIndicators.classList.add('opacity-0');
+            trustIndicators.classList.remove('opacity-100');
+        }
+    }
+    
+    // Close button functionality
+    closeBtn.addEventListener('click', function() {
+        ctaDismissed = true;
+        localStorage.setItem('floatingCTADismissed', 'true');
+        localStorage.setItem('floatingCTADismissedTime', Date.now().toString());
+        floatingCTA.classList.add('opacity-0', 'translate-y-4', 'invisible');
+        floatingCTA.classList.remove('opacity-100', 'translate-y-0');
+    });
+    
+    // Counter animation
+    function animateCounter() {
+        const counter = document.getElementById('counter-number');
+        if (!counter || counter.dataset.animated === 'true') return;
+        
+        const target = parseInt(counter.dataset.target);
+        const duration = 2000; // 2 seconds
+        const start = performance.now();
+        
+        counter.dataset.animated = 'true';
+        
+        function updateCounter(currentTime) {
+            const elapsed = currentTime - start;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const current = Math.floor(easeOutQuart * target);
+            
+            counter.textContent = current;
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            }
+        }
+        
+        requestAnimationFrame(updateCounter);
+    }
+    
+    // Add scroll listener with throttling
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) return;
+        
+        scrollTimeout = setTimeout(function() {
+            scrollTimeout = null;
+            handleScroll();
+        }, 100);
+    });
+    
+    // Initial check
+    handleScroll();
+    
+    // Hide mobile footer on input focus (prevents keyboard overlap)
+    const inputs = document.querySelectorAll('input, textarea, select');
+    const mobileFooter = document.getElementById('mobile-footer-cta');
+    
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            if (window.innerWidth < 1024) {
+                mobileFooter.style.display = 'none';
+            }
+        });
+        
+        input.addEventListener('blur', () => {
+            if (window.innerWidth < 1024) {
+                setTimeout(() => {
+                    mobileFooter.style.display = 'block';
+                }, 100);
+            }
+        });
+    });
+});
+</script>

@@ -1,0 +1,34 @@
+{{- if not .IsHome -}}
+<nav aria-label="Breadcrumb" class="mb-4 text-sm">
+    <ol class="flex items-center space-x-1 text-gray-500">
+        <li>
+            <a href="{{ site.BaseURL }}" class="hover:text-gray-700 transition-colors">
+                Home
+            </a>
+        </li>
+        
+        {{- $url := replace .Permalink (printf "%s" site.BaseURL) "" -}}
+        {{- $parts := split (trim $url "/") "/" -}}
+        {{- $currentURL := site.BaseURL -}}
+        
+        {{- range $i, $part := $parts -}}
+            {{- $currentURL = printf "%s%s/" $currentURL $part -}}
+            {{- $name := humanize $part -}}
+            {{- $isLast := eq (add $i 1) (len $parts) -}}
+            
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mx-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+                {{- if $isLast -}}
+                    <span class="text-gray-700 font-medium" aria-current="page">{{ $name }}</span>
+                {{- else -}}
+                    <a href="{{ $currentURL }}" class="hover:text-gray-700 transition-colors">
+                        {{ $name }}
+                    </a>
+                {{- end -}}
+            </li>
+        {{- end -}}
+    </ol>
+</nav>
+{{- end -}}

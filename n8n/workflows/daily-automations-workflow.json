@@ -1,0 +1,402 @@
+{
+  "name": "Daily Automations",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      },
+      "id": "morning-cron",
+      "name": "Morning Check (9 AM EST)",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 200]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 18 * * *"
+            }
+          ]
+        }
+      },
+      "id": "evening-cron",
+      "name": "Evening Check (6 PM EST)",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 600]
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_SESSIONS_TABLE}}",
+        "options": {
+          "filterByFormula": "=AND(IS_SAME({Session Date}, TODAY(), 'day'), OR({Payment Status} = 'Pending', {Payment Status} = 'Scheduled'))"
+        }
+      },
+      "id": "today-sessions",
+      "name": "Get Today's Sessions",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [450, 200],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.records.length}}",
+              "operation": "larger",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "id": "if-sessions-today",
+      "name": "If Sessions Today",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process sessions for payment capture\nconst sessions = $input.all()[0].json.records;\nconst paymentCaptures = [];\n\nfor (const session of sessions) {\n  const sessionTime = new Date(session.fields['Session Date']);\n  const now = new Date();\n  const hoursUntilSession = (sessionTime - now) / 1000 / 60 / 60;\n  \n  // Capture payment based on settings\n  const captureDelayDays = parseInt($env.STRIPE_PAYMENT_CAPTURE_DELAY_DAYS || '0');\n  const shouldCapture = captureDelayDays === 0 && hoursUntilSession <= 2;\n  \n  if (shouldCapture && session.fields['Payment Status'] === 'Scheduled') {\n    paymentCaptures.push({\n      json: {\n        sessionId: session.id,\n        clientName: session.fields['Client Name'],\n        clientEmail: session.fields['Client Email'],\n        sessionTime: session.fields['Session Date'],\n        stripePaymentIntentId: session.fields['Stripe Payment Intent ID'],\n        amount: session.fields['Session Price'],\n        action: 'capture'\n      }\n    });\n  }\n}\n\nreturn paymentCaptures;"
+      },
+      "id": "process-payments",
+      "name": "Process Payment Captures",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [850, 100]
+    },
+    {
+      "parameters": {
+        "resource": "paymentIntent",
+        "operation": "capture",
+        "paymentIntentId": "={{$json.stripePaymentIntentId}}"
+      },
+      "id": "capture-payment",
+      "name": "Capture Stripe Payment",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [1050, 100],
+      "credentials": {
+        "stripeApi": {
+          "id": "5",
+          "name": "Stripe API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_SESSIONS_TABLE}}",
+        "id": "={{$json.sessionId}}",
+        "fields": {
+          "Payment Status": "Captured",
+          "Payment Captured At": "={{$now.format('YYYY-MM-DD HH:mm:ss')}}"
+        }
+      },
+      "id": "update-payment-status",
+      "name": "Update Payment Status",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1250, 100],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.EMAIL_FROM}}",
+        "toEmail": "={{$env.ADMIN_EMAIL}}",
+        "subject": "Daily Session Report - {{$now.format('YYYY-MM-DD')}}",
+        "text": "=Good morning Daniel,\n\nToday's sessions:\n\n{{$node['today-sessions'].json.records.map(s => `• ${s.fields['Client Name']} at ${new Date(s.fields['Session Date']).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'})} - ${s.fields['Session Type']} (Payment: ${s.fields['Payment Status']})`).join('\\n')}}\n\nPayment captures processed: {{$node['process-payments'].all().length}}\n\nHave a great day!\n\nBest,\nYour n8n Assistant",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "morning-report",
+      "name": "Send Morning Report",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [850, 300],
+      "credentials": {
+        "smtp": {
+          "id": "3",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_SESSIONS_TABLE}}",
+        "options": {
+          "filterByFormula": "=IS_SAME({Session Date}, DATEADD(TODAY(), 1, 'day'), 'day')"
+        }
+      },
+      "id": "tomorrow-sessions",
+      "name": "Get Tomorrow's Sessions",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [450, 600],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.records.length}}",
+              "operation": "larger",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "id": "if-sessions-tomorrow",
+      "name": "If Sessions Tomorrow",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 600]
+    },
+    {
+      "parameters": {
+        "batchSize": 1
+      },
+      "id": "split-sessions",
+      "name": "Split Sessions",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [850, 500]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.EMAIL_FROM}}",
+        "toEmail": "={{$json.fields['Client Email']}}",
+        "subject": "Reminder: Your speech coaching session tomorrow",
+        "text": "=Hi {{$json.fields['Client Name'].split(' ')[0]}},\n\nThis is a friendly reminder about your speech coaching session tomorrow:\n\n📅 Date: {{new Date($json.fields['Session Date']).toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'})}}\n⏰ Time: {{new Date($json.fields['Session Date']).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'})}}\n📍 Location: {{$json.fields['Location'] || 'Virtual (Zoom link will be sent 30 minutes before)'}}\n\nPlease prepare:\n• Any presentations or materials you'd like to work on\n• Specific communication challenges you want to address\n• Questions about executive presence or public speaking\n\n{{$json.fields['Session Notes'] ? `Additional notes: ${$json.fields['Session Notes']}\\n\\n` : ''}}If you need to reschedule, please let me know as soon as possible.\n\nLooking forward to our session!\n\nBest,\nDaniel Reece\nExecutive Speech Coach\n(917) 300-9337",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "reminder-email",
+      "name": "Send Reminder Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [1050, 500],
+      "credentials": {
+        "smtp": {
+          "id": "3",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_SESSIONS_TABLE}}",
+        "id": "={{$json.id}}",
+        "fields": {
+          "Reminder Sent": true,
+          "Reminder Sent At": "={{$now.format('YYYY-MM-DD HH:mm:ss')}}"
+        }
+      },
+      "id": "update-reminder",
+      "name": "Update Reminder Status",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1250, 500],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.EMAIL_FROM}}",
+        "toEmail": "={{$env.ADMIN_EMAIL}}",
+        "subject": "Evening Report - {{$now.format('YYYY-MM-DD')}}",
+        "text": "=Good evening Daniel,\n\nTomorrow's schedule:\n\n{{$node['tomorrow-sessions'].json.records.map(s => `• ${s.fields['Client Name']} at ${new Date(s.fields['Session Date']).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'})} - ${s.fields['Session Type']}`).join('\\n') || 'No sessions scheduled'}}\n\nReminders sent: {{$node['tomorrow-sessions'].json.records.length}}\n\nToday's completed sessions: {{$node['today-sessions'].json.records.filter(s => s.fields['Status'] === 'Completed').length}}\n\nHave a great evening!\n\nBest,\nYour n8n Assistant",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "evening-report",
+      "name": "Send Evening Report",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [850, 700],
+      "credentials": {
+        "smtp": {
+          "id": "3",
+          "name": "Gmail SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Morning Check (9 AM EST)": {
+      "main": [
+        [
+          {
+            "node": "Get Today's Sessions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Today's Sessions": {
+      "main": [
+        [
+          {
+            "node": "If Sessions Today",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Sessions Today": {
+      "main": [
+        [
+          {
+            "node": "Process Payment Captures",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Morning Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Payment Captures": {
+      "main": [
+        [
+          {
+            "node": "Capture Stripe Payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Capture Stripe Payment": {
+      "main": [
+        [
+          {
+            "node": "Update Payment Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evening Check (6 PM EST)": {
+      "main": [
+        [
+          {
+            "node": "Get Tomorrow's Sessions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Tomorrow's Sessions": {
+      "main": [
+        [
+          {
+            "node": "If Sessions Tomorrow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Sessions Tomorrow": {
+      "main": [
+        [
+          {
+            "node": "Split Sessions",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Evening Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Sessions": {
+      "main": [
+        [
+          {
+            "node": "Send Reminder Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Reminder Email": {
+      "main": [
+        [
+          {
+            "node": "Update Reminder Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "executionTimeout": 600,
+    "timezone": "America/New_York"
+  },
+  "tags": [
+    {
+      "name": "daily-automation"
+    }
+  ]
+}

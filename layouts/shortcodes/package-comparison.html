@@ -1,0 +1,287 @@
+{{/* Package Comparison Table Shortcode */}}
+{{ $currency := .Site.Params.ui.package_currency_symbol | default "$" }}
+{{ $mostPopular := .Site.Params.ui.package_most_popular | default "scale" }}
+{{ $showSavings := .Site.Params.ui.package_show_savings | default true }}
+
+<div class="w-full overflow-x-auto py-8">
+    <div class="min-w-full max-w-7xl mx-auto">
+        {{/* Mobile view - Cards */}}
+        <div class="block lg:hidden space-y-6">
+            {{/* Launch Package Card */}}
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 {{ if eq $mostPopular "launch" }}ring-2 ring-indigo-600{{ end }}">
+                {{ if eq $mostPopular "launch" }}
+                <div class="bg-indigo-600 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">Most Popular</div>
+                {{ end }}
+                <h3 class="text-2xl font-bold mb-2">Launch Package</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Perfect for emerging leaders</p>
+                <div class="text-3xl font-bold mb-1">{{ $currency }}2,997</div>
+                {{ if $showSavings }}<div class="text-sm text-green-600 dark:text-green-400 mb-4">Save {{ $currency }}303</div>{{ end }}
+                <ul class="space-y-3 mb-6">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">6 one-on-one sessions (60 min each)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Personalized speech analysis</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Email support between sessions</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Practice exercises & homework</span>
+                    </li>
+                </ul>
+                <a href="/services/executive-training-programs#launch" class="block w-full text-center py-3 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+                    Book Launch Package
+                </a>
+            </div>
+
+            {{/* Scale Package Card */}}
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 {{ if eq $mostPopular "scale" }}ring-2 ring-indigo-600{{ end }}">
+                {{ if eq $mostPopular "scale" }}
+                <div class="bg-indigo-600 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">Most Popular</div>
+                {{ end }}
+                <h3 class="text-2xl font-bold mb-2">Scale Package</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">For executives ready to level up</p>
+                <div class="text-3xl font-bold mb-1">{{ $currency }}5,997</div>
+                {{ if $showSavings }}<div class="text-sm text-green-600 dark:text-green-400 mb-4">Save {{ $currency }}603</div>{{ end }}
+                <ul class="space-y-3 mb-6">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">12 one-on-one sessions (60 min each)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Comprehensive communication audit</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Unlimited email & Slack support</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Video review of presentations</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Custom presentation templates</span>
+                    </li>
+                </ul>
+                <a href="/services/executive-training-programs#scale" class="block w-full text-center py-3 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+                    Book Scale Package
+                </a>
+            </div>
+
+            {{/* Team Package Card */}}
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 {{ if eq $mostPopular "team" }}ring-2 ring-indigo-600{{ end }}">
+                {{ if eq $mostPopular "team" }}
+                <div class="bg-indigo-600 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">Most Popular</div>
+                {{ end }}
+                <h3 class="text-2xl font-bold mb-2">Team Training</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Transform your entire team</p>
+                <div class="text-3xl font-bold mb-4">Custom Pricing</div>
+                <ul class="space-y-3 mb-6">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Customized for team size (5-50+)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">On-site or virtual workshops</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Team communication assessment</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">Follow-up coaching sessions</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm">ROI measurement & reporting</span>
+                    </li>
+                </ul>
+                <a href="/services/group-communication-training" class="block w-full text-center py-3 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+                    Get Team Quote
+                </a>
+            </div>
+        </div>
+
+        {{/* Desktop view - Table */}}
+        <div class="hidden lg:block">
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <th class="text-left p-4"></th>
+                        <th class="text-center p-4">
+                            <div class="relative">
+                                {{ if eq $mostPopular "launch" }}
+                                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-indigo-600 text-white text-sm font-semibold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</div>
+                                {{ end }}
+                                <h3 class="text-xl font-bold">Launch Package</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Perfect for emerging leaders</p>
+                            </div>
+                        </th>
+                        <th class="text-center p-4">
+                            <div class="relative">
+                                {{ if eq $mostPopular "scale" }}
+                                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-indigo-600 text-white text-sm font-semibold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</div>
+                                {{ end }}
+                                <h3 class="text-xl font-bold">Scale Package</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">For executives ready to level up</p>
+                            </div>
+                        </th>
+                        <th class="text-center p-4">
+                            <div class="relative">
+                                {{ if eq $mostPopular "team" }}
+                                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-indigo-600 text-white text-sm font-semibold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</div>
+                                {{ end }}
+                                <h3 class="text-xl font-bold">Team Training</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Transform your entire team</p>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <tr class="bg-gray-50 dark:bg-gray-900">
+                        <td class="p-4 font-semibold">Price</td>
+                        <td class="text-center p-4">
+                            <div class="text-2xl font-bold">{{ $currency }}2,997</div>
+                            {{ if $showSavings }}<div class="text-sm text-green-600 dark:text-green-400">Save {{ $currency }}303</div>{{ end }}
+                        </td>
+                        <td class="text-center p-4">
+                            <div class="text-2xl font-bold">{{ $currency }}5,997</div>
+                            {{ if $showSavings }}<div class="text-sm text-green-600 dark:text-green-400">Save {{ $currency }}603</div>{{ end }}
+                        </td>
+                        <td class="text-center p-4">
+                            <div class="text-2xl font-bold">Custom</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Contact for pricing</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-semibold">Sessions</td>
+                        <td class="text-center p-4">6 × 60 min</td>
+                        <td class="text-center p-4">12 × 60 min</td>
+                        <td class="text-center p-4">Customized</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-semibold">Communication Audit</td>
+                        <td class="text-center p-4">
+                            <svg class="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </td>
+                        <td class="text-center p-4">
+                            <svg class="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </td>
+                        <td class="text-center p-4">
+                            <svg class="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-semibold">Email Support</td>
+                        <td class="text-center p-4">Limited</td>
+                        <td class="text-center p-4">Unlimited</td>
+                        <td class="text-center p-4">Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-semibold">Video Review</td>
+                        <td class="text-center p-4">
+                            <svg class="w-6 h-6 text-gray-400 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </td>
+                        <td class="text-center p-4">
+                            <svg class="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </td>
+                        <td class="text-center p-4">
+                            <svg class="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-semibold">Custom Templates</td>
+                        <td class="text-center p-4">
+                            <svg class="w-6 h-6 text-gray-400 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </td>
+                        <td class="text-center p-4">
+                            <svg class="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </td>
+                        <td class="text-center p-4">
+                            <svg class="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-semibold">Team Size</td>
+                        <td class="text-center p-4">Individual</td>
+                        <td class="text-center p-4">Individual</td>
+                        <td class="text-center p-4">5-50+ people</td>
+                    </tr>
+                    <tr class="bg-gray-50 dark:bg-gray-900">
+                        <td class="p-4"></td>
+                        <td class="text-center p-4">
+                            <a href="/services/executive-training-programs#launch" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+                                Book Launch
+                            </a>
+                        </td>
+                        <td class="text-center p-4">
+                            <a href="/services/executive-training-programs#scale" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+                                Book Scale
+                            </a>
+                        </td>
+                        <td class="text-center p-4">
+                            <a href="/services/group-communication-training" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200">
+                                Get Quote
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

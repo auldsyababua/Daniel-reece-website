@@ -1,0 +1,60 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "numReplicas": 1,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 3
+  },
+  "services": [
+    {
+      "name": "n8n",
+      "source": {
+        "repo": "n8n-io/n8n"
+      },
+      "deploy": {
+        "numReplicas": 1,
+        "healthcheckPath": "/healthz",
+        "healthcheckTimeout": 30
+      },
+      "domains": [
+        {
+          "domain": "${{RAILWAY_STATIC_URL}}"
+        }
+      ],
+      "environmentVariables": {
+        "N8N_BASIC_AUTH_ACTIVE": "true",
+        "N8N_BASIC_AUTH_USER": "${{N8N_BASIC_AUTH_USER}}",
+        "N8N_BASIC_AUTH_PASSWORD": "${{N8N_BASIC_AUTH_PASSWORD}}",
+        "N8N_HOST": "${{RAILWAY_STATIC_URL}}",
+        "N8N_PORT": "5678",
+        "N8N_PROTOCOL": "https",
+        "WEBHOOK_URL": "https://${{RAILWAY_STATIC_URL}}/",
+        "N8N_ENCRYPTION_KEY": "${{N8N_ENCRYPTION_KEY}}",
+        "DB_TYPE": "sqlite",
+        "DB_SQLITE_DATABASE": "/data/database.sqlite",
+        "N8N_USER_FOLDER": "/data",
+        "GENERIC_TIMEZONE": "America/New_York",
+        "N8N_DEFAULT_BINARY_DATA_MODE": "filesystem",
+        "N8N_BINARY_DATA_STORAGE_PATH": "/data/binaryData",
+        "N8N_METRICS": "false",
+        "N8N_VERSION_NOTIFICATIONS_ENABLED": "false",
+        "N8N_DIAGNOSTICS_ENABLED": "false",
+        "EXECUTIONS_DATA_PRUNE": "true",
+        "EXECUTIONS_DATA_MAX_AGE": "168",
+        "EXECUTIONS_DATA_SAVE_ON_ERROR": "all",
+        "EXECUTIONS_DATA_SAVE_ON_SUCCESS": "all",
+        "EXECUTIONS_DATA_SAVE_ON_PROGRESS": "false",
+        "EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS": "true"
+      },
+      "volumes": [
+        {
+          "name": "n8n-data",
+          "mount": "/data"
+        }
+      ]
+    }
+  ]
+}

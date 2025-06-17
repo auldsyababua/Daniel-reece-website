@@ -1,0 +1,39 @@
+<script>
+// Lazy loading for images
+document.addEventListener('DOMContentLoaded', function() {
+    // Native lazy loading support check
+    if ('loading' in HTMLImageElement.prototype) {
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        images.forEach(img => {
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+            }
+            if (img.dataset.srcset) {
+                img.srcset = img.dataset.srcset;
+            }
+        });
+    } else {
+        // Fallback for browsers without native lazy loading
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/lazysizes@5/lazysizes.min.js';
+        document.body.appendChild(script);
+    }
+});
+
+// Intersection Observer for other elements
+const lazyElements = document.querySelectorAll('.lazy-element');
+if (lazyElements.length > 0 && 'IntersectionObserver' in window) {
+    const elementObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('loaded');
+                elementObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    lazyElements.forEach(element => {
+        elementObserver.observe(element);
+    });
+}
+</script>

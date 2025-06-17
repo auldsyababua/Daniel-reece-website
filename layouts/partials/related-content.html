@@ -1,0 +1,26 @@
+{{- $related := site.RegularPages.Related . | first 3 -}}
+{{- if $related -}}
+<div class="mt-12 border-t pt-8">
+    <h2 class="text-2xl font-bold mb-6">Related Content</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {{- range $related -}}
+        <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+            <h3 class="text-lg font-semibold mb-2">
+                <a href="{{ .RelPermalink }}" class="text-gray-900 hover:text-blue-600 transition-colors">
+                    {{ .Title }}
+                </a>
+            </h3>
+            <p class="text-gray-600 text-sm mb-3">
+                {{ .Summary | truncate 100 }}
+            </p>
+            <a href="{{ .RelPermalink }}" class="text-blue-600 hover:text-blue-700 text-sm font-medium inline-flex items-center">
+                Read more
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </article>
+        {{- end -}}
+    </div>
+</div>
+{{- end -}}

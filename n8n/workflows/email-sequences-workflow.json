@@ -1,0 +1,235 @@
+{
+  "name": "Email Sequences",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "sequence-checker",
+      "name": "Check Sequences Hourly",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 400]
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_LEADS_TABLE}}",
+        "returnAll": true,
+        "options": {
+          "filterByFormula": "=OR({Email Sequence} = 'Welcome', {Email Sequence} = 'Post-Session', {Email Sequence} = 'Upsell')"
+        }
+      },
+      "id": "get-sequence-contacts",
+      "name": "Get Contacts in Sequences",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [450, 400],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process email sequences\nconst contacts = $input.all()[0].json.records;\nconst emailsToSend = [];\nconst now = new Date();\n\nfor (const contact of contacts) {\n  const createdDate = new Date(contact.fields['Created Date']);\n  const lastEmailDate = contact.fields['Last Email Sent'] ? new Date(contact.fields['Last Email Sent']) : null;\n  const sequenceStep = contact.fields['Sequence Step'] || 0;\n  const sequence = contact.fields['Email Sequence'];\n  \n  let shouldSendEmail = false;\n  let emailTemplate = {};\n  \n  if (sequence === 'Welcome') {\n    // Welcome sequence: Day 0, 3, 7, 14\n    const daysSinceCreated = Math.floor((now - createdDate) / (1000 * 60 * 60 * 24));\n    \n    if (sequenceStep === 0 && daysSinceCreated >= 0) {\n      shouldSendEmail = true;\n      emailTemplate = {\n        subject: 'Welcome to Executive Speech Coaching NYC',\n        templateName: 'welcome-1',\n        nextStep: 1\n      };\n    } else if (sequenceStep === 1 && daysSinceCreated >= 3) {\n      shouldSendEmail = true;\n      emailTemplate = {\n        subject: '3 tips for executive presence',\n        templateName: 'welcome-2',\n        nextStep: 2\n      };\n    } else if (sequenceStep === 2 && daysSinceCreated >= 7) {\n      shouldSendEmail = true;\n      emailTemplate = {\n        subject: 'How top executives communicate',\n        templateName: 'welcome-3',\n        nextStep: 3\n      };\n    } else if (sequenceStep === 3 && daysSinceCreated >= 14) {\n      shouldSendEmail = true;\n      emailTemplate = {\n        subject: 'Ready to elevate your communication?',\n        templateName: 'welcome-4',\n        nextStep: -1 // End sequence\n      };\n    }\n  } else if (sequence === 'Post-Session') {\n    // Post-session sequence: Immediate, Day 3, Day 7\n    const lastSessionDate = contact.fields['Last Session Date'] ? new Date(contact.fields['Last Session Date']) : null;\n    if (lastSessionDate) {\n      const daysSinceSession = Math.floor((now - lastSessionDate) / (1000 * 60 * 60 * 24));\n      \n      if (sequenceStep === 0 && daysSinceSession >= 0) {\n        shouldSendEmail = true;\n        emailTemplate = {\n          subject: 'Thank you for today\\'s session',\n          templateName: 'post-session-1',\n          nextStep: 1\n        };\n      } else if (sequenceStep === 1 && daysSinceSession >= 3) {\n        shouldSendEmail = true;\n        emailTemplate = {\n          subject: 'How are you applying what we practiced?',\n          templateName: 'post-session-2',\n          nextStep: 2\n        };\n      } else if (sequenceStep === 2 && daysSinceSession >= 7) {\n        shouldSendEmail = true;\n        emailTemplate = {\n          subject: 'Continue your communication journey',\n          templateName: 'post-session-3',\n          nextStep: -1\n        };\n      }\n    }\n  } else if (sequence === 'Upsell') {\n    // Upsell sequence for single session clients\n    const sessionCount = contact.fields['Total Sessions'] || 0;\n    const daysSinceLastEmail = lastEmailDate ? Math.floor((now - lastEmailDate) / (1000 * 60 * 60 * 24)) : 30;\n    \n    if (sessionCount === 1 && daysSinceLastEmail >= 30) {\n      shouldSendEmail = true;\n      emailTemplate = {\n        subject: 'Special offer: Launch Package discount',\n        templateName: 'upsell-package',\n        nextStep: -1\n      };\n    }\n  }\n  \n  if (shouldSendEmail) {\n    emailsToSend.push({\n      json: {\n        contactId: contact.id,\n        email: contact.fields['Email'],\n        name: contact.fields['Name'],\n        firstName: contact.fields['Name'].split(' ')[0],\n        company: contact.fields['Company'] || '',\n        ...emailTemplate,\n        currentStep: sequenceStep\n      }\n    });\n  }\n}\n\nreturn emailsToSend;"
+      },
+      "id": "process-sequences",
+      "name": "Process Email Sequences",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [650, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Email templates\nconst template = $json.templateName;\nconst firstName = $json.firstName;\nconst company = $json.company;\n\nconst templates = {\n  'welcome-1': `Hi ${firstName},\n\nWelcome to Executive Speech Coaching NYC!\n\nI'm thrilled you're interested in elevating your executive communication skills. Over the next two weeks, I'll share insights that have helped hundreds of executives transform their presence and impact.\n\nHere's what you can expect:\n• Practical techniques you can apply immediately\n• Real examples from C-suite transformations\n• Exclusive resources for executive communicators\n\nLet's start with a question: What's your biggest communication challenge right now?\n\nSimply reply to this email - I personally read every response.\n\nBest,\nDaniel Reece\nExecutive Speech Coach\n\nP.S. If you're ready to accelerate your progress, I have limited availability for Q1 2025. Book a complimentary strategy call here: https://executivespeechcoachingnyc.com/book-call`,\n\n  'welcome-2': `Hi ${firstName},\n\nHere are 3 techniques that top executives use to command any room:\n\n1. **The Power Pause**: Before answering questions, pause for 2-3 seconds. This creates anticipation and demonstrates thoughtfulness.\n\n2. **The Triangle Method**: Make eye contact in a triangle pattern around the room. This ensures everyone feels included while maintaining authority.\n\n3. **The Story Stack**: Have 5 go-to stories that illustrate your key leadership principles. Practice until they're under 90 seconds each.\n\nWhich technique resonates most with you?\n\nBest,\nDaniel\n\nP.S. Want to master these techniques faster? My Launch Package includes personalized coaching on all three. Learn more: https://executivespeechcoachingnyc.com/services/launch-package`,\n\n  'welcome-3': `Hi ${firstName},\n\nI recently worked with a Fortune 500 CEO who transformed her board presentations using one simple framework.\n\nThe PREP Method:\n• **P**oint: State your main message upfront\n• **R**eason: Provide 2-3 supporting arguments\n• **E**xample: Share specific evidence or stories\n• **P**oint: Restate your message with conviction\n\nShe went from dreading quarterly meetings to receiving standing ovations.\n\nWould you like the detailed PREP template I created for her?\n\nBest,\nDaniel\n\nP.S. In our 1-on-1 sessions, I customize frameworks like PREP specifically for your industry and role. Schedule a consultation: https://executivespeechcoachingnyc.com/contact`,\n\n  'welcome-4': `Hi ${firstName},\n\nOver the past two weeks, I've shared techniques that have helped executives:\n• Close $100M+ deals\n• Secure board approvals\n• Inspire teams through change\n• Build industry influence\n\nNow I'm curious: What would change in your career if you mastered executive communication?\n\n${company ? `I've worked with several leaders at ${company} and understand your unique communication culture.` : 'I\\'ve helped executives across every industry elevate their presence.'}\n\nIf you're ready to invest in your communication skills, I have 2 spots remaining for Q1 2025.\n\nShall we discuss your goals? Book a complimentary 30-minute strategy session:\nhttps://executivespeechcoachingnyc.com/book-call\n\nTo your success,\nDaniel Reece\n\nP.S. These spots typically fill within 48 hours. If the timing isn't right, reply and let me know when would work better.`,\n\n  'post-session-1': `Hi ${firstName},\n\nThank you for today's session! It was a pleasure working with you on your executive presence.\n\nHere's your personalized action plan:\n\n1. **Practice the Power Pause** technique before your next meeting\n2. **Record yourself** using the framework we developed (even 2 minutes helps)\n3. **Apply the storytelling structure** to your upcoming presentation\n\nRemember: Transformation happens through consistent practice. Even 5 minutes daily will compound into remarkable results.\n\nQuestions about today's session? Simply reply to this email.\n\nBest,\nDaniel\n\nP.S. If you'd like to maintain momentum, consider the Launch Package for ongoing support: https://executivespeechcoachingnyc.com/services/launch-package`,\n\n  'post-session-2': `Hi ${firstName},\n\nIt's been a few days since our session. How did your first application of our techniques go?\n\nMany clients report breakthrough moments in their first week:\n• \"I paused before answering the CEO's question - game changer!\"\n• \"Used your story structure in our all-hands. Best response ever.\"\n• \"My team said I seemed more confident and clear.\"\n\nWhat wins have you experienced? I'd love to hear about them.\n\nIf you've hit any roadblocks, let's address them before they become habits.\n\nBest,\nDaniel\n\nP.S. Regular practice with expert feedback accelerates results. Learn about ongoing coaching options: https://executivespeechcoachingnyc.com/services`,\n\n  'post-session-3': `Hi ${firstName},\n\nOne week later - you're at a critical juncture.\n\nResearch shows that 90% of new skills fade without reinforcement in the first 14 days. But with consistent practice and expert guidance, they become your natural communication style.\n\nYou've already invested in starting this journey. Why not ensure lasting transformation?\n\nMy Scale Package clients typically see:\n• 70% increase in presentation confidence\n• 2x more engagement in meetings\n• Faster career advancement\n\nReady to lock in your new skills? Let's discuss your next steps:\nhttps://executivespeechcoachingnyc.com/book-call\n\nTo your continued growth,\nDaniel\n\nP.S. I'm offering past clients 15% off package pricing this month. Reply \"SCALE15\" to claim your discount.`,\n\n  'upsell-package': `Hi ${firstName},\n\nI hope you're still applying the techniques from our session!\n\nI wanted to share an exclusive opportunity: I'm offering past clients 20% off my Launch Package through the end of this month.\n\nThis package includes:\n• 8 personalized coaching sessions\n• Custom communication frameworks\n• Presentation deck reviews\n• Priority email support\n• Session recordings for review\n\nNormally $4,800, available to you for $3,840.\n\nMany single-session clients find the package approach delivers deeper, lasting transformation.\n\nInterested? Reply \"LAUNCH20\" and I'll send details.\n\nBest,\nDaniel\n\nP.S. This offer expires in 7 days and I have limited Q1 availability.`\n};\n\nconst emailBody = templates[template] || 'Template not found';\n\nreturn {\n  json: {\n    ...$json,\n    emailBody\n  }\n};"
+      },
+      "id": "get-email-content",
+      "name": "Get Email Template Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [850, 400]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.EMAIL_FROM}}",
+        "toEmail": "={{$json.email}}",
+        "subject": "={{$json.subject}}",
+        "text": "={{$json.emailBody}}",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "send-sequence-email",
+      "name": "Send Sequence Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [1050, 400],
+      "credentials": {
+        "smtp": {
+          "id": "3",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_LEADS_TABLE}}",
+        "id": "={{$json.contactId}}",
+        "fields": {
+          "Sequence Step": "={{$json.nextStep}}",
+          "Last Email Sent": "={{$now.format('YYYY-MM-DD HH:mm:ss')}}",
+          "Email Sequence": "={{$json.nextStep === -1 ? 'Completed' : $json.Email Sequence}}"
+        }
+      },
+      "id": "update-sequence-status",
+      "name": "Update Sequence Status",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [1250, 400],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "trigger-sequence",
+        "authentication": "headerAuth",
+        "responseMode": "onReceived",
+        "responseData": "{ \"success\": true, \"message\": \"Sequence triggered\" }",
+        "options": {}
+      },
+      "id": "webhook-sequence",
+      "name": "Trigger Sequence Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 600],
+      "webhookId": "trigger-sequence",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "1",
+          "name": "Webhook Token Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": "={{$env.AIRTABLE_BASE_ID}}",
+        "table": "={{$env.AIRTABLE_LEADS_TABLE}}",
+        "id": "={{$json.contactId}}",
+        "fields": {
+          "Email Sequence": "={{$json.sequence}}",
+          "Sequence Step": 0
+        }
+      },
+      "id": "add-to-sequence",
+      "name": "Add Contact to Sequence",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [450, 600],
+      "credentials": {
+        "airtableApi": {
+          "id": "2",
+          "name": "Airtable API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Check Sequences Hourly": {
+      "main": [
+        [
+          {
+            "node": "Get Contacts in Sequences",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Contacts in Sequences": {
+      "main": [
+        [
+          {
+            "node": "Process Email Sequences",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Email Sequences": {
+      "main": [
+        [
+          {
+            "node": "Get Email Template Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Email Template Content": {
+      "main": [
+        [
+          {
+            "node": "Send Sequence Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Sequence Email": {
+      "main": [
+        [
+          {
+            "node": "Update Sequence Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger Sequence Webhook": {
+      "main": [
+        [
+          {
+            "node": "Add Contact to Sequence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "executionTimeout": 900
+  },
+  "tags": [
+    {
+      "name": "email-marketing"
+    }
+  ]
+}
