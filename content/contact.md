@@ -13,7 +13,8 @@ contact_intro:
 <div class="max-w-2xl px-4 pt-6 pb-16 mx-auto prose dark:prose-invert dark:text-white">
     <div class="max-w-screen-md px-4 mx-auto">
         <p class="mb-8 font-light text-center text-gray-500 lg:mb-16 dark:text-gray-400 sm:text-xl">For general service inquires and questions about designing group trainings, please fill out the form below.</p>
-        <form name="contact" action="https://formsubmit.co/your@email.com" method="POST" class="space-y-8">
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-8">
+            <input type="hidden" name="form-name" value="contact" />
             <div class="my-4">
                 <label for="name" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300"><strong>Your Name:</strong></label>
                 <input type="text" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 dark:shadow-sm-light" placeholder="Your Name" required>
@@ -21,6 +22,10 @@ contact_intro:
             <div class="my-4">
                 <label for="email" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300"><strong>Your Email:</strong></label>
                 <input type="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 dark:shadow-sm-light" placeholder="name@example.com" required>
+            </div>
+            <div class="my-4">
+                <label for="phone" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300"><strong>Phone Number (Optional):</strong></label>
+                <input type="tel" name="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 dark:shadow-sm-light" placeholder="(123) 456-7890">
             </div>
             <!-- <div class="my-4">
                 <label for="subject" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300"><strong>Subject:</strong></label>
