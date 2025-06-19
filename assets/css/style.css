@@ -2808,10 +2808,6 @@ video {
   height: 2.25rem;
 }
 
-.h-\[600px\] {
-  height: 600px;
-}
-
 .h-auto {
   height: auto;
 }
@@ -2854,10 +2850,6 @@ video {
 
 .w-9 {
   width: 2.25rem;
-}
-
-.w-auto {
-  width: auto;
 }
 
 .w-full {

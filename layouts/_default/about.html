@@ -36,11 +36,15 @@
                         {{ end }}
                     </div>
                     <div class="md:w-1/2">
-                        <img
-                            src="{{ .photo.url }}"
-                            alt="{{ .photo.name }} portrait"
-                            class="rounded-lg object-cover w-full max-w-md mx-auto shadow-lg"
-                        />
+                        {{ $alt:= ( print  .photo.name " portrait" ) }}
+                        {{ $image := resources.Get .photo.url }}
+                        {{ partial "components/image.html" (dict
+                                "Src" $image
+                                "Alt" $alt
+                                "Class" "rounded-lg object-cover w-full max-w-md mx-auto shadow-lg"
+                                "Loading" "eager"
+                            )
+                        }}
                     </div>
                 </div>
                 {{ end }}
@@ -65,8 +69,17 @@
                     <div class="md:w-1/2 relative">
                         {{ if .quote.photo }}
                             <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                                <img class="w-20 h-20 md:w-[100px] md:h-[100px] object-cover rounded-full border-8 border-white"
-                                    src="{{ .quote.photo }}" alt="{{ .quote.author }} photo" />
+                                <div class="rounded-full border-8 border-white bg-white">
+                                    {{ $alt:= ( print  .quote.author " portrait" ) }}
+                                    {{ $image := resources.Get .quote.photo }}
+                                    {{ partial "components/image.html" (dict
+                                            "Src" $image
+                                            "Alt" $alt
+                                            "Class" "w-20 h-20 object-cover rounded-full"
+                                            "Loading" "lazy"
+                                        )
+                                    }}
+                                </div>
                             </div>
                         {{ end }}
                         <div class="relative z-10 bg-white text-gray-900 rounded-xl p-6 md:p-8 text-center{{ if .quote.photo }} pt-[50px] md:pt-[70px]{{ end }}">

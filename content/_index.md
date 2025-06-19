@@ -20,25 +20,25 @@ partners:
   title: "Trusted by Professionals From"
   list:
     - name: "AstraZeneca"
-      logo: "/images/partners/astra-zeneca-logo.avif"
+      logo: "/images/partners/astra-zeneca-logo.png"
     - name: "Black Rock"
-      logo: "/images/partners/black-rock-logo.avif"
+      logo: "/images/partners/black-rock-logo.png"
     - name: "Barclays"
-      logo: "/images/partners/barclays-logo.avif"
+      logo: "/images/partners/barclays-logo.png"
     - name: "Coca-Cola"
-      logo: "/images/partners/coca-cola-logo.avif"
+      logo: "/images/partners/coca-cola-logo.png"
     - name: "Goldman Sachs"
-      logo: "/images/partners/goldman-sachs-logo.avif"
+      logo: "/images/partners/goldman-sachs-logo.png"
     - name: "Google"
-      logo: "/images/partners/google-logo.avif"
+      logo: "/images/partners/google-logo.png"
     - name: "Memorial Sloan Kettering Cancer Center"
-      logo: "/images/partners/msk-logo.avif"
+      logo: "/images/partners/msk-logo.png"
     - name: "Netlify"
-      logo: "/images/partners/netflix-logo.avif"
+      logo: "/images/partners/netflix-logo.png"
     - name: "Uber"
-      logo: "/images/partners/uber-logo.avif"
+      logo: "/images/partners/uber-logo.png"
     - name: "The United Nations"
-      logo: "/images/partners/united-nations-logo.avif"
+      logo: "/images/partners/united-nations-logo.png"
 
 mission:
   title: "Are nerves holding you back from making your message land?"
@@ -79,9 +79,9 @@ feedback:
     url: "/contact"
   quote:
     text: "“Within three sessions my board presentations went from stiff to standout. Dan’s guidance gave me the confidence to own the room.”"
-    author: "Nat Eliason"
-    role: "Tech COO"
-    photo: "https://cdn.prod.website-files.com/626139f53a0980144e9432ff/626139f53a09803f57943386_Nat-Eliason.avif"
+    author: "Mike Decina"
+    role: "Account Executive"
+    photo: "/images/photo/mike-photo.jpg"
 
 about:
   info:

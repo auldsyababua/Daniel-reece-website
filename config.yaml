@@ -247,6 +247,13 @@ privacy:
     disable: false
     privacyEnhanced: true
 
+###### Imaging ######
+# Hugo image module https://github.com/gethugothemes/hugo-modules/blob/master/images/layouts/partials/image.html
+# See https://github.com/disintegration/imaging
+# Default JPEG or WebP quality setting. Default is 75.
+imaging:
+  quality: 100
+
 module:
   hugoVersion:
     extended: true
