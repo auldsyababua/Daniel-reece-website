@@ -4,9 +4,19 @@
             <a href="/" class="flex items-center text-gray-100 transition duration-1000 ease-in-out group">
                 {{/*  <img src="/images/site-logo.svg" class="transition-opacity h-9 w-9 group-hover:opacity-50 group-focus:opacity-70" alt="{{ .Site.Title }} Logo" />  */}}
                 {{/*  <img src="/images/esc-logo.jpg" class="transition-opacity h-9 w-9 group-hover:opacity-50 group-focus:opacity-70" alt="{{ .Site.Title }} Logo" />  */}}
-                <img src="/images/esc-logo-transparent.png" class="invert transition-opacity h-9 w-9 group-hover:opacity-50 group-focus:opacity-70" alt="{{ .Site.Title }} Logo" />
+                {{/*  <img src="/images/esc-logo-transparent.png" class="invert transition-opacity h-9 w-9 group-hover:opacity-50 group-focus:opacity-70" alt="{{ .Site.Title }} Logo" />  */}}
+                {{ $alt:= "ExecutiveSpeechCoachingNYC Logo" }}
+                {{ $image := resources.Get .Site.Params.Main_logo }}
+                {{ partial "components/image.html" (dict
+                        "Src" $image
+                        "Alt" $alt
+                        "Class" "invert transition-opacity h-9 w-9 group-hover:opacity-50 group-focus:opacity-70"
+                        "Loading" "eager"
+                    )
+                }}
                 <div class="hidden sm:block ml-3 text-sm lg:text-xl font-black tracking-tight text-gray-100 uppercase transition-colors group-hover:text-gray-400/60">
-                    {{ .Site.Title }}</div>
+                    {{ .Site.Title }}
+                </div>
             </a>
             <button
                 class="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
