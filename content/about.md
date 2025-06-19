@@ -33,7 +33,7 @@ feedback:
     url: "/contact"
   quote:
     text: "“Within three sessions my board presentations went from stiff to standout. Dan’s guidance gave me the confidence to own the room.”"
-    author: "Nat Eliason"
-    role: "Tech COO"
-    photo: "https://cdn.prod.website-files.com/626139f53a0980144e9432ff/626139f53a09803f57943386_Nat-Eliason.avif"
+    author: "Mike Decina"
+    role: "Account Executive"
+    photo: "/images/photo/mike-photo.jpg"
 ---
