@@ -47,9 +47,10 @@ markup:
       xhtml: false
 
 params:
-  author: Nusser Studios
+  author: ExecutiveSpeechCoachingNYC
   authorimage: ../assets/images/global/author.webp
   og_image: /images/esc-logo.jpg
+  main_logo: /images/logo/esc-logo-transparent.png
   main_title: "Your voice matters"
   main_title_part_two: " own it"
   description: "Personalized coaching and executive skills training"

@@ -4825,10 +4825,6 @@ EmojiSymbols;
     height: 1.5rem;
   }
 
-  .md\:h-\[100px\] {
-    height: 100px;
-  }
-
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -4839,10 +4835,6 @@ EmojiSymbols;
 
   .md\:w-6 {
     width: 1.5rem;
-  }
-
-  .md\:w-\[100px\] {
-    width: 100px;
   }
 
   .md\:w-\[calc\(50\%-1rem\)\] {
