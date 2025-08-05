@@ -47,7 +47,7 @@ fi
 echo -e "\n📋 Checking requirement references in tasks..."
 
 # Extract all US-X.Y references from requirements.md
-req_ids=$(grep -E "^#### US-[0-9]+\.[0-9]+:" "$REQ_FILE" | sed -E 's/#### (US-[0-9]+\.[0-9]+):.*/\1/' | sort -u)
+req_ids=$(grep -E "^#### US-[0-9]+\.[0-9]+:" "$REQ_FILE" | sed -E 's/^#### (US-[0-9]+\.[0-9]+):.*/\1/' | sort -u)
 req_count=$(echo "$req_ids" | wc -l | tr -d ' ')
 echo "Found $req_count requirements in $REQ_FILE"
 
@@ -69,11 +69,11 @@ fi
 echo -e "\n🏗️  Checking design references in tasks..."
 
 # Extract all design sections from design.md
-design_sections=$(grep -E "^###? " "$DESIGN_FILE" | sed -E 's/^###? //' | grep -v "^#" | sort -u)
+design_sections=$(grep -E "^##+ " "$DESIGN_FILE" | sed -E 's/^##+ //' | grep -v "^#" | sort -u)
 
-# Count tasks that reference design sections
-tasks_with_design=$(grep -c "**Design**:" "$TASKS_FILE" || echo "0")
-total_tasks=$(grep -cE "^#### .* T[0-9]+\\.[0-9]+\\.[0-9]+:" "$TASKS_FILE" || echo "0")
+# Count tasks that reference design sections  
+tasks_with_design=$(grep -c '\*\*Design\*\*:' "$TASKS_FILE" || echo "0")
+total_tasks=$(grep -cE "^#### .* T[0-9]+\.[0-9]+\.[0-9]+:" "$TASKS_FILE" || echo "0")
 
 echo "$tasks_with_design of $total_tasks tasks reference design sections"
 

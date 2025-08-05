@@ -7,3 +7,12 @@ yarn-error.log
 # Local Netlify folder
 .netlify
 yarn-error.log
+# AI Development Tools
+.claude/ai-dev/
+logs/
+.claude/settings.local.json
+.specstory/
+.claude/logs/
+.env
+__pycache__/
+*.pyc

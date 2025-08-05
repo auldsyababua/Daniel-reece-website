@@ -13,35 +13,35 @@ Status Legend:
 
 #### ✅ T1.1.1: Initialize Hugo Project
 - **Requirement**: US-5.1
-- **Design**: Architecture Overview
+- **Design**: Architecture Overview, Development Environment
 - **Details**: Set up Hugo static site generator with basic configuration
 - **Test**: Verify Hugo builds successfully
 - **Status**: Completed - Hugo project initialized with config.yaml
 
 #### ✅ T1.1.2: Configure TailwindCSS
 - **Requirement**: US-5.1
-- **Design**: Styling Architecture
+- **Design**: Styling Architecture, CSS Pipeline
 - **Details**: Install and configure Tailwind with PostCSS pipeline
 - **Test**: Verify CSS compilation and purging
 - **Status**: Completed - Tailwind v3 configured with PostCSS
 
 #### ✅ T1.1.3: Setup Alpine.js
 - **Requirement**: US-2.2
-- **Design**: Interactive Components
+- **Design**: Interactive Components, Alpine.js Components
 - **Details**: Install Alpine.js for interactive components
 - **Test**: Verify Alpine components initialize
 - **Status**: Completed - Alpine.js v3 installed
 
 #### ✅ T1.1.4: Configure Build Scripts
 - **Requirement**: US-5.2
-- **Design**: Development Environment
+- **Design**: Build Process, Development Environment
 - **Details**: Set up NPM scripts for development and production builds
 - **Test**: Run npm start and npm run build successfully
 - **Status**: Completed - Scripts configured in package.json
 
 #### ✅ T1.1.5: Setup Netlify Deployment
 - **Requirement**: US-5.1
-- **Design**: Deployment Architecture
+- **Design**: Deployment Architecture, CI/CD Pipeline
 - **Details**: Configure netlify.toml for automated deployments
 - **Test**: Verify build commands and publish directory
 - **Status**: Completed - netlify.toml configured
@@ -57,35 +57,35 @@ Status Legend:
 
 #### ✅ T2.1.1: Create Base Layout Template
 - **Requirement**: US-2.2
-- **Design**: Layout System
+- **Design**: Layout System, Base Layout
 - **Details**: Implement baseof.html with header, main, footer structure
 - **Test**: All pages render with consistent layout
 - **Status**: Completed - layouts/_default/baseof.html exists
 
 #### ✅ T2.1.2: Implement Navigation Component
 - **Requirement**: US-2.2
-- **Design**: Layout System
+- **Design**: Layout System, Partial Components
 - **Details**: Create responsive navigation with mobile hamburger menu
 - **Test**: Navigation works on all screen sizes
 - **Status**: Completed - partials/nav.html implemented
 
 #### ✅ T2.1.3: Implement Footer Component
 - **Requirement**: US-3.3
-- **Design**: Layout System
+- **Design**: Layout System, Partial Components
 - **Details**: Create footer with social links and navigation
 - **Test**: Footer displays correctly with working links
 - **Status**: Completed - partials/footer.html implemented
 
 #### ✅ T2.1.4: Setup Dark Mode Toggle
 - **Requirement**: US-2.1
-- **Design**: Dark Mode System
+- **Design**: Dark Mode System, Interactive Components
 - **Details**: Implement theme switcher with localStorage persistence
 - **Test**: Theme persists across page reloads
 - **Status**: Completed - darkmode.js implemented
 
 #### 🔄 T2.1.5: Implement Service Dropdown Menu
 - **Requirement**: US-1.3
-- **Design**: Navigation Component
+- **Design**: Layout System, Alpine.js Components
 - **Details**: Add dropdown functionality for services menu
 - **Test**: Dropdown opens/closes properly on hover/click
 - **Status**: Partially complete - dropdown structure exists, may need refinement
@@ -101,21 +101,21 @@ Status Legend:
 
 #### ✅ T3.1.1: Create Hero Section
 - **Requirement**: US-1.1
-- **Design**: Homepage Template
+- **Design**: Homepage Template, Content Templates
 - **Details**: Implement hero with headline, CTA, and video embed
 - **Test**: Video plays, CTA button links correctly
 - **Status**: Completed - Hero section with video in index.html
 
 #### ✅ T3.1.2: Implement Partner Logos Section
 - **Requirement**: US-1.2
-- **Design**: Homepage Template
+- **Design**: Homepage Template, Content Schema
 - **Details**: Display partner company logos in grid
 - **Test**: Logos display correctly in light/dark modes
 - **Status**: Completed - Partner section implemented
 
 #### ✅ T3.1.3: Create Mission Statement Section
 - **Requirement**: US-1.1
-- **Design**: Homepage Template
+- **Design**: Homepage Template, Content Templates
 - **Details**: Implement mission section with formatted text blocks
 - **Test**: Text formatting and highlighting works
 - **Status**: Completed - Mission section in index.html
@@ -152,14 +152,14 @@ Status Legend:
 
 #### ✅ T4.1.1: Create Service List Template
 - **Requirement**: US-1.3
-- **Design**: Service Pages
+- **Design**: Service Pages, Content Templates
 - **Details**: Implement service listing page template
 - **Test**: All services display in grid/list format
 - **Status**: Completed - layouts/services/list.html exists
 
 #### ✅ T4.1.2: Create Service Single Template
 - **Requirement**: US-1.3
-- **Design**: Service Pages
+- **Design**: Service Pages, Service Schema
 - **Details**: Implement individual service page template
 - **Test**: Service details display with images and CTAs
 - **Status**: Completed - layouts/services/single.html exists
@@ -203,21 +203,21 @@ Status Legend:
 
 #### ✅ T5.1.1: Create Contact Page Template
 - **Requirement**: US-3.1
-- **Design**: Contact Form
+- **Design**: Content Templates, FormSubmit.co Integration
 - **Details**: Implement contact page with form layout
 - **Test**: Page renders with form fields
 - **Status**: Completed - content/contact.md exists
 
 #### 🔄 T5.1.2: Configure FormSubmit Integration
 - **Requirement**: US-3.1
-- **Design**: API Specifications
+- **Design**: API Specifications, External Services
 - **Details**: Set up FormSubmit.co endpoint with email
 - **Test**: Form submissions reach designated email
 - **Status**: Partial - form exists but needs email configuration
 
 #### ⬜ T5.1.3: Add Form Validation
 - **Requirement**: US-3.1
-- **Design**: Interactive Components
+- **Design**: Interactive Components, Alpine.js Components
 - **Details**: Implement client-side validation with Alpine.js
 - **Test**: Invalid submissions show error messages
 - **Status**: Pending - basic HTML validation only
@@ -280,9 +280,30 @@ Status Legend:
 - **Test**: Relevant posts appear based on tags/categories
 - **Status**: Pending - not implemented
 
+#### ✅ T6.2.1: Create Service Edit Interface
+- **Requirement**: US-4.2
+- **Design**: Service Schema
+- **Details**: Service pages support markdown with HTML for rich content
+- **Test**: Service content renders with proper formatting
+- **Status**: Completed - markdown files in content/services/
+
+#### ✅ T6.2.2: Implement Service Hero Images
+- **Requirement**: US-4.2
+- **Design**: Service Pages
+- **Details**: Display hero images at top of each service page
+- **Test**: Images load and display correctly
+- **Status**: Completed - service_image front matter supported
+
+#### ✅ T6.2.3: Configure Service Ordering
+- **Requirement**: US-4.2
+- **Design**: Service Pages
+- **Details**: Order services by weight parameter in listings and navigation
+- **Test**: Services appear in correct order
+- **Status**: Completed - weight parameter in service front matter
+
 <!-- Dev Note [2025-08-05T15:55] - Phase 6 Tasks:
-- Tasks created: 5 content management tasks
-- Status determination: Basic blog functionality exists
+- Tasks created: 8 content management tasks (added 3 for US-4.2)
+- Status determination: Basic blog functionality exists, service management complete
 - Priority reasoning: Content drives SEO and engagement
 - Dependencies identified: Content strategy needed
 -->
@@ -291,14 +312,14 @@ Status Legend:
 
 #### ✅ T7.1.1: Configure Image Processing
 - **Requirement**: US-2.3
-- **Design**: Performance Optimization
+- **Design**: Performance Optimization, Image Pipeline
 - **Details**: Set up Hugo image processing pipeline
 - **Test**: Images convert to WebP automatically
 - **Status**: Completed - imaging configuration in config.yaml
 
 #### ✅ T7.1.2: Implement Image Component
 - **Requirement**: US-2.3
-- **Design**: Performance Optimization
+- **Design**: Performance Optimization, Partial Components
 - **Details**: Create reusable image partial with optimization
 - **Test**: Images load with proper srcset
 - **Status**: Completed - components/image.html exists
@@ -335,14 +356,14 @@ Status Legend:
 
 #### ✅ T8.1.1: Configure Meta Tags
 - **Requirement**: US-5.3
-- **Design**: SEO Architecture
+- **Design**: SEO & Meta Tags, Partial Components
 - **Details**: Set up meta tag generation in head partial
 - **Test**: Pages have unique meta descriptions
 - **Status**: Completed - meta.html partial exists
 
 #### ✅ T8.1.2: Setup Open Graph Tags
 - **Requirement**: US-5.3
-- **Design**: SEO Architecture
+- **Design**: SEO & Meta Tags, Social Media APIs
 - **Details**: Add social media preview tags
 - **Test**: Links preview correctly when shared
 - **Status**: Completed - OG tags in meta.html
@@ -386,7 +407,7 @@ Status Legend:
 
 #### ⬜ T9.1.1: Configure CSP Headers
 - **Requirement**: Security Requirements
-- **Design**: Security Architecture
+- **Design**: Security Architecture, Client-side Security
 - **Details**: Set Content Security Policy headers in Netlify
 - **Test**: Headers present in response
 - **Status**: Pending - needs Netlify configuration
@@ -407,7 +428,7 @@ Status Legend:
 
 #### ⬜ T9.1.4: Implement Critical CSS
 - **Requirement**: Performance Requirements
-- **Design**: Performance Optimization
+- **Design**: Performance Optimization, CSS Pipeline
 - **Details**: Extract and inline critical REDACTED_AIRTABLE_PAT CSS
 - **Test**: First paint time improves
 - **Status**: Pending - not implemented
@@ -444,7 +465,7 @@ Status Legend:
 
 #### ⬜ T10.1.3: Accessibility Audit
 - **Requirement**: Accessibility Requirements
-- **Design**: WCAG Compliance
+- **Design**: Accessibility, Compliance & Standards
 - **Details**: Run accessibility tests and fix issues
 - **Test**: WCAG 2.1 Level AA compliance
 - **Status**: Pending - not audited
@@ -479,10 +500,10 @@ Status Legend:
 
 ## Summary Statistics
 
-- **Total Tasks**: 56
-- **Completed**: 35 (62.5%)
-- **In Progress**: 2 (3.6%)
-- **Pending**: 19 (33.9%)
+- **Total Tasks**: 59
+- **Completed**: 38 (64.4%)
+- **In Progress**: 2 (3.4%)
+- **Pending**: 19 (32.2%)
 - **Blocked**: 0 (0%)
 
 ## Critical Path

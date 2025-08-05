@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Auto-update DEVLOG.md after each commit
+# This hook runs automatically after git commit
+#
+# To install: 
+# git config core.hooksPath .githooks
+#
+
+echo "🔄 Updating DEVLOG.md..."
+python scripts/update-devlog.py
+
+# Auto-commit the updated DEVLOG.md
+if git diff --quiet DEVLOG.md; then
+    echo "📄 DEVLOG.md already up to date"
+else
+    echo "📝 Committing updated DEVLOG.md"
+    git add DEVLOG.md
+    git commit -m "docs: auto-update DEVLOG.md [skip ci]"
+fi
+
+echo "✅ DEVLOG.md updated successfully!"

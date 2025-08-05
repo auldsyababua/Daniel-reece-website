@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "TestSprite": {
+      "command": "npx",
+      "args": ["@testsprite/testsprite-mcp@latest"],
+      "env": {
+        "API_KEY": "sk-user-xkjB2hy44D0wFAppzLWHxnqMGSAryjlW51QCWNmFvan8ZoAcekMEsO48Tv1IxLRglK3ZZ75q2SGz-ObKqm4GHDrRuXgHHI3wN95AFcaEGLVUPC6C9wZY_9HJ3RltMN8We64"
+      }
+    },
+    "GitHub": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
+      }
+    },
+    "Playwright": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-playwright"],
+      "env": {
+        "PLAYWRIGHT_HEADLESS": "false",
+        "PLAYWRIGHT_BROWSER": "chromium"
+      }
+    }
+  }
+}

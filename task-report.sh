@@ -1,0 +1,1 @@
+.claude/kiro/scripts/task-report.sh
