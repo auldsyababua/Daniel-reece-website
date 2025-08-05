@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Pre-commit hook to check specification sync
+
+echo "🔍 Running pre-commit specification checks..."
+
+# Run the spec sync checker
+./scripts/check-spec-sync.sh
+
+SYNC_EXIT_CODE=$?
+
+if [ $SYNC_EXIT_CODE -eq 1 ]; then
+    echo ""
+    echo "❌ Commit blocked: Missing core specification files"
+    echo "Please ensure requirements.md, design.md, and tasks.md exist"
+    exit 1
+elif [ $SYNC_EXIT_CODE -eq 2 ]; then
+    echo ""
+    echo "⚠️  Warning: Specification sync issues detected"
+    echo "Consider updating specs to maintain consistency"
+    echo ""
+    echo "Override with: git commit --no-verify"
+    # Allow commit but warn
+fi
+
+# Check if any of the spec files are being modified
+SPEC_FILES="requirements.md design.md tasks.md"
+MODIFIED_SPECS=""
+
+for file in $SPEC_FILES; do
+    if git diff --cached --name-only | grep -q "^$file$"; then
+        MODIFIED_SPECS="$MODIFIED_SPECS $file"
+    fi
+done
+
+if [ -n "$MODIFIED_SPECS" ]; then
+    echo ""
+    echo "📝 Specification files modified:$MODIFIED_SPECS"
+    echo "Remember to:"
+    echo "  1. Keep all three files in sync"
+    echo "  2. Update task status if implementing"
+    echo "  3. Link new tasks to requirements/design"
+fi
+
+exit 0
