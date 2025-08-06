@@ -15,8 +15,8 @@ seo:
   keywords: ["public speaking anxiety NYC", "overcome stage fright", "executive presentation skills", "presentation anxiety coaching", "NYC speech coach", "public speaking training Manhattan", "executive communication coaching"]
 url: "/posts/overcoming-public-speaking-anxiety-nyc/"
 slug: "overcoming-public-speaking-anxiety-nyc"
-  schema_type: "Article"
-  faq: true
+schema_type: "Article"
+faq: true
 # Local SEO
 location:
   city: "New York City"
