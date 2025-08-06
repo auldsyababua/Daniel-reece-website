@@ -55,6 +55,20 @@ params:
   main_title_part_two: " own it"
   description: "Personalized coaching and executive skills training"
   after_title: "The Art of Communication with Daniel Reece"
+  # SEO Configuration
+  seo:
+    business_name: "Executive Speech Coaching NYC"
+    business_type: "ProfessionalService"
+    address:
+      locality: "New York"
+      region: "NY"  
+      country: "US"
+      postal_code: "10001"
+    phone: "+1-555-0123"  # Update with actual phone
+    email: "info@executivespeachcoachingnyc.com"
+    founded: "2010"
+    description: "Premier executive speech coaching and communication training in NYC. Transform public speaking anxiety into confident leadership presence."
+    keywords: ["executive speech coach NYC", "public speaking training Manhattan", "presentation skills coaching", "communication training New York"]
   disable_theme_toggle: false
   hide_phone_number: false
   disable_stay_uptodate: false

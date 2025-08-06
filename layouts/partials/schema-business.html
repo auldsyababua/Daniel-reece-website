@@ -1,0 +1,127 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["ProfessionalService", "LocalBusiness"],
+  "name": "{{ .Site.Params.seo.business_name }}",
+  "description": "{{ .Site.Params.seo.description }}",
+  "url": "{{ .Site.BaseURL }}",
+  "logo": "{{ .Site.Params.main_logo | absURL }}",
+  "image": "{{ .Site.Params.og_image | absURL }}",
+  "telephone": "{{ .Site.Params.seo.phone }}",
+  "email": "{{ .Site.Params.seo.email }}",
+  "foundingDate": "{{ .Site.Params.seo.founded }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "{{ .Site.Params.seo.address.locality }}",
+    "addressRegion": "{{ .Site.Params.seo.address.region }}",
+    "addressCountry": "{{ .Site.Params.seo.address.country }}",
+    "postalCode": "{{ .Site.Params.seo.address.postal_code }}"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.7589,
+    "longitude": -73.9851
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "New York City",
+      "@id": "https://en.wikipedia.org/wiki/New_York_City"
+    },
+    {
+      "@type": "State",
+      "name": "New York",
+      "@id": "https://en.wikipedia.org/wiki/New_York_(state)"
+    }
+  ],
+  "serviceType": "Executive Communication Coaching",
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.7589,
+      "longitude": -73.9851
+    },
+    "geoRadius": "50000"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Executive Communication Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "1:1 Executive Speech Coaching",
+          "description": "Personalized coaching for executives to overcome public speaking anxiety and develop confident presentation skills",
+          "url": "{{ .Site.BaseURL }}services/1-1-speech-coaching/"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Executive Training Programs",
+          "description": "Comprehensive training programs for leadership communication and executive presence",
+          "url": "{{ .Site.BaseURL }}services/executive-training-programs/"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Group Communication Training", 
+          "description": "Team-based communication workshops and presentation skills training",
+          "url": "{{ .Site.BaseURL }}services/group-communication-training/"
+        }
+      }
+    ]
+  },
+  "employee": {
+    "@type": "Person",
+    "name": "Daniel Reece",
+    "jobTitle": "Executive Speech Coach & Founder",
+    "description": "MFA Yale University graduate with 15+ years experience coaching C-suite executives at Google, Netflix, Goldman Sachs, and AstraZeneca",
+    "url": "{{ .Site.BaseURL }}about/",
+    "sameAs": [
+      "https://www.linkedin.com/company/elevatingvoicesnyc/?viewAsMember=true"
+    ],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Yale University",
+      "url": "https://www.yale.edu/"
+    },
+    "hasCredential": {
+      "@type": "EducationalOccuREDACTED_AIRTABLE_PAT",
+      "credentialCategory": "degree",
+      "name": "Master of Fine Arts (MFA)"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Sarah M."
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "Daniel transformed my presentation anxiety into confident leadership presence. His neuroscience-based approach made all the difference for my quarterly board presentations."
+    }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/company/elevatingvoicesnyc/?viewAsMember=true"
+  ],
+  "keywords": "{{ delimit .Site.Params.seo.keywords ", " }}"
+}
+</script>

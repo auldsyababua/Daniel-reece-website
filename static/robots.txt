@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and development files
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /assets/
+Disallow: /layouts/
+
+# Priority pages for crawling
+Allow: /posts/
+Allow: /services/
+Allow: /about/
+Allow: /contact/
+
+# Sitemap location (update with actual domain)
+Sitemap: https://executivespeechcoachingnyc.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

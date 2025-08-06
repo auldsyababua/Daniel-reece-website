@@ -1,0 +1,133 @@
+{{ if eq .Type "posts" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "description": "{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}",
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ if .Params.featured_image }}{{ .Params.featured_image | absURL }}{{ else }}{{ .Site.Params.og_image | absURL }}{{ end }}",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Params.author | default "Daniel Reece" }}",
+    "description": "Executive Speech Coach and Communication Expert",
+    "url": "{{ .Site.BaseURL }}/about/",
+    "sameAs": [
+      "https://www.linkedin.com/company/elevatingvoicesnyc/?viewAsMember=true"
+    ],
+    "jobTitle": "Executive Speech Coach",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Executive Speech Coaching NYC",
+      "url": "{{ .Site.BaseURL }}"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Executive Speech Coaching NYC",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.Params.main_logo | absURL }}",
+      "width": 300,
+      "height": 100
+    },
+    "url": "{{ .Site.BaseURL }}",
+    "sameAs": [
+      "https://www.linkedin.com/company/elevatingvoicesnyc/?viewAsMember=true"
+    ]
+  },
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "url": "{{ .Permalink }}",
+  "wordCount": {{ .WordCount }},
+  "keywords": [
+    {{- with .Params.tags -}}
+    {{- range $i, $tag := . -}}
+    {{- if $i }}, {{ end }}"{{ $tag }}"
+    {{- end -}}
+    {{- end -}}
+  ],
+  "articleSection": "{{ with .Params.categories }}{{ index . 0 }}{{ end }}",
+  "about": {
+    "@type": "Thing",
+    "name": "Public Speaking Anxiety",
+    "description": "Professional coaching and training to overcome stage fright and presentation anxiety"
+  },
+  "mentions": [
+    {
+      "@type": "Place",
+      "name": "New York City",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "New York",
+        "addressRegion": "NY",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Executive Speech Coaching",
+      "provider": {
+        "@type": "Person",
+        "name": "Daniel Reece"
+      }
+    }
+  ]
+}
+</script>
+{{ end }}
+
+{{ if and (eq .Type "posts") .Params.seo.faq }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How common is public speaking anxiety among executives?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Public speaking anxiety affects 75% of executives according to Harvard Business Review research. In New York City's competitive business environment, this percentage can be even higher due to the high-stakes nature of presentations and the sophisticated audiences executives face."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you really overcome stage fright completely?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with the right techniques and coaching. Stage fright is a learned response that can be unlearned. Most NYC clients see significant improvement within 4-6 sessions, with many reporting complete confidence transformation within 3 months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between nervousness and presentation anxiety?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nervousness is normal pre-performance energy that can actually enhance your delivery. Presentation anxiety becomes problematic when it impairs your ability to think clearly, remember content, or connect with your audience. The goal isn't to eliminate all nerves—it's to channel them productively."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know if I need professional help with my public speaking fears?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Consider executive speech coaching if: you avoid speaking opportunities that could advance your career; physical symptoms interfere with your performance; you spend excessive time worrying about upcoming presentations; or your fear is affecting your leadership effectiveness."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes NYC executives' presentation challenges unique?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "New York City executives often face more sophisticated audiences, higher-stakes presentations with significant financial implications, diverse multicultural audiences, fast-paced environments with less preparation time, and greater competition making every presentation opportunity crucial."
+      }
+    }
+  ]
+}
+</script>
+{{ end }}
