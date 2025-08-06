@@ -208,33 +208,33 @@ Status Legend:
 - **Test**: Page renders with form fields
 - **Status**: Completed - content/contact.md exists
 
-#### 🔄 T5.1.2: Configure FormSubmit Integration
+#### ✅ T5.1.2: Configure FormSubmit Integration
 - **Requirement**: US-3.1
 - **Design**: API Specifications, External Services
 - **Details**: Set up FormSubmit.co endpoint with email
 - **Test**: Form submissions reach designated email
-- **Status**: Partial - form exists but needs email configuration
+- **Status**: Completed - FormSubmit endpoints configured in config.yaml
 
-#### ⬜ T5.1.3: Add Form Validation
+#### ✅ T5.1.3: Add Form Validation
 - **Requirement**: US-3.1
 - **Design**: Interactive Components, Alpine.js Components
 - **Details**: Implement client-side validation with Alpine.js
 - **Test**: Invalid submissions show error messages
-- **Status**: Pending - basic HTML validation only
+- **Status**: Completed - Alpine.js validation with real-time feedback
 
-#### ⬜ T5.1.4: Implement Newsletter Signup
+#### ✅ T5.1.4: Implement Newsletter Signup
 - **Requirement**: US-3.2
 - **Design**: API Specifications
 - **Details**: Add email subscription form in footer
 - **Test**: Email addresses captured successfully
-- **Status**: Pending - placeholder exists but not functional
+- **Status**: Completed - Newsletter form in footer with Alpine.js
 
-#### ⬜ T5.1.5: Add Form Confirmation Messages
+#### ✅ T5.1.5: Add Form Confirmation Messages
 - **Requirement**: US-3.1
 - **Design**: Interactive Components
 - **Details**: Show success/error messages after submission
 - **Test**: User receives feedback after form submit
-- **Status**: Pending - needs implementation
+- **Status**: Completed - Thank you page and inline messages implemented
 
 <!-- Dev Note [2025-08-05T15:50] - Phase 5 Tasks:
 - Tasks created: 5 contact/form tasks
@@ -501,16 +501,18 @@ Status Legend:
 ## Summary Statistics
 
 - **Total Tasks**: 59
-- **Completed**: 38 (64.4%)
-- **In Progress**: 2 (3.4%)
-- **Pending**: 19 (32.2%)
+- **Completed**: 42 (71.2%)
+- **In Progress**: 0 (0%)
+- **Pending**: 17 (28.8%)
 - **Blocked**: 0 (0%)
 
 ## Critical Path
 
 The following tasks are on the critical REDACTED_AIRTABLE_PAT for launch:
 1. T5.1.2: Configure FormSubmit Integration (contact form)
+- **Completed**: 2025-08-05 15:53
 2. T5.1.4: Implement Newsletter Signup (lead generation)
+- **Completed**: 2025-08-05 15:53
 3. T8.1.5: Add Analytics Tracking (measurement)
 4. T9.1.1: Configure CSP Headers (security)
 5. T10.1.3: Accessibility Audit (compliance)

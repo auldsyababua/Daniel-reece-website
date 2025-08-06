@@ -9,20 +9,51 @@ module.exports = {
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
-        gold: '#ffbd00',
+        gold: '#ffb400',
         slateblue: '#202938',
+        // Brand Colors for Executive Speech Coaching NYC
+        'brand': {
+          'primary': '#0a1a2b',
+          'accent': '#ffb400',
+          'navy': {
+            50: '#f8fafc',
+            100: '#f1f5f9',
+            200: '#e2e8f0',
+            300: '#cbd5e1',
+            400: '#94a3b8',
+            500: '#64748b',
+            600: '#475569',
+            700: '#334155',
+            800: '#1e293b',
+            900: '#0a1a2b',
+            950: '#020617'
+          },
+          'gold': {
+            50: '#fffef7',
+            100: '#fffbeb',
+            200: '#fef3c7',
+            300: '#fde68a',
+            400: '#fcd34d',
+            500: '#ffb400',
+            600: '#f59e0b',
+            700: '#d97706',
+            800: '#b45309',
+            900: '#92400e',
+            950: '#78350f'
+          }
+        },
         'primary': {
-          DEFAULT: '#6366F1',
-          50: '#FFFFFF',
-          100: '#F9F9FE',
-          200: '#D3D4FB',
-          300: '#AEAFF8',
-          400: '#888BF4',
-          500: '#6366F1',
-          600: '#3034EC',
-          700: '#1317D1',
-          800: '#0E119E',
-          900: '#0A0C6A'
+          DEFAULT: '#0a1a2b',
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0a1a2b'
         },
         'secondary': {
           DEFAULT: '#EC4899',
@@ -53,7 +84,15 @@ module.exports = {
         // To change these, use https://www.tailwindshades.com/ with https://tailwindcss.com/docs/customizing-colors or create your own custom colors.
       },
       backgroundImage: {
-        'gold-gradient': 'linear-gradient(to bottom, #fff0 86%, #ffbd00 86%, #ffbd00 98%, #fff0 98%)',
+        'gold-gradient': 'linear-gradient(to bottom, #fff0 86%, #ffb400 86%, #ffb400 98%, #fff0 98%)',
+        'brand-gradient': 'linear-gradient(135deg, #0a1a2b 0%, #1e293b 100%)',
+        'gold-shine': 'linear-gradient(135deg, #ffb400 0%, #f59e0b 100%)',
+      },
+      boxShadow: {
+        'brand': '0 4px 14px 0 rgba(10, 26, 43, 0.1)',
+        'brand-lg': '0 10px 25px -3px rgba(10, 26, 43, 0.1), 0 4px 6px -2px rgba(10, 26, 43, 0.05)',
+        'gold': '0 4px 14px 0 rgba(255, 180, 0, 0.25)',
+        'gold-lg': '0 10px 25px -3px rgba(255, 180, 0, 0.1), 0 4px 6px -2px rgba(255, 180, 0, 0.05)',
       },
       lineHeight: {
         'extra-loose': '2.5',

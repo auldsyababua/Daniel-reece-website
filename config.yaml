@@ -58,6 +58,17 @@ params:
   disable_theme_toggle: false
   hide_phone_number: false
   disable_stay_uptodate: false
+  
+  # Contact form configuration
+  contact:
+    email: "info@executivespeechcoachingnyc.com"
+    formsubmit_endpoint: "https://formsubmit.co/info@executivespeechcoachingnyc.com"
+    thank_you_page: "/contact/thank-you/"
+    
+  # Newsletter configuration  
+  newsletter:
+    enabled: true
+    formsubmit_endpoint: "https://formsubmit.co/newsletter@executivespeechcoachingnyc.com"
 
   p1:
     heading: "Our mission"

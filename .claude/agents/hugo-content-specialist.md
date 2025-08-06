@@ -1,3 +1,4 @@
+
 ---
 name: hugo-content-specialist
 description: Use proactively for Hugo static site content creation, template development, and site structure optimization for the Executive Speech Coaching NYC website. Specialist for building and managing coaching service websites with Hugo and Tailwind CSS.
