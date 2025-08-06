@@ -2,13 +2,20 @@
 <section class="contact">
     <div class="bg-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl mx-auto px-4 pt-[50px] pb-[60px] text-center">
-            {{ with .Params.contact_intro }}
-                <h1 class="text-3xl md:text-4xl xl:text-5xl font-semibold tracking-tight capitalize text-gray-800 dark:text-white my-0">
-                    <span class="inline font-bold bg-gold-gradient">{{ .title }}</span>
-                </h1>
+            <h1 class="text-3xl md:text-4xl xl:text-5xl font-semibold tracking-tight text-gray-800 dark:text-white my-0">
+                <span class="inline font-bold bg-gold-gradient">{{ .Title }}</span>
+            </h1>
+            {{ if .Params.description }}
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4">
+                {{ .Params.description }}
+            </p>
             {{ end }}
         </div>
     </div>
-    {{ .Content }}
+    
+    <!-- Contact Form using Partial -->
+    <div class="max-w-screen-xl mx-auto px-4 py-8">
+        {{ partial "contact-form.html" . }}
+    </div>
 </section>
 {{ end }}
