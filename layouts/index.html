@@ -56,10 +56,9 @@
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-4 items-center">
                     {{ range .list }}
                         {{ $alt:= ( print  .name " logo" ) }}
-                        {{ $image := resources.Get .logo }}
                         <div class="col-span text-center">
                             {{ partial "components/image.html" (dict
-                                    "Src" $image
+                                    "Src" .logo
                                     "Alt" $alt
                                     "Class" "dark:invert"
                                     "Loading" "eager"

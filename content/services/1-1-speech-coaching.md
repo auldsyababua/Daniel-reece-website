@@ -2,14 +2,23 @@
 title: "1:1 Speech Coaching"
 draft: false
 language: en
-description: "Speak with confidence, captivate audiences, and elevate your communication style through bespoke 1:1 coaching designed to address your specific speaking challenges."
+description: "Personalized executive speech coaching in NYC. Master public speaking, overcome anxiety, and develop commanding presence through tailored one-on-one sessions with expert guidance."
 service_image: services/1-1-speech-coaching-img.avif
+duration: "60-90 minutes per session"
+format: "In-Person NYC or Virtual"
+key_benefits:
+  - "Conquer public speaking anxiety and nervousness"
+  - "Develop executive presence and leadership voice"
+  - "Master presentation skills and storytelling"
+  - "Improve vocal projection and clarity"
+  - "Build confidence for high-stakes speaking"
+  - "Personalized feedback and coaching techniques"
 buttons:
   - name: "Book a Virtual Coaching Session"
-    url: "#"
+    url: "/contact"
   - name: "Book an In-Person Coaching Session"
-    url: "#"
-weight: 3
+    url: "/contact"
+weight: 20
 ---
 
 Ready to command the room, deliver impactful presentations, or tell stories that captivate? Struggling with public speaking nerves or need to enhance your vocal presence? Speech coaching sessions with Elevating Voices will address your unique challenges, equipping you with the skills to speak confidently, engage authentically, and elevate your communication style. In addition to structured coaching packages, EV also offers 1:1 executive training programs and customized coaching packages tailored to your specific goals and needs.1:1 Speech Coaching with Elevating Voices is available virtually via Google Meet and in-person in NYC.

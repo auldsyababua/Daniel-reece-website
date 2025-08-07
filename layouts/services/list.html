@@ -1,46 +1,204 @@
 {{ define "main" }}
 <section class="services">
-    <div class="services-intro">
-        <div class="bg-gray-200 dark:bg-gray-800 services-list">
-            <div class="max-w-screen-xl mx-auto px-4 pt-[50px] pb-[60px] text-center">
-                {{ with .Params.services_intro }}
-                    <h1 class="text-3xl md:text-4xl xl:text-5xl font-semibold tracking-tight capitalize text-gray-800 dark:text-white my-0 !leading-[1.3]">
-                        <span class="inline font-bold bg-gold-gradient">{{ .title }}</span>
-                    </h1>
-                    <p class="mt-4 mb-0 text-xl md:text-2xl text-gray-800 dark:text-gray-300">
-                        {{ .text }}
-                    </p>
-                {{ end }}
+    <!-- Hero Section -->
+    <div class="services-hero bg-gradient-to-br from-brand-navy-900 to-brand-navy-800 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="relative z-10 max-w-screen-xl mx-auto px-4 pt-16 pb-20 text-center">
+            {{ with .Params.services_intro }}
+                <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-white my-0 leading-[1.2] mb-6">
+                    <span class="bg-gradient-to-r from-brand-gold-400 to-brand-gold-500 bg-clip-text text-transparent">{{ .title }}</span>
+                </h1>
+                <p class="mt-6 mb-8 text-xl md:text-2xl text-brand-gold-100 max-w-4xl mx-auto leading-relaxed">
+                    {{ .text }}
+                </p>
+            {{ end }}
+            
+            <!-- Trust Indicators -->
+            <div class="flex flex-wrap justify-center items-center gap-6 mt-8 opacity-80">
+                <div class="flex items-center text-brand-gold-200 text-sm">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <REDACTED_AIRTABLE_PAT fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    15+ Years Experience
+                </div>
+                <div class="flex items-center text-brand-gold-200 text-sm">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <REDACTED_AIRTABLE_PAT fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Fortune 500 Clients
+                </div>
+                <div class="flex items-center text-brand-gold-200 text-sm">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <REDACTED_AIRTABLE_PAT fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Yale MFA Trained
+                </div>
             </div>
         </div>
     </div>
-    <div class="services-list">
-        <div class="container max-w-screen-xl py-[50px] px-4 mx-auto">
-            <div class="flex flex-wrap justify-center gap-8">
+
+    <!-- Services Grid -->
+    <div class="services-grid bg-white dark:bg-gray-900 py-16 lg:py-24">
+        <div class="max-w-screen-xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 {{ range sort (where .Pages ".Params.weight" "gt" 0) ".Params.weight" }}
-                <div class="w-full md:w-[calc(50%-1rem)] xl:w-[calc(33.333%-1.333rem)]">
-                    <a href="{{ .RelPermalink }}" class="block p-6 h-full border rounded-lg shadow hover:shadow-lg transition">
-                        {{ with .Params.service_image }}
-                            <img src="/images/{{ . | relURL }}" alt="{{ $.Title }}" class="mb-4 w-full h-48 object-cover rounded-lg" />
+                <div class="group bg-white dark:bg-gray-800 rounded-2xl shadow-brand hover:shadow-brand-lg transition-all duration-500 overflow-hidden border border-brand-navy-100 dark:border-brand-navy-700">
+                    <!-- Service Image -->
+                    {{ with .Params.service_image }}
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="/images/{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-6">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-brand-gold-500/90 text-brand-navy-900 backdrop-blur-sm">
+                                {{ if eq $.Params.weight 10 }}🎯 Most Popular{{ end }}
+                                {{ if eq $.Params.weight 20 }}👥 1:1 Focused{{ end }}
+                                {{ if eq $.Params.weight 30 }}🚀 Advanced{{ end }}
+                                {{ if eq $.Params.weight 40 }}👥 Team Training{{ end }}
+                            </span>
+                        </div>
+                    </div>
+                    {{ end }}
+                    
+                    <!-- Service Content -->
+                    <div class="p-6 lg:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-2xl font-bold text-brand-navy-900 dark:text-white group-hover:text-brand-gold-600 dark:group-hover:text-brand-gold-400 transition-colors">
+                                {{ .Title }}
+                            </h2>
+                            {{ if eq $.Params.weight 10 }}
+                            <div class="text-green-600 dark:text-green-400 text-sm font-medium">FREE</div>
+                            {{ end }}
+                        </div>
+                        
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                            {{ .Params.description }}
+                        </p>
+                        
+                        <!-- Key Benefits -->
+                        {{ if .Params.key_benefits }}
+                        <ul class="space-y-2 mb-6">
+                            {{ range .Params.key_benefits }}
+                            <li class="flex items-start text-sm text-gray-600 dark:text-gray-400">
+                                <svg class="w-4 h-4 text-brand-gold-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <REDACTED_AIRTABLE_PAT fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                {{ . }}
+                            </li>
+                            {{ end }}
+                        </ul>
                         {{ end }}
-                        <h2 class="mb-2 underline text-xl font-semibold dark:text-white">{{ .Title }}</h2>
-                        <p class="text-lg text-gray-900 dark:text-white">{{ .Params.description }}</p>
-                    </a>
+                        
+                        <!-- Duration & Format -->
+                        <div class="flex flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400 mb-6">
+                            {{ if .Params.duration }}
+                            <span class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <REDACTED_AIRTABLE_PAT stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                {{ .Params.duration }}
+                            </span>
+                            {{ end }}
+                            {{ if .Params.format }}
+                            <span class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <REDACTED_AIRTABLE_PAT stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <REDACTED_AIRTABLE_PAT stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                {{ .Params.format }}
+                            </span>
+                            {{ end }}
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <a href="{{ .RelPermalink }}" class="inline-flex items-center justify-center w-full px-6 py-3 text-base font-semibold text-white bg-gradient-to-r from-brand-gold-500 to-brand-gold-600 hover:from-brand-gold-600 hover:to-brand-gold-700 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 group/btn">
+                            Learn More
+                            <svg class="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <REDACTED_AIRTABLE_PAT stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 {{ end }}
             </div>
         </div>
     </div>
+
+    <!-- Quick Action CTA -->
+    <div class="cta-section bg-gradient-to-r from-brand-navy-900 to-brand-navy-800 py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                Not sure which service is right for you?
+            </h2>
+            <p class="text-xl text-brand-gold-100 mb-8 max-w-2xl mx-auto">
+                Book a free 15-minute discovery call to discuss your goals and find the perfect coaching approach.
+            </p>
+            <a href="/services/discovery-call/" class="inline-flex items-center px-8 py-4 text-lg font-bold text-brand-navy-900 bg-brand-gold-500 hover:bg-brand-gold-600 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200">
+                Book Free Discovery Call
+                <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <REDACTED_AIRTABLE_PAT stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Related Services Links -->
+    <div class="related-services bg-gray-50 dark:bg-gray-900 py-12">
+        <div class="max-w-screen-xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8">
+                Related Training Areas
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="#" class="text-center p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-2">🎤</div>
+                    <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Public Speaking</div>
+                </a>
+                <a href="#" class="text-center p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-2">🗣️</div>
+                    <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Accent Coaching</div>
+                </a>
+                <a href="#" class="text-center p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-2">💼</div>
+                    <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Executive Presence</div>
+                </a>
+                <a href="#" class="text-center p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow">
+                    <div class="text-2xl mb-2">📈</div>
+                    <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Presentation Skills</div>
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
-    {{/*  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-items-center">
-    {{ range sort .Pages ".Params.weight" }}
-        <a href="{{ .RelPermalink }}" class="block p-6 border rounded-lg shadow hover:shadow-lg transition">
-            {{ with .Params.service_image }}
-                <img src="/images/{{ . | relURL }}" alt="{{ $.Title }}" class="mb-4 w-full h-48 object-cover rounded-lg" />
-            {{ end }}
-            <h2 class="mb-2 underline text-xl font-semibold dark:text-white">{{ .Title }}</h2>
-            <p class="text-lg text-gray-900 dark:text-white">{{ .Params.description }}</p>
-        </a>
-    {{ end }}
-    </div>  */}}
+
+<!-- Sticky Mobile CTA -->
+<div class="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 md:hidden" id="mobile-cta">
+    <a href="/contact" class="block w-full text-center px-6 py-3 text-base font-bold text-white bg-gradient-to-r from-brand-gold-500 to-brand-gold-600 rounded-lg shadow-lg">
+        📞 Book Free Consultation
+    </a>
+</div>
+
+<script>
+// Hide mobile CTA when scrolling up, show when scrolling down
+let lastScrollTop = 0;
+const mobileCTA = document.getElementById('mobile-cta');
+
+window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+        // Scrolling down
+        mobileCTA.style.transform = 'translateY(100%)';
+    } else if (scrollTop < lastScrollTop) {
+        // Scrolling up
+        mobileCTA.style.transform = 'translateY(0)';
+    }
+    
+    lastScrollTop = scrollTop;
+});
+
+// Initially hide CTA
+setTimeout(() => {
+    mobileCTA.style.transform = 'translateY(100%)';
+    mobileCTA.style.transition = 'transform 0.3s ease-in-out';
+}, 3000);
+</script>
 {{ end }}

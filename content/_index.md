@@ -20,25 +20,25 @@ partners:
   title: "Trusted by Professionals From"
   list:
     - name: "AstraZeneca"
-      logo: "/images/partners/astra-zeneca-logo.svg"
+      logo: "images/partners/astra-zeneca-logo.svg"
     - name: "Black Rock"
-      logo: "/images/partners/black-rock-logo.svg"
+      logo: "images/partners/black-rock-logo.svg"
     - name: "Barclays"
-      logo: "/images/partners/barclays-logo.svg"
+      logo: "images/partners/barclays-logo.svg"
     - name: "Coca-Cola"
-      logo: "/images/partners/coca-cola-logo.svg"
+      logo: "images/partners/coca-cola-logo.svg"
     - name: "Goldman Sachs"
-      logo: "/images/partners/goldman-sachs-logo.svg"
+      logo: "images/partners/goldman-sachs-logo.svg"
     - name: "Google"
-      logo: "/images/partners/google-logo.svg"
+      logo: "images/partners/google-logo.svg"
     - name: "Memorial Sloan Kettering Cancer Center"
-      logo: "/images/partners/msk-logo.svg"
+      logo: "images/partners/msk-logo.svg"
     - name: "Netflix"
-      logo: "/images/partners/netflix-logo.svg"
+      logo: "images/partners/netflix-logo.svg"
     - name: "Uber"
-      logo: "/images/partners/uber-logo.svg"
+      logo: "images/partners/uber-logo.svg"
     - name: "The United Nations"
-      logo: "/images/partners/united-nations-logo.svg"
+      logo: "images/partners/united-nations-logo.svg"
 
 mission:
   title: "Are nerves holding you back from making your message land?"
@@ -78,10 +78,10 @@ feedback:
     text: "Book Consultation"
     url: "/contact"
   quote:
-    text: "“Within three sessions my board presentations went from stiff to standout. Dan’s guidance gave me the confidence to own the room.”"
+    text: "Within three sessions my board presentations went from stiff to standout. Dan's guidance gave me the confidence to own the room."
     author: "Mike Decina"
     role: "Account Executive"
-    photo: "/images/photo/mike-photo.jpg"
+    photo: "images/photo/mike-photo.jpg"
 
 about:
   info:
@@ -96,6 +96,6 @@ about:
     - text: "This coaching method condenses thousands of rehearsals, speeches, and workshops into a practical framework you can apply immediately…"
     - text: "and I’m excited to put it to work for you."
   photo:
-    url: "/images/photo/daniel-reece-photo.jpg"
+    url: "images/photo/daniel-reece-photo.jpg"
     name: "Daniel Reece"
 ---
