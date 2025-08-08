@@ -110,18 +110,160 @@ function contactForm() {
         },
         
         async handleSubmit(event) {
+            event.preventDefault();
             this.clearMessages();
             
             if (!this.validateAll()) {
-                event.preventDefault();
                 return;
             }
             
             this.isSubmitting = true;
             
-            // Let the form submit naturally to FormSubmit
-            // The success/error handling will be done via URL parameters
-            // when the user returns from FormSubmit
+            try {
+                // Prepare data for automation
+                const formData = {
+                    name: this.form.name.trim(),
+                    email: this.form.email.trim(),
+                    subject: this.form.subject,
+                    message: this.form.message.trim(),
+                    source: 'Website Contact Form',
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Send to Zapier webhook with multiple fallback approaches
+                const zapierWebhookUrl = window.ZAPIER_WEBHOOK_URL || null;
+                
+                if (zapierWebhookUrl && zapierWebhookUrl !== 'YOUR_WEBHOOK_URL_HERE') {
+                    await this.sendToZapier(zapierWebhookUrl, formData);
+                }
+                
+                // Send to FormSubmit as primary/backup
+                const formSubmitData = new FormData(event.target);
+                const response = await fetch(event.target.action, {
+                    method: 'POST',
+                    body: formSubmitData
+                });
+                
+                if (response.ok || response.type === 'opaque') {
+                    this.showSuccess = true;
+                    
+                    // Reset form after short delay
+                    setTimeout(() => {
+                        this.resetForm();
+                        // Redirect to thank you page
+                        window.location.href = '/contact/thank-you/';
+                    }, 1500);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                this.showError = true;
+            } finally {
+                this.isSubmitting = false;
+            }
+        },
+        
+        async sendToZapier(webhookUrl, data) {
+            console.log('Sending to Zapier webhook:', webhookUrl);
+            console.log('Form data:', data);
+            
+            const methods = [
+                // Method 1: POST with no-cors (most reliable)
+                () => this.sendPostNoCORS(webhookUrl, data),
+                
+                // Method 2: GET with query parameters (bypasses CORS preflight)
+                () => this.sendGetRequest(webhookUrl, data),
+                
+                // Method 3: Form submission approach
+                () => this.sendViaForm(webhookUrl, data),
+                
+                // Method 4: Image beacon (works even if page unloads)
+                () => this.sendViaImage(webhookUrl, data)
+            ];
+            
+            // Try each method with a small delay between attempts
+            for (let i = 0; i < methods.length; i++) {
+                try {
+                    await methods[i]();
+                    console.log(`Zapier method ${i + 1} completed`);
+                    // Small delay before next method
+                    if (i < methods.length - 1) {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                    }
+                } catch (error) {
+                    console.log(`Zapier method ${i + 1} failed:`, error);
+                }
+            }
+        },
+        
+        async sendPostNoCORS(webhookUrl, data) {
+            return fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+                mode: 'no-cors'
+            });
+        },
+        
+        async sendGetRequest(webhookUrl, data) {
+            const params = new URLSearchParams();
+            Object.keys(data).forEach(key => {
+                params.append(key, data[key]);
+            });
+            
+            const getUrl = webhookUrl + '?' + params.toString();
+            return fetch(getUrl, {
+                method: 'GET',
+                mode: 'no-cors'
+            });
+        },
+        
+        async sendViaForm(webhookUrl, data) {
+            return new Promise((resolve) => {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = webhookUrl;
+                form.style.display = 'none';
+                form.target = '_blank'; // Open in new tab to avoid navigation
+                
+                Object.keys(data).forEach(key => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = data[key];
+                    form.appendChild(input);
+                });
+                
+                document.body.appendChild(form);
+                form.submit();
+                
+                // Clean up after a short delay
+                setTimeout(() => {
+                    document.body.removeChild(form);
+                    resolve();
+                }, 1000);
+            });
+        },
+        
+        async sendViaImage(webhookUrl, data) {
+            return new Promise((resolve, reject) => {
+                const params = new URLSearchParams();
+                Object.keys(data).forEach(key => {
+                    params.append(key, data[key]);
+                });
+                
+                const img = new Image();
+                img.onload = () => resolve();
+                img.onerror = () => resolve(); // Don't reject - image requests to APIs often "fail" but still work
+                
+                // Set a timeout to ensure we don't hang
+                setTimeout(() => resolve(), 5000);
+                
+                img.src = webhookUrl + '?' + params.toString();
+            });
         },
         
         clearMessages() {

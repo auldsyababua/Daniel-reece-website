@@ -1,0 +1,134 @@
+{
+  "name": "Executive Speech Coaching NYC - Contact Form Automation",
+  "description": "Automated workflow for processing website contact form submissions",
+  "version": "1.0.0",
+  "created": "2025-08-07",
+  "steps": [
+    {
+      "step": 1,
+      "type": "trigger",
+      "app": "Webhooks by Zapier",
+      "event": "Catch Hook",
+      "notes": "This webhook will receive contact form submissions from your website",
+      "configuration": {
+        "webhook_url": "Will be generated when you create the Zap",
+        "expected_fields": {
+          "name": "Contact name",
+          "email": "Contact email address",
+          "subject": "Service area/interest",
+          "message": "Message content",
+          "source": "Website Contact Form",
+          "timestamp": "ISO 8601 timestamp"
+        }
+      }
+    },
+    {
+      "step": 2,
+      "type": "action",
+      "app": "Airtable",
+      "event": "Find or Create Record",
+      "notes": "Creates a new client record or updates existing one based on email",
+      "configuration": {
+        "account": "daniel@executivespeechcoachingnyc.com",
+        "base_id": "appXk9QepZD7Riwyl",
+        "base_name": "ExecutiveSpeechCoachingNYC.com Client Management",
+        "table": "Clients",
+        "search_field": "Email",
+        "search_value": "{{step1__email}}",
+        "create_if_not_found": true,
+        "field_mappings": {
+          "Client Name": "{{step1__name}}",
+          "Email": "{{step1__email}}",
+          "Lead Source": "Website Contact Form",
+          "Pipeline Stage": "Prospect",
+          "First Contact Date": "{{step1__timestamp}}",
+          "Initial Message": "Subject: {{step1__subject}}\nMessage: {{step1__message}}",
+          "Status": "Active",
+          "Tags": "Website Lead, {{step1__subject}}"
+        }
+      }
+    },
+    {
+      "step": 3,
+      "type": "action",
+      "app": "Gmail",
+      "event": "Send Email",
+      "notes": "Sends automated welcome email to new contact",
+      "configuration": {
+        "account": "daniel@executivespeechcoachingnyc.com",
+        "to": "{{step1__email}}",
+        "from_name": "Daniel Reece",
+        "subject": "Thank you for contacting Executive Speech Coaching NYC",
+        "body_type": "html",
+        "body": "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>\n  <h2 style='color: #1e40af;'>Hello {{step1__name}},</h2>\n  \n  <p>Thank you for reaching out to Executive Speech Coaching NYC. I've received your message about <strong>{{step1__subject}}</strong> and I'm excited to learn more about your communication goals.</p>\n  \n  <p>I typically respond to all inquiries within 24 business hours. In the meantime, here are some resources you might find helpful:</p>\n  \n  <ul>\n    <li><a href='https://executivespeechcoachingnyc.com/services/'>Our Services</a> - Learn about our coaching programs</li>\n    <li><a href='https://executivespeechcoachingnyc.com/blog/'>Blog</a> - Communication tips and insights</li>\n    <li><a href='https://executivespeechcoachingnyc.com/about/'>About</a> - My background and approach</li>\n  </ul>\n  \n  <p>If you'd like to schedule a consultation, you can <a href='https://calendly.com/executivespeechcoachingnyc'>book a time directly on my calendar</a>.</p>\n  \n  <p>Looking forward to speaking with you soon!</p>\n  \n  <p>Best regards,<br>\n  <strong>Daniel Reece</strong><br>\n  Executive Speech Coach<br>\n  Executive Speech Coaching NYC<br>\n  📧 daniel@executivespeechcoachingnyc.com<br>\n  📱 (917) 123-4567</p>\n</div>",
+        "cc": "",
+        "bcc": "daniel@executivespeechcoachingnyc.com"
+      }
+    },
+    {
+      "step": 4,
+      "type": "action",
+      "app": "Airtable",
+      "event": "Create Record",
+      "notes": "Logs the interaction in the Interactions table",
+      "configuration": {
+        "account": "daniel@executivespeechcoachingnyc.com",
+        "base_id": "appXk9QepZD7Riwyl",
+        "base_name": "ExecutiveSpeechCoachingNYC.com Client Management",
+        "table": "Interactions",
+        "field_mappings": {
+          "Client": "{{step2__id}}",
+          "Date": "{{step1__timestamp}}",
+          "Type": "Inbound Contact",
+          "Channel": "Website Form",
+          "Notes": "Subject: {{step1__subject}}\n\nMessage: {{step1__message}}\n\nAutomated welcome email sent.",
+          "Follow-up Required": true,
+          "Follow-up Date": "{{step1__timestamp | add_days: 1}}"
+        }
+      }
+    },
+    {
+      "step": 5,
+      "type": "action",
+      "app": "SMS by Zapier",
+      "event": "Send SMS",
+      "notes": "Optional: Sends notification to you about new lead",
+      "optional": true,
+      "configuration": {
+        "to_number": "+1 YOUR_PHONE_NUMBER",
+        "from_number": "Zapier SMS number",
+        "message": "New lead from website:\n{{step1__name}}\n{{step1__email}}\nRe: {{step1__subject}}\nCheck Airtable for details."
+      }
+    },
+    {
+      "step": 6,
+      "type": "action",
+      "app": "Telegram",
+      "event": "Send Message",
+      "notes": "Optional: Sends notification to Telegram",
+      "optional": true,
+      "configuration": {
+        "chat_id": "YOUR_TELEGRAM_CHAT_ID",
+        "message": "🎯 *New Lead Alert*\n\n*Name:* {{step1__name}}\n*Email:* {{step1__email}}\n*Interest:* {{step1__subject}}\n*Message:* {{step1__message}}\n\n[View in Airtable](https://airtable.com/appXk9QepZD7Riwyl)"
+      }
+    }
+  ],
+  "testing": {
+    "sample_payload": {
+      "name": "John Smith",
+      "email": "john.smith@example.com",
+      "subject": "Executive Presence Coaching",
+      "message": "I'm interested in improving my presentation skills for board meetings.",
+      "source": "Website Contact Form",
+      "timestamp": "2025-08-07T09:00:00Z"
+    }
+  },
+  "implementation_notes": [
+    "1. Import this configuration into Zapier",
+    "2. The webhook URL will be generated in Step 1",
+    "3. Add that webhook URL to /static/js/automation-config.js",
+    "4. Test with the sample payload",
+    "5. Configure optional SMS/Telegram notifications if desired",
+    "6. Turn on the Zap when ready"
+  ]
+}

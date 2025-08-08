@@ -1,0 +1,150 @@
+{
+  "id": "vsJ1Z0eWhcTXc23L",
+  "name": "Stripe Invoice Automation - Updated",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "REDACTED_AIRTABLE_PAT": "stripe",
+        "responseMode": "onReceived",
+        "responseData": "allEntries",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "id": "webhook-stripe",
+      "name": "Stripe Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "e1234567-e89b-12d3-a456-426614174000",
+              "leftValue": "={{$json.type}}",
+              "rightValue": "invoice.created",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "e1234567-e89b-12d3-a456-426614174001",
+              "leftValue": "={{$json.type}}",
+              "rightValue": "invoice.payment_succeeded",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "e1234567-e89b-12d3-a456-426614174002",
+              "leftValue": "={{$json.type}}",
+              "rightValue": "invoice.payment_failed",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "e1234567-e89b-12d3-a456-426614174003",
+              "leftValue": "={{$json.type}}",
+              "rightValue": "invoice.sent",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "e1234567-e89b-12d3-a456-426614174004",
+              "leftValue": "={{$json.type}}",
+              "rightValue": "invoice.finalized",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combineOperation": "any"
+        }
+      },
+      "id": "if-invoice-event",
+      "name": "Filter Invoice Events",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [300, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "base": {
+          "__rl": true,
+          "value": "appXk9QepZD7Riwyl",
+          "mode": "id"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblU6RuKQISUcX6vx",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Invoice Number": "={{ $json.data.object.id }}",
+            "Amount Due": "={{ $json.data.object.amount_due / 100 }}",
+            "Status": "={{ $json.data.object.status }}",
+            "Invoice Date": "={{ new Date().toISOString().split('T')[0] }}",
+            "Services Provided": "Executive Coaching Session",
+            "Notes": "Stripe webhook: {{ $json.type }} - Customer: {{ $json.data.object.customer }}"
+          }
+        }
+      },
+      "id": "save-to-airtable",
+      "name": "Save to Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [500, 300],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "RtvHlncAejGgeu7S",
+          "name": "Airtable Personal Access Token"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Stripe Webhook": {
+      "main": [
+        [
+          {
+            "node": "Filter Invoice Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Invoice Events": {
+      "main": [
+        [
+          {
+            "node": "Save to Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null
+}

@@ -4,7 +4,7 @@ description: ""
 
 intro:
   title:
-    highlighted_text: "Speak With Authority"
+    highlighted_text: "Speak With Confidence"
     main_text: "& Captivate Every Audience"
   text:
     highlighted_text: "Get your personalized coaching consultation"
@@ -20,25 +20,25 @@ partners:
   title: "Trusted by Professionals From"
   list:
     - name: "AstraZeneca"
-      logo: "images/partners/astra-zeneca-logo.svg"
+      logo: "images/partners/astra-zeneca-logo.png"
     - name: "Black Rock"
-      logo: "images/partners/black-rock-logo.svg"
+      logo: "images/partners/black-rock-logo.png"
     - name: "Barclays"
-      logo: "images/partners/barclays-logo.svg"
+      logo: "images/partners/barclays-logo.png"
     - name: "Coca-Cola"
-      logo: "images/partners/coca-cola-logo.svg"
+      logo: "images/partners/coca-cola-logo.png"
     - name: "Goldman Sachs"
-      logo: "images/partners/goldman-sachs-logo.svg"
+      logo: "images/partners/goldman-sachs-logo.png"
     - name: "Google"
-      logo: "images/partners/google-logo.svg"
+      logo: "images/partners/google-logo.png"
     - name: "Memorial Sloan Kettering Cancer Center"
-      logo: "images/partners/msk-logo.svg"
+      logo: "images/partners/msk-logo.png"
     - name: "Netflix"
-      logo: "images/partners/netflix-logo.svg"
+      logo: "images/partners/netflix-logo.png"
     - name: "Uber"
-      logo: "images/partners/uber-logo.svg"
+      logo: "images/partners/uber-logo.png"
     - name: "The United Nations"
-      logo: "images/partners/united-nations-logo.svg"
+      logo: "images/partners/united-nations-logo.png"
 
 mission:
   title: "Are nerves holding you back from making your message land?"
@@ -53,8 +53,8 @@ mission:
     - text: "My mission is simple: help leaders speak clearly, confidently, and convincingly whenever the stakes are high."
 
 solution:
-  title: "Executive speech coaching will teach you to:"
-  text: "Practical outcomes from working with Dan"
+  title: "Practical outcomes from working with Dan:"
+  text: ""
   list:
     - column:
       - highlighted: "Project confidence"

@@ -1,0 +1,77 @@
+{
+  "n8n_instance": {
+    "url": "https://n8n-rrrs.sliplane.app",
+    "api_key": "REDACTED_JWT",
+    "user_email": "daniel@executivespeechcoachingnyc.com"
+  },
+  "workflow": {
+    "name": "Contact Form → Airtable + Gmail",
+    "description": "Processes website contact form submissions",
+    "nodes": [
+      {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "position": [250, 300],
+        "parameters": {
+          "httpMethod": "POST",
+          "REDACTED_AIRTABLE_PAT": "contact-form",
+          "responseMode": "onReceived",
+          "responseData": "allEntries",
+          "responsePropertyName": "data"
+        }
+      },
+      {
+        "name": "Airtable - Create/Update Lead",
+        "type": "n8n-nodes-base.airtable",
+        "position": [450, 300],
+        "parameters": {
+          "operation": "create",
+          "application": "appXk9QepZD7Riwyl",
+          "table": "Leads",
+          "options": {
+            "typecast": true
+          }
+        }
+      },
+      {
+        "name": "Gmail - Send Welcome Email",
+        "type": "n8n-nodes-base.gmail",
+        "position": [650, 300],
+        "parameters": {
+          "operation": "send",
+          "sendTo": "={{$json[\"email\"]}}",
+          "subject": "Thank you for contacting Executive Speech Coaching NYC",
+          "messageType": "html"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [["Airtable - Create/Update Lead"]]
+    },
+    "Airtable - Create/Update Lead": {
+      "main": [["Gmail - Send Welcome Email"]]
+    }
+  },
+  "airtable_config": {
+    "base_id": "appXk9QepZD7Riwyl",
+    "base_name": "ExecutiveSpeechCoachingNYC.com Client Management",
+    "table_name": "Leads",
+    "field_mappings": {
+      "Name": "{{$json[\"name\"]}}",
+      "Email": "{{$json[\"email\"]}}",
+      "Service Interest": "{{$json[\"subject\"]}}",
+      "Message": "{{$json[\"message\"]}}",
+      "Lead Source": "Website Contact Form",
+      "Submission Date": "{{$json[\"timestamp\"]}}",
+      "Lead Status": "New"
+    }
+  },
+  "gmail_template": {
+    "to": "{{$json[\"email\"]}}",
+    "from": "daniel@executivespeechcoachingnyc.com",
+    "subject": "Thank you for contacting Executive Speech Coaching NYC",
+    "body_html": "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>\n  <h2 style='color: #1e40af;'>Hello {{$json[\"name\"]}},</h2>\n  \n  <p>Thank you for reaching out about <strong>{{$json[\"subject\"]}}</strong>. I've received your message and I'm excited to learn more about your communication goals.</p>\n  \n  <p>I typically respond to all inquiries within 24 business hours. In the meantime, here are some resources you might find helpful:</p>\n  \n  <ul>\n    <li><a href='https://executivespeechcoachingnyc.com/services/'>Our Services</a> - Learn about our coaching programs</li>\n    <li><a href='https://executivespeechcoachingnyc.com/blog/'>Blog</a> - Communication tips and insights</li>\n    <li><a href='https://executivespeechcoachingnyc.com/about/'>About</a> - My background and approach</li>\n  </ul>\n  \n  <p>If you'd like to schedule a consultation, you can <a href='https://calendly.com/executivespeechcoachingnyc'>book a time directly on my calendar</a>.</p>\n  \n  <p>Looking forward to speaking with you soon!</p>\n  \n  <p>Best regards,<br>\n  <strong>Daniel Reece</strong><br>\n  Executive Speech Coach<br>\n  Executive Speech Coaching NYC<br>\n  📧 daniel@executivespeechcoachingnyc.com</p>\n</div>"
+  }
+}

@@ -23,6 +23,14 @@ public/
 *.pem
 *.cert
 secrets/
+static/test-webhook.html
+static/webhook-debug.html
+static/test-webhook-get.html
+static/webhook-test-suite.html
+static/webhook-proxy.php
+webhook-proxy-server.js
+airtable-webhook-proxy.js
+stripe-webhook-test.js
 
 # IDE and Editor
 .vscode/
@@ -84,3 +92,9 @@ htmlcov/
 *.zip
 *.tar.gz
 *.rar
+*.local.json
+.eslintrc.local.json
+.prettierrc.local.json
+.eslintcache
+.prettier-cache
+.vscode/settings.json
