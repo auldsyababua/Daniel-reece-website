@@ -31,6 +31,7 @@ static/webhook-proxy.php
 webhook-proxy-server.js
 airtable-webhook-proxy.js
 stripe-webhook-test.js
+n8n-config.json
 
 # IDE and Editor
 .vscode/
