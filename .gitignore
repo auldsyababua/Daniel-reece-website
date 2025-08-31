@@ -33,6 +33,9 @@ airtable-webhook-proxy.js
 stripe-webhook-test.js
 n8n-config.json
 
+# Ignore all backup config files containing secrets
+.mcp/config.json.backup*
+
 # IDE and Editor
 .vscode/
 .idea/

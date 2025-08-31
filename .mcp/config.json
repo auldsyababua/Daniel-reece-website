@@ -18,8 +18,23 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-playwright"],
       "env": {
-        "PLAYWRIGHT_HEADLESS": "false",
-        "PLAYWRIGHT_BROWSER": "chromium"
+        "PLAYWRIGHT_HEADLESS": "{{PLAYWRIGHT_HEADLESS}}",
+        "PLAYWRIGHT_BROWSER": "{{PLAYWRIGHT_BROWSER}}"
+      }
+    },
+    "Memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEM0_API_KEY": "{{MEM0_API_KEY}}"
+      }
+    },
+    "Supabase": {
+      "command": "npx", 
+      "args": ["-y", "@modelcontextprotocol/server-supabase"],
+      "env": {
+        "SUPABASE_URL": "{{SUPABASE_URL}}",
+        "SUPABASE_ANON_KEY": "{{SUPABASE_ANON_KEY}}"
       }
     }
   }
