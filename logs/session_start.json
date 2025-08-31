@@ -1,0 +1,176 @@
+[
+  {
+    "session_id": "04ee2750-4c29-4723-b840-25f4b6ac73d4",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/04ee2750-4c29-4723-b840-25f4b6ac73d4.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "startup"
+  },
+  {
+    "session_id": "7830b857-15f6-4da7-a1cd-2215bae78200",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/7830b857-15f6-4da7-a1cd-2215bae78200.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "16f62acd-c590-4f34-b273-aab66354043a",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/16f62acd-c590-4f34-b273-aab66354043a.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "5953eff8-66d2-4647-910d-4b7f57b3bbfc",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/5953eff8-66d2-4647-910d-4b7f57b3bbfc.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "startup"
+  },
+  {
+    "session_id": "16f62acd-c590-4f34-b273-aab66354043a",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/16f62acd-c590-4f34-b273-aab66354043a.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "compact"
+  },
+  {
+    "session_id": "16f62acd-c590-4f34-b273-aab66354043a",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/16f62acd-c590-4f34-b273-aab66354043a.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "compact"
+  },
+  {
+    "session_id": "a4270226-66f5-48c5-b090-cbc21e1e2c23",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/a4270226-66f5-48c5-b090-cbc21e1e2c23.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "startup"
+  },
+  {
+    "session_id": "7e74fa0f-f9b0-442b-8939-b13cbf003830",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/7e74fa0f-f9b0-442b-8939-b13cbf003830.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "ae3bb5f4-6fb7-4710-ade1-0692d2585585",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/ae3bb5f4-6fb7-4710-ade1-0692d2585585.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "ae3bb5f4-6fb7-4710-ade1-0692d2585585",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/ae3bb5f4-6fb7-4710-ade1-0692d2585585.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "compact"
+  },
+  {
+    "session_id": "2a822021-1fe0-479e-8fff-1494142ac48c",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/2a822021-1fe0-479e-8fff-1494142ac48c.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "70b419ea-ac80-4060-892a-6bc35917fc75",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/70b419ea-ac80-4060-892a-6bc35917fc75.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "startup"
+  },
+  {
+    "session_id": "107dbad1-dc3a-4d0e-be92-d612e50f778f",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/107dbad1-dc3a-4d0e-be92-d612e50f778f.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "98a6f65b-88cf-4b28-b5b9-f572a4299819",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/98a6f65b-88cf-4b28-b5b9-f572a4299819.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "b98b5659-353b-4dfd-877d-54eb8fed7c12",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/b98b5659-353b-4dfd-877d-54eb8fed7c12.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "12142f64-5e6c-405e-8b9e-d06c42ec48be",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/12142f64-5e6c-405e-8b9e-d06c42ec48be.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "12142f64-5e6c-405e-8b9e-d06c42ec48be",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/12142f64-5e6c-405e-8b9e-d06c42ec48be.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "compact"
+  },
+  {
+    "session_id": "1c6cca22-4558-406c-848b-0676be408da8",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/1c6cca22-4558-406c-848b-0676be408da8.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "startup"
+  },
+  {
+    "session_id": "2943e651-a9e7-44d9-b15c-697ce10f59c5",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/2943e651-a9e7-44d9-b15c-697ce10f59c5.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "startup"
+  },
+  {
+    "session_id": "test-123",
+    "source": "startup"
+  },
+  {
+    "session_id": "test-123",
+    "source": "startup"
+  },
+  {
+    "session_id": "test-startup",
+    "source": "startup"
+  },
+  {
+    "session_id": "test-resume",
+    "source": "resume"
+  },
+  {
+    "session_id": "test-clear",
+    "source": "clear"
+  },
+  {
+    "session_id": "5b8513b9-4e62-4ba6-87fe-05ed1227fff1",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/5b8513b9-4e62-4ba6-87fe-05ed1227fff1.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "42528a22-2ab2-47b1-b60b-6eddf48823af",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/42528a22-2ab2-47b1-b60b-6eddf48823af.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "resume"
+  },
+  {
+    "session_id": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "transcript_path": "/Users/colinaulds/.claude/projects/-Users-colinaulds-Desktop-projects-dan-reece-actual-site/4d00058f-ad0a-47d6-b9d0-414ff2cb35d9.jsonl",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "hook_event_name": "SessionStart",
+    "source": "startup"
+  }
+]

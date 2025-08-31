@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhook Integration Test Suite</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8fafc;
+            color: #1a202c;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+        }
+        .header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .test-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .test-section h2 {
+            color: #2d3748;
+            margin-top: 0;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        .endpoint-group {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f7fafc;
+            border-radius: 8px;
+            border-left: 4px solid #4299e1;
+        }
+        .endpoint-group h3 {
+            margin-top: 0;
+            color: #2b6cb0;
+        }
+        .endpoint-url {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            word-break: break-all;
+            margin: 0.5rem 0;
+        }
+        button {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0.25rem;
+            transition: all 0.2s;
+        }
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+        .error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+        }
+        .warning {
+            background: #feebc8;
+            color: #744210;
+            border: 1px solid #f6d55c;
+        }
+        .info {
+            background: #e6fffa;
+            color: #234e52;
+            border: 1px solid #81e6d9;
+        }
+        .loading {
+            background: #e2e8f0;
+            color: #4a5568;
+            border: 1px solid #cbd5e0;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-success { background: #48bb78; }
+        .status-error { background: #f56565; }
+        .status-warning { background: #ed8936; }
+        .status-info { background: #4299e1; }
+        .status-pending { background: #a0aec0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔗 Webhook Integration Test Suite</h1>
+        <p>Comprehensive testing for contact form automation webhooks</p>
+    </div>
+
+    <div class="test-section">
+        <h2>🎯 n8n Webhook Testing</h2>
+        <div class="endpoint-group">
+            <h3><span class="status-indicator status-pending"></span>Production Webhook</h3>
+            <div class="endpoint-url">https://n8n-rrrs.sliplane.app/webhook/contact-form</div>
+            <button onclick="testWebhook('n8n-production')">Test Production Endpoint</button>
+            <button onclick="testWebhook('n8n-production-get')">Test with GET</button>
+            <div id="result-n8n-production" class="result" style="display: none;"></div>
+        </div>
+        
+        <div class="endpoint-group">
+            <h3><span class="status-indicator status-pending"></span>Test Webhook</h3>
+            <div class="endpoint-url">https://n8n-rrrs.sliplane.app/webhook-test/contact-form</div>
+            <button onclick="testWebhook('n8n-test')">Test Development Endpoint</button>
+            <div id="result-n8n-test" class="result" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🧪 Test Data Payloads</h2>
+        <div class="endpoint-group">
+            <h3>Minimal Form Data</h3>
+            <pre id="payload-minimal" style="background: #2d3748; color: #e2e8f0; padding: 1rem; border-radius: 6px; margin: 0.5rem 0;">{
+  "name": "Test User",
+  "email": "test@example.com",
+  "subject": "Discovery Call",
+  "message": "Testing webhook integration"
+}</pre>
+            <button onclick="testWithPayload('minimal')">Test Minimal Data</button>
+        </div>
+        
+        <div class="endpoint-group">
+            <h3>Complete Form Data</h3>
+            <pre id="payload-complete" style="background: #2d3748; color: #e2e8f0; padding: 1rem; border-radius: 6px; margin: 0.5rem 0;">{
+  "name": "John Executive",
+  "email": "john.executive@fortune500.com",
+  "subject": "Executive Training Programs",
+  "message": "I need help preparing for a board presentation next month. Looking for 1:1 coaching sessions.",
+  "source": "Website Contact Form",
+  "timestamp": "2025-01-07T12:00:00Z",
+  "user_agent": "Webhook Test Suite",
+  "ip_address": "Test Environment"
+}</pre>
+            <button onclick="testWithPayload('complete')">Test Complete Data</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Test Results Summary</h2>
+        <div id="summary" class="endpoint-group">
+            <p>Run tests above to see results summary here.</p>
+        </div>
+    </div>
+
+    <script>
+        const webhooks = {
+            'n8n-production': 'https://n8n-rrrs.sliplane.app/webhook/contact-form',
+            'n8n-test': 'https://n8n-rrrs.sliplane.app/webhook-test/contact-form'
+        };
+
+        const payloads = {
+            minimal: {
+                "name": "Test User",
+                "email": "test@example.com", 
+                "subject": "Discovery Call",
+                "message": "Testing webhook integration"
+            },
+            complete: {
+                "name": "John Executive",
+                "email": "john.executive@fortune500.com",
+                "subject": "Executive Training Programs", 
+                "message": "I need help preparing for a board presentation next month. Looking for 1:1 coaching sessions.",
+                "source": "Website Contact Form",
+                "timestamp": new Date().toISOString(),
+                "user_agent": "Webhook Test Suite",
+                "ip_address": "Test Environment"
+            }
+        };
+
+        let testResults = {};
+
+        async function testWebhook(endpointKey) {
+            const url = webhooks[endpointKey];
+            const resultId = `result-${endpointKey}`;
+            const resultDiv = document.getElementById(resultId);
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result loading';
+            resultDiv.textContent = '🔄 Testing webhook endpoint...';
+            
+            const testData = payloads.minimal;
+            testData.timestamp = new Date().toISOString();
+            testData.test_id = `${endpointKey}-${Date.now()}`;
+            
+            console.log(`Testing ${endpointKey}:`, url);
+            console.log('Payload:', testData);
+            
+            try {
+                let response;
+                let method = 'POST';
+                let headers = {'Content-Type': 'application/json'};
+                let body = JSON.stringify(testData);
+                
+                // Special handling for GET test
+                if (endpointKey === 'n8n-production-get') {
+                    method = 'GET';
+                    const params = new URLSearchParams(testData);
+                    url = webhooks['n8n-production'] + '?' + params.toString();
+                    body = undefined;
+                }
+                
+                const startTime = Date.now();
+                
+                response = await fetch(url, {
+                    method: method,
+                    headers: headers,
+                    body: body,
+                    mode: 'cors'
+                });
+                
+                const endTime = Date.now();
+                const duration = endTime - startTime;
+                
+                let responseData;
+                const contentType = response.headers.get('content-type');
+                
+                if (contentType && contentType.includes('application/json')) {
+                    responseData = await response.json();
+                } else {
+                    responseData = await response.text();
+                }
+                
+                const result = {
+                    success: response.ok,
+                    status: response.status,
+                    statusText: response.statusText,
+                    duration: duration,
+                    response: responseData,
+                    headers: Object.fromEntries(response.headers.entries()),
+                    timestamp: new Date().toISOString()
+                };
+                
+                testResults[endpointKey] = result;
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ SUCCESS (${response.status})\n` +
+                                           `Duration: ${duration}ms\n\n` +
+                                           `Response:\n${JSON.stringify(responseData, null, 2)}`;
+                } else {
+                    resultDiv.className = 'result error'; 
+                    resultDiv.textContent = `❌ FAILED (${response.status})\n` +
+                                           `Duration: ${duration}ms\n` +
+                                           `Error: ${response.statusText}\n\n` +
+                                           `Response:\n${JSON.stringify(responseData, null, 2)}`;
+                }
+                
+            } catch (error) {
+                console.error(`Error testing ${endpointKey}:`, error);
+                
+                testResults[endpointKey] = {
+                    success: false,
+                    error: error.message,
+                    timestamp: new Date().toISOString()
+                };
+                
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ CONNECTION ERROR\n` +
+                                       `Error: ${error.message}\n\n` +
+                                       `This could be due to:\n` +
+                                       `• CORS policy blocking the request\n` +
+                                       `• Network connectivity issues\n` +
+                                       `• Webhook endpoint not responding`;
+            }
+            
+            updateSummary();
+        }
+
+        async function testWithPayload(payloadType) {
+            const payload = payloads[payloadType];
+            payload.timestamp = new Date().toISOString();
+            payload.test_type = payloadType;
+            
+            // Test all endpoints with this payload
+            await testWebhook('n8n-production');
+            // Small delay before next test
+            setTimeout(() => testWebhook('n8n-test'), 1000);
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('summary');
+            const results = Object.entries(testResults);
+            
+            if (results.length === 0) {
+                return;
+            }
+            
+            let html = '<h3>Test Results</h3>';
+            
+            results.forEach(([endpoint, result]) => {
+                const status = result.success ? '✅' : '❌';
+                const statusClass = result.success ? 'status-success' : 'status-error';
+                
+                html += `<div style="margin: 0.5rem 0;">
+                    <span class="status-indicator ${statusClass}"></span>
+                    <strong>${endpoint}:</strong> ${status} 
+                    ${result.status ? `(${result.status})` : ''}
+                    ${result.duration ? `- ${result.duration}ms` : ''}
+                    ${result.error ? `- ${result.error}` : ''}
+                </div>`;
+            });
+            
+            // Add recommendations
+            const hasSuccess = results.some(([_, result]) => result.success);
+            const hasFailure = results.some(([_, result]) => !result.success);
+            
+            if (hasFailure && !hasSuccess) {
+                html += `<div class="warning" style="margin-top: 1rem; padding: 1rem; border-radius: 6px;">
+                    <strong>⚠️ All Tests Failed</strong><br>
+                    The n8n webhook endpoints are not responding. This is likely because:<br>
+                    • The webhook needs to be manually executed once in the n8n UI<br>
+                    • The workflow is not properly activated<br>
+                    • There are CORS or network connectivity issues
+                </div>`;
+            } else if (hasSuccess) {
+                html += `<div class="success" style="margin-top: 1rem; padding: 1rem; border-radius: 6px;">
+                    <strong>✅ Working Solution Found</strong><br>
+                    At least one webhook endpoint is responding successfully.
+                </div>`;
+            }
+            
+            summary.innerHTML = html;
+        }
+
+        // Auto-test on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Webhook Test Suite loaded');
+            console.log('Available webhooks:', webhooks);
+            console.log('Test payloads:', payloads);
+            
+            // Automatically run initial tests after a short delay
+            setTimeout(() => {
+                console.log('Running automatic initial tests...');
+                testWebhook('n8n-production');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

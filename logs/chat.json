@@ -1,0 +1,747 @@
+[
+  {
+    "type": "summary",
+    "summary": "Executive Speech Coaching Website Development Plan",
+    "leafUuid": "23867029-4d9d-4f6f-b01a-412c62572e95"
+  },
+  {
+    "parentUuid": null,
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mSessionStart:startup\u001b[22m [.claude/hooks/session_start.py] completed successfully",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:12.900Z",
+    "uuid": "102f121c-258b-4aff-9ac4-4ab5c65cc691",
+    "toolUseID": "1da23368-7320-4314-97b1-6f37be2fc35b",
+    "level": "info"
+  },
+  {
+    "parentUuid": "102f121c-258b-4aff-9ac4-4ab5c65cc691",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": "<command-message>prime is running\u2026</command-message>\n<command-name>/prime</command-name>"
+    },
+    "uuid": "6c89d758-a03b-407b-b76c-fcfbe388eb1e",
+    "timestamp": "2025-08-14T03:47:17.502Z"
+  },
+  {
+    "parentUuid": "6c89d758-a03b-407b-b76c-fcfbe388eb1e",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "# Prime\n\nThis command loads essential context for a new agent session by examining the codebase structure and reading the project README.\n\n## Instructions\n- Run `git ls-files` to understand the codebase structure and file organization\n- Read the README.md to understand the project purpose, setup instructions, and key information\n- Provide a concise overview of the project based on the gathered context\n\n## Context\n- Codebase structure git accessible: .claude/agents-archive/auth-security.md\n.claude/agents-archive/database-specialist.md\n.claude/agents-archive/database-vector-agent.md\n.claude/agents-archive/fastapi-backend.md\n.claude/agents-archive/markdown-bot-tester.md\n.claude/agents-archive/nx-workspace-specialist.md\n.claude/agents-archive/pdf-document-processor.md\n.claude/agents-archive/smart-rails-enhancer.md\n.claude/agents-archive/telegram-integration-specialist.md\n.claude/agents/coaching-automation-specialist.md\n.claude/agents/deployment-documentation-specialist.md\n.claude/agents/devops-engineer.md\n.claude/agents/hugo-content-specialist.md\n.claude/agents/llm-ai-agents-and-eng-research.md\n.claude/agents/mcp-api-specialist.md\n.claude/agents/memory-specialist.md\n.claude/agents/meta-agent.md\n.claude/agents/multi-agent-orchestrator.md\n.claude/agents/performance-optimizer.md\n.claude/agents/qa-engineer.md\n.claude/agents/repo-cleaner-agent.md\n.claude/agents/repo-cleaner.md\n.claude/agents/seo-content-optimizer.md\n.claude/agents/tailwind-theme-designer.md\n.claude/agents/test-automation-specialist.md\n.claude/agents/unit-test-reviewer.md\n.claude/agents/unit-test-writer.md\n.claude/agents/ux-ui-designer.md\n.claude/agents/webhook-integration-specialist.md\n.claude/agents/work-completion-summary.md\n.claude/commands/all_tools.md\n.claude/commands/cook.md\n.claude/commands/cook_research_only.md\n.claude/commands/git_status.md\n.claude/commands/kiro.md\n.claude/commands/prime.md\n.claude/commands/prime_tts.md\n.claude/commands/sentient.md\n.claude/hooks/notification.py\n.claude/hooks/post_tool_use.py\n.claude/hooks/pre_compact.py\n.claude/hooks/pre_tool_use.py\n.claude/hooks/session_start.py\n.claude/hooks/stop.py\n.claude/hooks/subagent_stop.py\n.claude/hooks/user_prompt_submit.py\n.claude/hooks/utils/llm/anth.py\n.claude/hooks/utils/llm/oai.py\n.claude/hooks/utils/tts/elevenlabs_tts.py\n.claude/hooks/utils/tts/openai_tts.py\n.claude/hooks/utils/tts/pyttsx3_tts.py\n.claude/kiro/TASK_STATUS_ALTERNATIVES.md\n.claude/kiro/design.md.template\n.claude/kiro/emoji-fix.sh\n.claude/kiro/requirements.md.template\n.claude/kiro/scripts/check-spec-sync.sh\n.claude/kiro/scripts/setup-kiro-hooks.sh\n.claude/kiro/scripts/task-report.sh\n.claude/kiro/scripts/update-task.sh\n.claude/kiro/tasks.md.template\n.claude/settings.json\n.claude/settings.json.backup-20250807-180814\n.claude/settings.json.backup-20250807-181615\n.claude/settings.json.backup-absolute-20250807-183946\n.claude/settings.local 2.json\n.githooks/post-commit\n.githooks/pre-commit\n.github/dependabot.yml\n.github/workflows/codeql.yml\n.gitignore\n.mcp/config.json\nAUTOMATION_SUMMARY.md\nCLAUDE.md\nCODE_OF_CONDUCT.md\nDR Comp Audit Takeaways.md\nKIRO_WORKFLOW.md\nLICENSE\nN8N_SETUP_GUIDE.md\nREADME.md\nSTRIPE_AUTOMATION_SETUP.md\nWEBHOOK_DIAGNOSTIC_REPORT.md\nZAPIER_BACKUP_SOLUTION.md\nZAPIER_MANUAL_SETUP.md\nZAPIER_SETUP.md\nactivation-test.js\nairtable-structure.md\narchetypes/default.md\nassets/css/main.css\nassets/css/style.css\nassets/images/featured/featured-img-placeholder.png\nassets/images/global/author.webp\nassets/images/global/sample-logo.svg\nassets/images/logo/esc-logo-transparent.png\nassets/images/pages/hacktoberfest.jpg\nassets/images/pages/our-mission.png\nassets/images/pages/tailbliss-rocket-indigo.png\nassets/images/partners/astra-zeneca-logo.png\nassets/images/partners/barclays-logo.png\nassets/images/partners/black-rock-logo.png\nassets/images/partners/coca-cola-logo.png\nassets/images/partners/goldman-sachs-logo.png\nassets/images/partners/google-logo.png\nassets/images/partners/msk-logo.png\nassets/images/partners/netflix-logo.png\nassets/images/partners/uber-logo.png\nassets/images/partners/united-nations-logo.png\nassets/images/photo/daniel-reece-photo.jpg\nassets/images/photo/mike-photo.jpg\nassets/images/posts/comp.jpg\nassets/js/contact-form.js\nassets/js/darkmode.js\nassets/jsconfig.json\ncheck-spec-sync.sh\ncloudflare.md\ncoaching-automation-implementation.md\ncoaching-automation-specialist.md\nconfig.yaml\ncontent/_index.md\ncontent/about.md\ncontent/contact.md\ncontent/contact/thank-you.md\ncontent/data-storytelling.md\ncontent/employee-coaching.md\ncontent/feedback-conversations.md\ncontent/navigating-critical-conversations.md\ncontent/posts/_index.md\ncontent/posts/audience-opportunity-not-obstacle.md\ncontent/posts/audition-mindset-boardroom.md\ncontent/presentation-and-delivery.md\ncontent/prose.md\ncontent/services/1-1-speech-coaching.md\ncontent/services/_index.md\ncontent/services/discovery-call.md\ncontent/services/executive-training-programs.md\ncontent/services/group-communication-training.md\ndesign.md\nhugo.yaml.exampleSite\ni18n/en.toml\nimages/logo-tailbliss-round.svg\nimages/screenshot.jpg\nimages/tailbliss-lighthouse-11-03-22.png\nimages/tn.jpg\nintegration-implementation-plan.md\nlayouts/404.html\nlayouts/_default/about.html\nlayouts/_default/baseof.html\nlayouts/_default/contact.html\nlayouts/_default/list.html\nlayouts/_default/single.html\nlayouts/index.html\nlayouts/partials/components/image.html\nlayouts/partials/contact-form.html\nlayouts/partials/footer.html\nlayouts/partials/head.html\nlayouts/partials/meta.html\nlayouts/partials/nav.html\nlayouts/partials/pagination.html\nlayouts/partials/posts-template.html\nlayouts/partials/schema-article.html\nlayouts/partials/schema-business.html\nlayouts/posts/list.html\nlayouts/posts/single.html\nlayouts/services/list.html\nlayouts/services/single.html\nlayouts/shortcodes/imgc.html\nn8n-airtable-config.md\nn8n-config.json\nn8n-mcp-test-guide.md\nn8n-stripe-invoice-automation.md\nn8n-webhook-issue-report.md\nnetlify.toml\npackage-lock.json\npackage.json\npnpm-lock.yaml\npostcss.config.js\nrequirements.md\nscripts/check-spec-sync.sh\nscripts/setup-kiro-hooks.sh\nscripts/task-report.sh\nscripts/update-task.sh\nsimple-automation-setup.md\nstatic/favicon/android-chrome-192x192.png\nstatic/favicon/android-chrome-256x256.png\nstatic/favicon/apple-touch-icon.png\nstatic/favicon/browserconfig.xml\nstatic/favicon/favicon-16x16.png\nstatic/favicon/favicon-32x32.png\nstatic/favicon/favicon.ico\nstatic/favicon/mstile-150x150.png\nstatic/favicon/safari-pinned-tab.svg\nstatic/favicon/site.webmanifest\nstatic/images/esc-logo-transparent.png\nstatic/images/esc-logo.jpg\nstatic/images/og-images/featured-img-placeholder.png\nstatic/images/sample-logo.svg\nstatic/images/services/1-1-speech-coaching-img.avif\nstatic/images/services/data-storytelling-img.avif\nstatic/images/services/dicovery-call-img.avif\nstatic/images/services/employee-coaching-img.avif\nstatic/images/services/executive-training-programs-img.avif\nstatic/images/services/feedback-conversations-img.avif\nstatic/images/services/group-communication-training-img.avif\nstatic/images/services/navigating-critical-conversations-img.avif\nstatic/images/services/presentation-and-delivery-img.avif\nstatic/images/site-logo.svg\nstatic/images/tailbliss-cover.png\nstatic/images/tailbliss-full-blue.png\nstatic/images/tailbliss-full-blue.svg\nstatic/images/tailbliss-rocket-indigo.webp\nstatic/images/tailbliss-white.svg\nstatic/js/automation-config.js\nstatic/robots.txt\ntailwind.config.js\ntally-form-embed.md\ntask-report.sh\ntasks.md\ntheme.toml\nupdate-task.sh\nupdated-workflow.json\nworkflow-update.json\nzapier-integration-guide.md\nzapier-webhook-automation.json\n- Codebase structure all: .\n\u251c\u2500\u2500 activation-test.js\n\u251c\u2500\u2500 ai_docs\n\u2502   \u251c\u2500\u2500 anthropic_docs_subagents.md\n\u2502   \u251c\u2500\u2500 anthropic_quick_start.md\n\u2502   \u251c\u2500\u2500 cc_hooks_docs.md\n\u2502   \u251c\u2500\u2500 openai_quick_start.md\n\u2502   \u251c\u2500\u2500 user_prompt_submit_hook.md\n\u2502   \u2514\u2500\u2500 uv-single-file-scripts.md\n\u251c\u2500\u2500 airtable-structure.md\n\u251c\u2500\u2500 airtable-webhook-proxy.js\n\u251c\u2500\u2500 archetypes\n\u2502   \u2514\u2500\u2500 default.md\n\u251c\u2500\u2500 assets\n\u2502   \u251c\u2500\u2500 css\n\u2502   \u2502   \u251c\u2500\u2500 main.css\n\u2502   \u2502   \u2514\u2500\u2500 style.css\n\u2502   \u251c\u2500\u2500 images\n\u2502   \u2502   \u251c\u2500\u2500 featured\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 featured-img-placeholder.png\n\u2502   \u2502   \u251c\u2500\u2500 global\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 author.webp\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 sample-logo.svg\n\u2502   \u2502   \u251c\u2500\u2500 logo\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 esc-logo-transparent.png\n\u2502   \u2502   \u251c\u2500\u2500 pages\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 hacktoberfest.jpg\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 our-mission.png\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 tailbliss-rocket-indigo.png\n\u2502   \u2502   \u251c\u2500\u2500 partners\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 astra-zeneca-logo.png\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 barclays-logo.png\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 black-rock-logo.png\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 coca-cola-logo.png\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 goldman-sachs-logo.png\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 google-logo.png\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 msk-logo.png\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 netflix-logo.png\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 uber-logo.png\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 united-nations-logo.png\n\u2502   \u2502   \u251c\u2500\u2500 photo\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 daniel-reece-photo.jpg\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 mike-photo.jpg\n\u2502   \u2502   \u2514\u2500\u2500 posts\n\u2502   \u2502       \u2514\u2500\u2500 comp.jpg\n\u2502   \u251c\u2500\u2500 js\n\u2502   \u2502   \u251c\u2500\u2500 contact-form.js\n\u2502   \u2502   \u2514\u2500\u2500 darkmode.js\n\u2502   \u2514\u2500\u2500 jsconfig.json\n\u251c\u2500\u2500 AUTOMATION_SUMMARY.md\n\u251c\u2500\u2500 check-spec-sync.sh -> .claude/kiro/scripts/check-spec-sync.sh\n\u251c\u2500\u2500 CLAUDE.md\n\u251c\u2500\u2500 cloudflare.md\n\u251c\u2500\u2500 coaching-automation-implementation.md\n\u251c\u2500\u2500 coaching-automation-specialist.md\n\u251c\u2500\u2500 CODE_OF_CONDUCT.md\n\u251c\u2500\u2500 config.yaml\n\u251c\u2500\u2500 content\n\u2502   \u251c\u2500\u2500 _index.md\n\u2502   \u251c\u2500\u2500 about.md\n\u2502   \u251c\u2500\u2500 contact\n\u2502   \u2502   \u2514\u2500\u2500 thank-you.md\n\u2502   \u251c\u2500\u2500 contact.md\n\u2502   \u251c\u2500\u2500 data-storytelling.md\n\u2502   \u251c\u2500\u2500 employee-coaching.md\n\u2502   \u251c\u2500\u2500 feedback-conversations.md\n\u2502   \u251c\u2500\u2500 navigating-critical-conversations.md\n\u2502   \u251c\u2500\u2500 posts\n\u2502   \u2502   \u251c\u2500\u2500 _index.md\n\u2502   \u2502   \u251c\u2500\u2500 audience-opportunity-not-obstacle.md\n\u2502   \u2502   \u2514\u2500\u2500 audition-mindset-boardroom.md\n\u2502   \u251c\u2500\u2500 presentation-and-delivery.md\n\u2502   \u251c\u2500\u2500 prose.md\n\u2502   \u2514\u2500\u2500 services\n\u2502       \u251c\u2500\u2500 1-1-speech-coaching.md\n\u2502       \u251c\u2500\u2500 _index.md\n\u2502       \u251c\u2500\u2500 discovery-call.md\n\u2502       \u251c\u2500\u2500 executive-training-programs.md\n\u2502       \u2514\u2500\u2500 group-communication-training.md\n\u251c\u2500\u2500 design.md\n\u251c\u2500\u2500 'DR Comp Audit Takeaways.md'\n\u251c\u2500\u2500 hugo.yaml.exampleSite\n\u251c\u2500\u2500 i18n\n\u2502   \u2514\u2500\u2500 en.toml\n\u251c\u2500\u2500 images\n\u2502   \u251c\u2500\u2500 logo-tailbliss-round.svg\n\u2502   \u251c\u2500\u2500 screenshot.jpg\n\u2502   \u251c\u2500\u2500 tailbliss-lighthouse-11-03-22.png\n\u2502   \u2514\u2500\u2500 tn.jpg\n\u251c\u2500\u2500 integration-implementation-plan.md\n\u251c\u2500\u2500 KIRO_WORKFLOW.md\n\u251c\u2500\u2500 layouts\n\u2502   \u251c\u2500\u2500 404.html\n\u2502   \u251c\u2500\u2500 _default\n\u2502   \u2502   \u251c\u2500\u2500 about.html\n\u2502   \u2502   \u251c\u2500\u2500 baseof.html\n\u2502   \u2502   \u251c\u2500\u2500 contact.html\n\u2502   \u2502   \u251c\u2500\u2500 list.html\n\u2502   \u2502   \u2514\u2500\u2500 single.html\n\u2502   \u251c\u2500\u2500 index.html\n\u2502   \u251c\u2500\u2500 partials\n\u2502   \u2502   \u251c\u2500\u2500 components\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 image.html\n\u2502   \u2502   \u251c\u2500\u2500 contact-form.html\n\u2502   \u2502   \u251c\u2500\u2500 footer.html\n\u2502   \u2502   \u251c\u2500\u2500 head.html\n\u2502   \u2502   \u251c\u2500\u2500 meta.html\n\u2502   \u2502   \u251c\u2500\u2500 nav.html\n\u2502   \u2502   \u251c\u2500\u2500 pagination.html\n\u2502   \u2502   \u251c\u2500\u2500 posts-template.html\n\u2502   \u2502   \u251c\u2500\u2500 schema-article.html\n\u2502   \u2502   \u2514\u2500\u2500 schema-business.html\n\u2502   \u251c\u2500\u2500 posts\n\u2502   \u2502   \u251c\u2500\u2500 list.html\n\u2502   \u2502   \u2514\u2500\u2500 single.html\n\u2502   \u251c\u2500\u2500 services\n\u2502   \u2502   \u251c\u2500\u2500 list.html\n\u2502   \u2502   \u2514\u2500\u2500 single.html\n\u2502   \u2514\u2500\u2500 shortcodes\n\u2502       \u2514\u2500\u2500 imgc.html\n\u251c\u2500\u2500 LICENSE\n\u251c\u2500\u2500 logs\n\u2502   \u251c\u2500\u2500 chat.json\n\u2502   \u251c\u2500\u2500 notification.json\n\u2502   \u251c\u2500\u2500 post_tool_use.json\n\u2502   \u251c\u2500\u2500 pre_compact.json\n\u2502   \u251c\u2500\u2500 pre_tool_use.json\n\u2502   \u251c\u2500\u2500 session_start.json\n\u2502   \u251c\u2500\u2500 stop.json\n\u2502   \u251c\u2500\u2500 subagent_stop.json\n\u2502   \u2514\u2500\u2500 user_prompt_submit.json\n\u251c\u2500\u2500 n8n-airtable-config.md\n\u251c\u2500\u2500 n8n-config.json\n\u251c\u2500\u2500 n8n-mcp-test-guide.md\n\u251c\u2500\u2500 n8n-stripe-invoice-automation.md\n\u251c\u2500\u2500 n8n-webhook-issue-report.md\n\u251c\u2500\u2500 N8N_SETUP_GUIDE.md\n\u251c\u2500\u2500 netlify.toml\n\u251c\u2500\u2500 node_modules\n\u2502   \u251c\u2500\u2500 @alloc\n\u2502   \u2502   \u2514\u2500\u2500 quick-lru\n\u2502   \u2502       \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u251c\u2500\u2500 license\n\u2502   \u2502       \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2514\u2500\u2500 readme.md\n\u2502   \u251c\u2500\u2500 @isaacs\n\u2502   \u2502   \u2514\u2500\u2500 cliui\n\u2502   \u2502       \u251c\u2500\u2500 build\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 index.cjs\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 index.d.cts\n\u2502   \u2502       \u2502   \u2514\u2500\u2500 lib\n\u2502   \u2502       \u2502       \u2514\u2500\u2500 index.js\n\u2502   \u2502       \u251c\u2500\u2500 index.mjs\n\u2502   \u2502       \u251c\u2500\u2500 LICENSE.txt\n\u2502   \u2502       \u251c\u2500\u2500 node_modules\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 ansi-regex\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 license\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2502   \u2502   \u2514\u2500\u2500 readme.md\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 ansi-styles\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 license\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2502   \u2502   \u2514\u2500\u2500 readme.md\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 emoji-regex\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 es2015\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 RGI_Emoji.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 RGI_Emoji.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 text.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2514\u2500\u2500 text.js\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 LICENSE-MIT.txt\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 README.md\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 RGI_Emoji.d.ts\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 RGI_Emoji.js\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 text.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2514\u2500\u2500 text.js\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 string-width\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 license\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2502   \u2502   \u2514\u2500\u2500 readme.md\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 strip-ansi\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 license\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2502   \u2502   \u2514\u2500\u2500 readme.md\n\u2502   \u2502       \u2502   \u2514\u2500\u2500 wrap-ansi\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 license\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2502       \u2514\u2500\u2500 readme.md\n\u2502   \u2502       \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2514\u2500\u2500 README.md\n\u2502   \u251c\u2500\u2500 @jridgewell\n\u2502   \u2502   \u251c\u2500\u2500 gen-mapping\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 dist\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 gen-mapping.mjs\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 gen-mapping.mjs.map\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 gen-mapping.umd.js\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 gen-mapping.umd.js.map\n\u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 types\n\u2502   \u2502   \u2502   \u2502       \u251c\u2500\u2500 gen-mapping.d.ts\n\u2502   \u2502   \u2502   \u2502       \u251c\u2500\u2500 sourcemap-segment.d.ts\n\u2502   \u2502   \u2502   \u2502       \u2514\u2500\u2500 types.d.ts\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 LICENSE\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 README.md\n\u2502   \u2502   \u251c\u2500\u2500 resolve-uri\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 dist\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 resolve-uri.mjs\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 resolve-uri.mjs.map\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 resolve-uri.umd.js\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 resolve-uri.umd.js.map\n\u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 types\n\u2502   \u2502   \u2502   \u2502       \u2514\u2500\u2500 resolve-uri.d.ts\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 LICENSE\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 README.md\n\u2502   \u2502   \u251c\u2500\u2500 set-array\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 dist\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 set-array.mjs\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 set-array.mjs.map\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 set-array.umd.js\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 set-array.umd.js.map\n\u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 types\n\u2502   \u2502   \u2502   \u2502       \u2514\u2500\u2500 set-array.d.ts\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 LICENSE\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 README.md\n\u2502   \u2502   \u251c\u2500\u2500 sourcemap-codec\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 dist\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 sourcemap-codec.mjs\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 sourcemap-codec.mjs.map\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 sourcemap-codec.umd.js\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 sourcemap-codec.umd.js.map\n\u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 types\n\u2502   \u2502   \u2502   \u2502       \u251c\u2500\u2500 scopes.d.ts\n\u2502   \u2502   \u2502   \u2502       \u251c\u2500\u2500 sourcemap-codec.d.ts\n\u2502   \u2502   \u2502   \u2502       \u251c\u2500\u2500 strings.d.ts\n\u2502   \u2502   \u2502   \u2502       \u2514\u2500\u2500 vlq.d.ts\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 LICENSE\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502   \u2502   \u2514\u2500\u2500 README.md\n\u2502   \u2502   \u2514\u2500\u2500 trace-mapping\n\u2502   \u2502       \u251c\u2500\u2500 dist\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 trace-mapping.mjs\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 trace-mapping.mjs.map\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 trace-mapping.umd.js\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 trace-mapping.umd.js.map\n\u2502   \u2502       \u2502   \u2514\u2500\u2500 types\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 any-map.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 binary-search.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 by-source.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 resolve.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 sort.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 sourcemap-segment.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 strip-filename.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 trace-mapping.d.ts\n\u2502   \u2502       \u2502       \u2514\u2500\u2500 types.d.ts\n\u2502   \u2502       \u251c\u2500\u2500 LICENSE\n\u2502   \u2502       \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2514\u2500\u2500 README.md\n\u2502   \u251c\u2500\u2500 @modelcontextprotocol\n\u2502   \u2502   \u2514\u2500\u2500 sdk\n\u2502   \u2502       \u251c\u2500\u2500 dist\n\u2502   \u2502       \u2502   \u251c\u2500\u2500 cjs\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 cli.d.ts\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 cli.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 cli.js\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 cli.js.map\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 client\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 sse.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 sse.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 sse.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 sse.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttp.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttp.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttp.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttp.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 websocket.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 websocket.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 websocket.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2514\u2500\u2500 websocket.js.map\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 examples\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 client\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 multipleClientsParallel.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 multipleClientsParallel.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 multipleClientsParallel.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 multipleClientsParallel.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 parallelToolCallsClient.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 parallelToolCallsClient.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 parallelToolCallsClient.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 parallelToolCallsClient.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleOAuthClient.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleOAuthClient.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleOAuthClient.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleOAuthClient.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttpWithSseFallbackClient.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttpWithSseFallbackClient.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttpWithSseFallbackClient.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 streamableHttpWithSseFallbackClient.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 server\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 demoInMemoryOAuthProvider.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 demoInMemoryOAuthProvider.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 demoInMemoryOAuthProvider.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 demoInMemoryOAuthProvider.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 jsonResponseStreamableHttp.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 jsonResponseStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 jsonResponseStreamableHttp.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 jsonResponseStreamableHttp.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 mcpServerOutputSchema.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 mcpServerOutputSchema.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 mcpServerOutputSchema.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 mcpServerOutputSchema.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleSseServer.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleSseServer.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleSseServer.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleSseServer.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStatelessStreamableHttp.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStatelessStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStatelessStreamableHttp.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStatelessStreamableHttp.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 sseAndStreamableHttpCompatibleServer.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 sseAndStreamableHttpCompatibleServer.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 sseAndStreamableHttpCompatibleServer.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 sseAndStreamableHttpCompatibleServer.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 standaloneSseWithGetStreamableHttp.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 standaloneSseWithGetStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 standaloneSseWithGetStreamableHttp.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 standaloneSseWithGetStreamableHttp.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 toolWithSampleServer.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 toolWithSampleServer.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 toolWithSampleServer.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 toolWithSampleServer.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2514\u2500\u2500 shared\n\u2502   \u2502       \u2502   \u2502   \u2502       \u251c\u2500\u2500 inMemoryEventStore.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502       \u251c\u2500\u2500 inMemoryEventStore.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502       \u251c\u2500\u2500 inMemoryEventStore.js\n\u2502   \u2502       \u2502   \u2502   \u2502       \u2514\u2500\u2500 inMemoryEventStore.js.map\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 inMemory.d.ts\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 inMemory.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 inMemory.js\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 inMemory.js.map\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 server\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 clients.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 clients.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 clients.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 clients.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 errors.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 errors.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 errors.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 errors.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 handlers\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 authorize.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 authorize.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 authorize.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 authorize.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadata.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadata.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadata.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadata.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 register.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 register.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 register.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 register.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 revoke.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 revoke.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 revoke.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 revoke.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 token.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 token.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 token.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 token.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 middleware\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 allowedMethods.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 allowedMethods.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 allowedMethods.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 allowedMethods.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 bearerAuth.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 bearerAuth.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 bearerAuth.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 bearerAuth.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 clientAuth.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 clientAuth.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 clientAuth.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 clientAuth.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 provider.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 provider.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 provider.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 provider.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 providers\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 proxyProvider.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 proxyProvider.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 proxyProvider.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 proxyProvider.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 router.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 router.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 router.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 router.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 types.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 types.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 types.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 types.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 completable.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 completable.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 completable.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 completable.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 mcp.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 mcp.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 mcp.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 mcp.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 sse.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 sse.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 sse.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 sse.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttp.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttp.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 streamableHttp.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2514\u2500\u2500 streamableHttp.js.map\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 shared\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth-utils.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth-utils.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth-utils.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth-utils.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 auth.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadataUtils.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadataUtils.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadataUtils.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadataUtils.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 protocol.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 protocol.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 protocol.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 protocol.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 stdio.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 transport.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 transport.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 transport.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 transport.js.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 uriTemplate.d.ts\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 uriTemplate.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 uriTemplate.js\n\u2502   \u2502       \u2502   \u2502   \u2502   \u2514\u2500\u2500 uriTemplate.js.map\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 types.d.ts\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 types.d.ts.map\n\u2502   \u2502       \u2502   \u2502   \u251c\u2500\u2500 types.js\n\u2502   \u2502       \u2502   \u2502   \u2514\u2500\u2500 types.js.map\n\u2502   \u2502       \u2502   \u2514\u2500\u2500 esm\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 cli.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 cli.d.ts.map\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 cli.js\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 cli.js.map\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 client\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 index.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 index.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 sse.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 sse.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 sse.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 sse.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 streamableHttp.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 streamableHttp.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 streamableHttp.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 streamableHttp.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 websocket.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 websocket.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 websocket.js\n\u2502   \u2502       \u2502       \u2502   \u2514\u2500\u2500 websocket.js.map\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 examples\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 client\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 multipleClientsParallel.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 multipleClientsParallel.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 multipleClientsParallel.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 multipleClientsParallel.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 parallelToolCallsClient.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 parallelToolCallsClient.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 parallelToolCallsClient.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 parallelToolCallsClient.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleOAuthClient.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleOAuthClient.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleOAuthClient.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleOAuthClient.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 streamableHttpWithSseFallbackClient.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 streamableHttpWithSseFallbackClient.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 streamableHttpWithSseFallbackClient.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2514\u2500\u2500 streamableHttpWithSseFallbackClient.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 server\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 demoInMemoryOAuthProvider.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 demoInMemoryOAuthProvider.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 demoInMemoryOAuthProvider.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 demoInMemoryOAuthProvider.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 jsonResponseStreamableHttp.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 jsonResponseStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 jsonResponseStreamableHttp.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 jsonResponseStreamableHttp.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 mcpServerOutputSchema.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 mcpServerOutputSchema.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 mcpServerOutputSchema.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 mcpServerOutputSchema.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleSseServer.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleSseServer.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleSseServer.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleSseServer.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStatelessStreamableHttp.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStatelessStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStatelessStreamableHttp.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStatelessStreamableHttp.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 simpleStreamableHttp.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 sseAndStreamableHttpCompatibleServer.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 sseAndStreamableHttpCompatibleServer.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 sseAndStreamableHttpCompatibleServer.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 sseAndStreamableHttpCompatibleServer.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 standaloneSseWithGetStreamableHttp.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 standaloneSseWithGetStreamableHttp.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 standaloneSseWithGetStreamableHttp.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 standaloneSseWithGetStreamableHttp.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 toolWithSampleServer.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 toolWithSampleServer.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 toolWithSampleServer.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2514\u2500\u2500 toolWithSampleServer.js.map\n\u2502   \u2502       \u2502       \u2502   \u2514\u2500\u2500 shared\n\u2502   \u2502       \u2502       \u2502       \u251c\u2500\u2500 inMemoryEventStore.d.ts\n\u2502   \u2502       \u2502       \u2502       \u251c\u2500\u2500 inMemoryEventStore.d.ts.map\n\u2502   \u2502       \u2502       \u2502       \u251c\u2500\u2500 inMemoryEventStore.js\n\u2502   \u2502       \u2502       \u2502       \u2514\u2500\u2500 inMemoryEventStore.js.map\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 inMemory.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 inMemory.d.ts.map\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 inMemory.js\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 inMemory.js.map\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 server\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 clients.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 clients.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 clients.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 clients.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 errors.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 errors.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 errors.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 errors.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 handlers\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 authorize.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 authorize.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 authorize.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 authorize.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadata.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadata.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadata.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 metadata.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 register.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 register.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 register.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 register.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 revoke.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 revoke.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 revoke.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 revoke.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 token.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 token.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 token.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u2514\u2500\u2500 token.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 middleware\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 allowedMethods.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 allowedMethods.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 allowedMethods.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 allowedMethods.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 bearerAuth.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 bearerAuth.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 bearerAuth.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 bearerAuth.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 clientAuth.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 clientAuth.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 clientAuth.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u2514\u2500\u2500 clientAuth.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 provider.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 provider.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 provider.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 provider.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 providers\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 proxyProvider.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 proxyProvider.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u251c\u2500\u2500 proxyProvider.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2502   \u2514\u2500\u2500 proxyProvider.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 router.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 router.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 router.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 router.js.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 types.d.ts\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 types.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u2502   \u251c\u2500\u2500 types.js\n\u2502   \u2502       \u2502       \u2502   \u2502   \u2514\u2500\u2500 types.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 completable.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 completable.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 completable.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 completable.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 index.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 index.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 mcp.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 mcp.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 mcp.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 mcp.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 sse.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 sse.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 sse.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 sse.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 streamableHttp.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 streamableHttp.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 streamableHttp.js\n\u2502   \u2502       \u2502       \u2502   \u2514\u2500\u2500 streamableHttp.js.map\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 shared\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth-utils.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth-utils.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth-utils.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth-utils.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 auth.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 metadataUtils.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 metadataUtils.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 metadataUtils.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 metadataUtils.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 protocol.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 protocol.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 protocol.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 protocol.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 stdio.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 transport.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 transport.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 transport.js\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 transport.js.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 uriTemplate.d.ts\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 uriTemplate.d.ts.map\n\u2502   \u2502       \u2502       \u2502   \u251c\u2500\u2500 uriTemplate.js\n\u2502   \u2502       \u2502       \u2502   \u2514\u2500\u2500 uriTemplate.js.map\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 types.d.ts\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 types.d.ts.map\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 types.js\n\u2502   \u2502       \u2502       \u2514\u2500\u2500 types.js.map\n\u2502   \u2502       \u251c\u2500\u2500 LICENSE\n\u2502   \u2502       \u251c\u2500\u2500 package.json\n\u2502   \u2502       \u2514\u2500\u2500 README.md\n\u2502   \u251c\u2500\u2500 @nodelib\n\u2502   \u2502   \u251c\u2500\u2500 fs.scandir\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 LICENSE\n\u2502   \u2502   \u2502   \u251c\u2500\u2500 out\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 adapters\n\u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 fs.d.ts\n\u2502   \u2502   \u2502   \u2502   \u2502   \u2514\u2500\u2500 fs.js\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 constants.d.ts\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 constants.js\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.d.ts\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 index.js\n\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 providers\n\u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 async.d.ts\n\u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 async.js\n\u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 common.d.ts\n\u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 common.js\n\u2502   \u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 sync.d.ts\n\u2502   \u2502   \u2502  \n\n... [9981 lines truncated] ...\n- Project README: @README.md\n- Documentation: \n  - @.claude/ai-dev/ai_docs/cc_hooks_docs.md\n  - @.claude/ai-dev/ai_docs/uv-single-file-scripts.md\n  - @.claude/ai-dev/ai_docs/anthropic_custom_slash_commands_2025-08-02.md"
+        }
+      ]
+    },
+    "isMeta": true,
+    "uuid": "5b90182b-1244-4258-ba56-398c94cdb307",
+    "timestamp": "2025-08-14T03:47:17.502Z"
+  },
+  {
+    "parentUuid": "5b90182b-1244-4258-ba56-398c94cdb307",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "message": {
+      "id": "msg_01EtevjjniWndASRPvrHn8N4",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-4-1-20250805",
+      "content": [
+        {
+          "type": "text",
+          "text": "I'll analyze the codebase structure and provide an overview of this project."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 42466,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 42466,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 5,
+        "service_tier": "standard"
+      }
+    },
+    "requestId": "req_011CS6v9Gw8TY2Ysauoup8G5",
+    "type": "assistant",
+    "uuid": "e34f0590-d0be-4c7b-bd86-3173400e70e8",
+    "timestamp": "2025-08-14T03:47:23.048Z"
+  },
+  {
+    "parentUuid": "e34f0590-d0be-4c7b-bd86-3173400e70e8",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "message": {
+      "id": "msg_01EtevjjniWndASRPvrHn8N4",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-4-1-20250805",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_018c8sE5vQBSRGN2w1qNh9nq",
+          "name": "TodoWrite",
+          "input": {
+            "todos": [
+              {
+                "id": "1",
+                "content": "Analyze codebase structure and organization",
+                "status": "in_progress"
+              },
+              {
+                "id": "2",
+                "content": "Review README and project documentation",
+                "status": "pending"
+              },
+              {
+                "id": "3",
+                "content": "Provide project overview summary",
+                "status": "pending"
+              }
+            ]
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 42466,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 42466,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 178,
+        "service_tier": "standard"
+      }
+    },
+    "requestId": "req_011CS6v9Gw8TY2Ysauoup8G5",
+    "type": "assistant",
+    "uuid": "fcb605ad-a4a1-4ef9-909f-37e37ca76af8",
+    "timestamp": "2025-08-14T03:47:25.048Z"
+  },
+  {
+    "parentUuid": "fcb605ad-a4a1-4ef9-909f-37e37ca76af8",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPreToolUse:TodoWrite\u001b[22m [.claude/hooks/pre_tool_use.py] completed successfully",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:25.318Z",
+    "uuid": "0742ca3e-0297-4a83-9d74-e4b1c73b445d",
+    "toolUseID": "toolu_018c8sE5vQBSRGN2w1qNh9nq",
+    "level": "info"
+  },
+  {
+    "parentUuid": "0742ca3e-0297-4a83-9d74-e4b1c73b445d",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPreToolUse:TodoWrite\u001b[22m [.claude/hooks/send_event.py --source-app kirohooks --event-type PreToolUse --server-url http://localhost:4001/events --summarize] failed with non-blocking status code 1: Installed 16 packages in 45ms\nTraceback (most recent call last):\n  File \"/Users/colinaulds/Desktop/projects/dan-reece-actual-site/.claude/hooks/send_event.py\", line 22, in <module>\n    from utils.summarizer import generate_event_summary\nModuleNotFoundError: No module named 'utils.summarizer'\n",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:25.662Z",
+    "uuid": "b04bd9b3-41ac-412f-819e-3b8eb544f608",
+    "toolUseID": "toolu_018c8sE5vQBSRGN2w1qNh9nq",
+    "level": "warning"
+  },
+  {
+    "parentUuid": "b04bd9b3-41ac-412f-819e-3b8eb544f608",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_018c8sE5vQBSRGN2w1qNh9nq",
+          "type": "tool_result",
+          "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+        }
+      ]
+    },
+    "uuid": "9d28eb9b-cef9-44a0-86c3-867961e1a489",
+    "timestamp": "2025-08-14T03:47:25.682Z",
+    "toolUseResult": {
+      "oldTodos": [],
+      "newTodos": [
+        {
+          "content": "Analyze codebase structure and organization",
+          "status": "in_progress",
+          "id": "1"
+        },
+        {
+          "content": "Review README and project documentation",
+          "status": "pending",
+          "id": "2"
+        },
+        {
+          "content": "Provide project overview summary",
+          "status": "pending",
+          "id": "3"
+        }
+      ]
+    }
+  },
+  {
+    "parentUuid": "9d28eb9b-cef9-44a0-86c3-867961e1a489",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "Running \u001b[1mPostToolUse:TodoWrite\u001b[22m...",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:25.694Z",
+    "uuid": "bc63ff11-5d87-4422-bb0e-943c3d795bca",
+    "toolUseID": "toolu_018c8sE5vQBSRGN2w1qNh9nq",
+    "level": "info"
+  },
+  {
+    "parentUuid": "bc63ff11-5d87-4422-bb0e-943c3d795bca",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPostToolUse:TodoWrite\u001b[22m [.claude/hooks/post_tool_use.py] completed successfully",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:25.880Z",
+    "uuid": "96a84bdd-c7e9-4919-bc73-6504890a9c98",
+    "toolUseID": "toolu_018c8sE5vQBSRGN2w1qNh9nq",
+    "level": "info"
+  },
+  {
+    "parentUuid": "96a84bdd-c7e9-4919-bc73-6504890a9c98",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPostToolUse:TodoWrite\u001b[22m [.claude/hooks/send_event.py --source-app kirohooks --event-type PostToolUse --server-url http://localhost:4001/events --summarize] failed with non-blocking status code 1: Traceback (most recent call last):\n  File \"/Users/colinaulds/Desktop/projects/dan-reece-actual-site/.claude/hooks/send_event.py\", line 22, in <module>\n    from utils.summarizer import generate_event_summary\nModuleNotFoundError: No module named 'utils.summarizer'\n",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:25.803Z",
+    "uuid": "1abe6c50-3c08-4f11-82ad-760f18aeb694",
+    "toolUseID": "toolu_018c8sE5vQBSRGN2w1qNh9nq",
+    "level": "warning"
+  },
+  {
+    "parentUuid": "1abe6c50-3c08-4f11-82ad-760f18aeb694",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "message": {
+      "id": "msg_013EsdCBWKR9kxvpsvqo9vmS",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-4-1-20250805",
+      "content": [
+        {
+          "type": "text",
+          "text": "Based on the codebase analysis, this is **Dan Reece's professional website** - a coaching and communication training site built on the TailBliss Hugo theme."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 6,
+        "cache_creation_input_tokens": 289,
+        "cache_read_input_tokens": 42466,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 289,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 1,
+        "service_tier": "standard"
+      }
+    },
+    "requestId": "req_011CS6v9sGNAuYW72gsxWevk",
+    "type": "assistant",
+    "uuid": "88b3053f-6d56-44bf-82c2-fcd2b72bc2da",
+    "timestamp": "2025-08-14T03:47:30.418Z"
+  },
+  {
+    "parentUuid": "88b3053f-6d56-44bf-82c2-fcd2b72bc2da",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "message": {
+      "id": "msg_013EsdCBWKR9kxvpsvqo9vmS",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-4-1-20250805",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01DwaS2Eug8kTyAY9vbLnUNZ",
+          "name": "TodoWrite",
+          "input": {
+            "todos": [
+              {
+                "id": "1",
+                "content": "Analyze codebase structure and organization",
+                "status": "completed"
+              },
+              {
+                "id": "2",
+                "content": "Review README and project documentation",
+                "status": "completed"
+              },
+              {
+                "id": "3",
+                "content": "Provide project overview summary",
+                "status": "in_progress"
+              }
+            ]
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 6,
+        "cache_creation_input_tokens": 289,
+        "cache_read_input_tokens": 42466,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 289,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 163,
+        "service_tier": "standard"
+      }
+    },
+    "requestId": "req_011CS6v9sGNAuYW72gsxWevk",
+    "type": "assistant",
+    "uuid": "76bf9cb1-e38c-4373-840f-b02e08a29f12",
+    "timestamp": "2025-08-14T03:47:31.688Z"
+  },
+  {
+    "parentUuid": "76bf9cb1-e38c-4373-840f-b02e08a29f12",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPreToolUse:TodoWrite\u001b[22m [.claude/hooks/pre_tool_use.py] completed successfully",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:31.764Z",
+    "uuid": "a2e5aa91-09ef-4fa3-89c0-8262afeefefe",
+    "toolUseID": "toolu_01DwaS2Eug8kTyAY9vbLnUNZ",
+    "level": "info"
+  },
+  {
+    "parentUuid": "a2e5aa91-09ef-4fa3-89c0-8262afeefefe",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPreToolUse:TodoWrite\u001b[22m [.claude/hooks/send_event.py --source-app kirohooks --event-type PreToolUse --server-url http://localhost:4001/events --summarize] failed with non-blocking status code 1: Traceback (most recent call last):\n  File \"/Users/colinaulds/Desktop/projects/dan-reece-actual-site/.claude/hooks/send_event.py\", line 22, in <module>\n    from utils.summarizer import generate_event_summary\nModuleNotFoundError: No module named 'utils.summarizer'\n",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:31.769Z",
+    "uuid": "b16aa65e-4726-4edc-b4f1-44cab22d05b2",
+    "toolUseID": "toolu_01DwaS2Eug8kTyAY9vbLnUNZ",
+    "level": "warning"
+  },
+  {
+    "parentUuid": "b16aa65e-4726-4edc-b4f1-44cab22d05b2",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01DwaS2Eug8kTyAY9vbLnUNZ",
+          "type": "tool_result",
+          "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+        }
+      ]
+    },
+    "uuid": "153367c7-ce26-49e8-afd6-06c33057a77f",
+    "timestamp": "2025-08-14T03:47:31.786Z",
+    "toolUseResult": {
+      "oldTodos": [
+        {
+          "content": "Analyze codebase structure and organization",
+          "status": "in_progress",
+          "id": "1"
+        },
+        {
+          "content": "Review README and project documentation",
+          "status": "pending",
+          "id": "2"
+        },
+        {
+          "content": "Provide project overview summary",
+          "status": "pending",
+          "id": "3"
+        }
+      ],
+      "newTodos": [
+        {
+          "content": "Analyze codebase structure and organization",
+          "status": "completed",
+          "id": "1"
+        },
+        {
+          "content": "Review README and project documentation",
+          "status": "completed",
+          "id": "2"
+        },
+        {
+          "content": "Provide project overview summary",
+          "status": "in_progress",
+          "id": "3"
+        }
+      ]
+    }
+  },
+  {
+    "parentUuid": "153367c7-ce26-49e8-afd6-06c33057a77f",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "Running \u001b[1mPostToolUse:TodoWrite\u001b[22m...",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:31.799Z",
+    "uuid": "c58b9625-bfe4-47b6-a605-bf791f26e269",
+    "toolUseID": "toolu_01DwaS2Eug8kTyAY9vbLnUNZ",
+    "level": "info"
+  },
+  {
+    "parentUuid": "c58b9625-bfe4-47b6-a605-bf791f26e269",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPostToolUse:TodoWrite\u001b[22m [.claude/hooks/post_tool_use.py] completed successfully",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:31.925Z",
+    "uuid": "9a9d0235-7b8f-494d-80c0-016c2c13539d",
+    "toolUseID": "toolu_01DwaS2Eug8kTyAY9vbLnUNZ",
+    "level": "info"
+  },
+  {
+    "parentUuid": "9a9d0235-7b8f-494d-80c0-016c2c13539d",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPostToolUse:TodoWrite\u001b[22m [.claude/hooks/send_event.py --source-app kirohooks --event-type PostToolUse --server-url http://localhost:4001/events --summarize] failed with non-blocking status code 1: Traceback (most recent call last):\n  File \"/Users/colinaulds/Desktop/projects/dan-reece-actual-site/.claude/hooks/send_event.py\", line 22, in <module>\n    from utils.summarizer import generate_event_summary\nModuleNotFoundError: No module named 'utils.summarizer'\n",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:31.917Z",
+    "uuid": "20a79756-a42e-4f31-af1d-c9773bce9ad3",
+    "toolUseID": "toolu_01DwaS2Eug8kTyAY9vbLnUNZ",
+    "level": "warning"
+  },
+  {
+    "parentUuid": "20a79756-a42e-4f31-af1d-c9773bce9ad3",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "message": {
+      "id": "msg_0147VgJqPxf85nP1HABKgNue",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-4-1-20250805",
+      "content": [
+        {
+          "type": "text",
+          "text": "## Project Overview\n\n**Purpose**: Executive communication coaching and training services website for Dan Reece\n\n**Tech Stack**:\n- **Hugo** (0.105.0) - Static site generator\n- **TailwindCSS** v3 - Utility-first CSS framework\n- **Alpine.js** v3 - Lightweight JavaScript framework\n- **Netlify** - Deployment platform\n\n**Key Features**:\n- Service offerings (1-on-1 coaching, group training, executive programs)\n- Blog posts about communication and presentation skills\n- Contact form integration with FormSubmit\n- Responsive design with dark/light mode support\n- Automation integrations (Airtable, Stripe, n8n, Zapier)\n\n**Project Structure**:\n- `/content/` - Markdown content for pages, posts, and services\n- `/layouts/` - Hugo templates for different page types\n- `/assets/` - CSS, JavaScript, and images\n- `/static/` - Static assets served directly\n- `/.claude/` - Development tools, agents, and hooks configuration\n\n**Current Development Focus**:\n- Kiro spec-driven development methodology in use\n- Multiple automation integrations documented\n- Claude Code hooks system active for development workflow\n- Feature branch: `feature/gradual-optimization`"
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 5,
+        "cache_creation_input_tokens": 312,
+        "cache_read_input_tokens": 42755,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 312,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 5,
+        "service_tier": "standard"
+      }
+    },
+    "requestId": "req_011CS6vAJxwiLDMg2kvygwGB",
+    "type": "assistant",
+    "uuid": "3d5ef6ef-687d-4f74-a03c-0ae344e2d86c",
+    "timestamp": "2025-08-14T03:47:43.050Z"
+  },
+  {
+    "parentUuid": "3d5ef6ef-687d-4f74-a03c-0ae344e2d86c",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "message": {
+      "id": "msg_0147VgJqPxf85nP1HABKgNue",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-4-1-20250805",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_018oVFfheTPjhfAGzSr6rh4e",
+          "name": "TodoWrite",
+          "input": {
+            "todos": [
+              {
+                "id": "1",
+                "content": "Analyze codebase structure and organization",
+                "status": "completed"
+              },
+              {
+                "id": "2",
+                "content": "Review README and project documentation",
+                "status": "completed"
+              },
+              {
+                "id": "3",
+                "content": "Provide project overview summary",
+                "status": "completed"
+              }
+            ]
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 5,
+        "cache_creation_input_tokens": 312,
+        "cache_read_input_tokens": 42755,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 312,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 413,
+        "service_tier": "standard"
+      }
+    },
+    "requestId": "req_011CS6vAJxwiLDMg2kvygwGB",
+    "type": "assistant",
+    "uuid": "c19d4476-42d7-476a-9900-2c7a48e3b784",
+    "timestamp": "2025-08-14T03:47:44.355Z"
+  },
+  {
+    "parentUuid": "c19d4476-42d7-476a-9900-2c7a48e3b784",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPreToolUse:TodoWrite\u001b[22m [.claude/hooks/pre_tool_use.py] completed successfully",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:44.532Z",
+    "uuid": "860ccc1e-d620-434d-af9a-06aea488bc57",
+    "toolUseID": "toolu_018oVFfheTPjhfAGzSr6rh4e",
+    "level": "info"
+  },
+  {
+    "parentUuid": "860ccc1e-d620-434d-af9a-06aea488bc57",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPreToolUse:TodoWrite\u001b[22m [.claude/hooks/send_event.py --source-app kirohooks --event-type PreToolUse --server-url http://localhost:4001/events --summarize] failed with non-blocking status code 1: Traceback (most recent call last):\n  File \"/Users/colinaulds/Desktop/projects/dan-reece-actual-site/.claude/hooks/send_event.py\", line 22, in <module>\n    from utils.summarizer import generate_event_summary\nModuleNotFoundError: No module named 'utils.summarizer'\n",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:44.552Z",
+    "uuid": "4169f1be-89a2-418d-8272-fe651ad5c187",
+    "toolUseID": "toolu_018oVFfheTPjhfAGzSr6rh4e",
+    "level": "warning"
+  },
+  {
+    "parentUuid": "4169f1be-89a2-418d-8272-fe651ad5c187",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_018oVFfheTPjhfAGzSr6rh4e",
+          "type": "tool_result",
+          "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+        }
+      ]
+    },
+    "uuid": "f2221d27-6dff-4733-9e52-835348c6270f",
+    "timestamp": "2025-08-14T03:47:44.567Z",
+    "toolUseResult": {
+      "oldTodos": [
+        {
+          "content": "Analyze codebase structure and organization",
+          "status": "completed",
+          "id": "1"
+        },
+        {
+          "content": "Review README and project documentation",
+          "status": "completed",
+          "id": "2"
+        },
+        {
+          "content": "Provide project overview summary",
+          "status": "in_progress",
+          "id": "3"
+        }
+      ],
+      "newTodos": [
+        {
+          "content": "Analyze codebase structure and organization",
+          "status": "completed",
+          "id": "1"
+        },
+        {
+          "content": "Review README and project documentation",
+          "status": "completed",
+          "id": "2"
+        },
+        {
+          "content": "Provide project overview summary",
+          "status": "completed",
+          "id": "3"
+        }
+      ]
+    }
+  },
+  {
+    "parentUuid": "f2221d27-6dff-4733-9e52-835348c6270f",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "Running \u001b[1mPostToolUse:TodoWrite\u001b[22m...",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:44.579Z",
+    "uuid": "caefa698-d019-4adf-82d6-7014e7e222ad",
+    "toolUseID": "toolu_018oVFfheTPjhfAGzSr6rh4e",
+    "level": "info"
+  },
+  {
+    "parentUuid": "caefa698-d019-4adf-82d6-7014e7e222ad",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPostToolUse:TodoWrite\u001b[22m [.claude/hooks/post_tool_use.py] completed successfully",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:44.652Z",
+    "uuid": "30d42d5a-9269-4f13-9d6b-c28d08de37fb",
+    "toolUseID": "toolu_018oVFfheTPjhfAGzSr6rh4e",
+    "level": "info"
+  },
+  {
+    "parentUuid": "30d42d5a-9269-4f13-9d6b-c28d08de37fb",
+    "isSidechain": false,
+    "userType": "external",
+    "cwd": "/Users/colinaulds/Desktop/projects/dan-reece-actual-site",
+    "sessionId": "4d00058f-ad0a-47d6-b9d0-414ff2cb35d9",
+    "version": "1.0.80",
+    "gitBranch": "feature/gradual-optimization",
+    "type": "system",
+    "content": "\u001b[1mPostToolUse:TodoWrite\u001b[22m [.claude/hooks/send_event.py --source-app kirohooks --event-type PostToolUse --server-url http://localhost:4001/events --summarize] failed with non-blocking status code 1: Traceback (most recent call last):\n  File \"/Users/colinaulds/Desktop/projects/dan-reece-actual-site/.claude/hooks/send_event.py\", line 22, in <module>\n    from utils.summarizer import generate_event_summary\nModuleNotFoundError: No module named 'utils.summarizer'\n",
+    "isMeta": false,
+    "timestamp": "2025-08-14T03:47:44.647Z",
+    "uuid": "68f01665-0944-4479-b1b4-a786015b14e7",
+    "toolUseID": "toolu_018oVFfheTPjhfAGzSr6rh4e",
+    "level": "warning"
+  }
+]
