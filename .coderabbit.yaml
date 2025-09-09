@@ -1,0 +1,295 @@
+# CodeRabbit Configuration for Dan Reece Executive Speech Coaching Website
+# yaml-language-server: $schema=https://storage.googleapis.com/coderabbit_public_assets/schema.v2.json
+
+language: en-US
+tone_instructions: "Focus on web development best practices, performance, security, and accessibility. Be concise but thorough."
+early_access: true
+enable_free_tier: true
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  high_level_summary_placeholder: "@coderabbitai summary"
+  high_level_summary_in_walkthrough: false
+  auto_title_placeholder: "@coderabbitai"
+  auto_title_instructions: ""
+  review_status: true
+  commit_status: true
+  fail_commit_status: false
+  collapse_walkthrough: false
+  changed_files_summary: true
+  sequence_diagrams: false
+  estimate_code_review_effort: true
+  assess_linked_issues: true
+  related_issues: true
+  related_prs: true
+  suggested_labels: true
+  auto_apply_labels: false
+  suggested_reviewers: false
+  auto_assign_reviewers: false
+  poem: false
+
+  # Path Filters - What CodeRabbit should IGNORE
+  path_filters:
+    # Hidden directories and files
+    - "!.*/**"
+    - "!.git/**"
+    - "!.vscode/**"
+    - "!.idea/**"
+    - "!.vs/**"
+    
+    # Build and output directories
+    - "!dist/**"
+    - "!build/**"
+    - "!out/**"
+    - "!public/**"
+    - "!static/built/**"
+    
+    # Dependencies
+    - "!node_modules/**"
+    - "!vendor/**"
+    - "!packages/**"
+    - "!.pnp/**"
+    - "!.yarn/**"
+    
+    # Generated and compiled files
+    - "!**/*.min.js"
+    - "!**/*.min.css"
+    - "!**/*.bundle.js"
+    - "!**/*.chunk.js"
+    - "!**/*.generated.*"
+    - "!**/*.auto.*"
+    - "!**/generated/**"
+    
+    # Hugo specific
+    - "!resources/_gen/**"
+    - "!.hugo_build.lock"
+    
+    # Logs and temporary files
+    - "!**/*.log"
+    - "!logs/**"
+    - "!.cache/**"
+    - "!.temp/**"
+    - "!.tmp/**"
+    - "!temp/**"
+    - "!tmp/**"
+    
+    # Database files
+    - "!**/*.db"
+    - "!**/*.sqlite"
+    - "!**/*.sqlite3"
+    
+    # Environment and config files (sensitive)
+    - "!.env"
+    - "!.env.*"
+    - "!**/.env"
+    - "!**/.env.*"
+    
+    # Binary and media files
+    - "!**/*.jpg"
+    - "!**/*.jpeg"
+    - "!**/*.png"
+    - "!**/*.gif"
+    - "!**/*.ico"
+    - "!**/*.svg"
+    - "!**/*.webp"
+    - "!**/*.mp4"
+    - "!**/*.mov"
+    - "!**/*.avi"
+    - "!**/*.mkv"
+    - "!**/*.zip"
+    - "!**/*.tar.gz"
+    - "!**/*.rar"
+    - "!**/*.7z"
+    - "!**/*.pdf"
+    - "!**/*.doc"
+    - "!**/*.docx"
+    - "!**/*.xls"
+    - "!**/*.xlsx"
+    
+    # Test coverage
+    - "!coverage/**"
+    - "!.nyc_output/**"
+    - "!**/*.lcov"
+    
+    # Lock files
+    - "!package-lock.json"
+    - "!yarn.lock"
+    - "!pnpm-lock.yaml"
+    - "!bun.lockb"
+    
+    # Documentation artifacts (we want to review docs source, not builds)
+    - "!docs/site/**"
+    - "!_site/**"
+    
+    # Archive and scratch directories
+    - "!archive/**"
+    - "!scratch/**"
+    - "!tests/temp/**"
+    
+    # What TO REVIEW (explicit includes)
+    - "**/*.md"
+    - "**/*.html"
+    - "**/*.css"
+    - "**/*.scss"
+    - "**/*.sass"
+    - "**/*.js"
+    - "**/*.ts"
+    - "**/*.jsx"
+    - "**/*.tsx"
+    - "**/*.vue"
+    - "**/*.go"
+    - "**/*.py"
+    - "**/*.php"
+    - "**/*.rb"
+    - "**/*.java"
+    - "**/*.kt"
+    - "**/*.swift"
+    - "**/*.rs"
+    - "**/*.c"
+    - "**/*.cpp"
+    - "**/*.h"
+    - "**/*.hpp"
+    - "**/*.yaml"
+    - "**/*.yml"
+    - "**/*.json"
+    - "**/*.toml"
+    - "**/*.xml"
+    - "**/*.sh"
+    - "**/*.ps1"
+    - "**/Dockerfile*"
+    - "**/docker-compose*"
+    - "**/Makefile"
+    - "**/*.mk"
+
+  # Path-specific instructions
+  path_instructions:
+    - path: "**/*.{ts,tsx,js,jsx}"
+      instructions: "Focus on TypeScript/JavaScript best practices, performance, security vulnerabilities, and modern ES6+ usage. Check for proper error handling and async/await patterns."
+    
+    - path: "**/*.{html,css,scss}"
+      instructions: "Review for semantic HTML, accessibility (ARIA labels, alt text), responsive design, and modern CSS best practices. Check for proper dark/light mode support."
+    
+    - path: "**/*.{md,mdx}"
+      instructions: "Review for clear documentation, proper markdown formatting, and accurate technical content. Ensure links are valid and content is up-to-date."
+    
+    - path: "**/config.*"
+      instructions: "Review configuration files for security issues, proper environment handling, and best practices. Ensure no secrets are exposed."
+    
+    - path: "content/**"
+      instructions: "Review content for accuracy, tone consistency with executive coaching brand, and SEO optimization. Check for proper frontmatter and Hugo-specific syntax."
+    
+    - path: "layouts/**"
+      instructions: "Review Hugo templates for proper Go template syntax, performance optimization, and accessibility. Ensure proper partial usage and no XSS vulnerabilities."
+
+  abort_on_close: true
+  disable_cache: false
+  
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    ignore_title_keywords: 
+      - "WIP"
+      - "draft"
+      - "test"
+      - "experiment"
+    labels: []
+    drafts: false
+    base_branches: 
+      - "main"
+      - "develop"
+
+  finishing_touches:
+    docstrings:
+      enabled: true
+    unit_tests:
+      enabled: false  # Not applicable for static site
+
+  # Tools configuration
+  tools:
+    # Web development tools
+    eslint:
+      enabled: true
+    
+    markdownlint:
+      enabled: true
+    
+    htmlhint:
+      enabled: true
+    
+    yamllint:
+      enabled: true
+    
+    shellcheck:
+      enabled: true
+    
+    actionlint:
+      enabled: true
+    
+    # Security tools
+    gitleaks:
+      enabled: true
+    
+    checkov:
+      enabled: true
+    
+    # Disable tools not relevant for this project
+    phpstan:
+      enabled: false
+    phpmd:
+      enabled: false
+    phpcs:
+      enabled: false
+    rubocop:
+      enabled: false
+    golangci-lint:
+      enabled: false
+    swiftlint:
+      enabled: false
+    detekt:
+      enabled: false
+    clippy:
+      enabled: false
+    brakeman:
+      enabled: false
+
+chat:
+  auto_reply: true
+  integrations:
+    jira:
+      usage: disabled
+    linear:
+      usage: disabled
+
+knowledge_base:
+  opt_out: false
+  web_search:
+    enabled: true
+  code_guidelines:
+    enabled: true
+    filePatterns: 
+      - "**/*.md"
+      - "**/*.js"
+      - "**/*.ts"
+      - "**/*.html"
+      - "**/*.css"
+  learnings:
+    scope: repository
+  issues:
+    scope: repository
+  pull_requests:
+    scope: repository
+
+code_generation:
+  docstrings:
+    language: en-US
+    path_instructions:
+      - path: "**/*.js"
+        instructions: "Generate JSDoc comments focusing on function parameters, return types, and usage examples."
+      - path: "**/*.ts"
+        instructions: "Generate TSDoc comments with proper TypeScript type information."
+  unit_tests:
+    path_instructions:
+      - path: "**/*.js"
+        instructions: "Generate Jest/Vitest unit tests focusing on edge cases and error handling."

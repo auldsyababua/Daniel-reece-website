@@ -110,23 +110,28 @@
             source: "Website Contact Form",
             timestamp: (/* @__PURE__ */ new Date()).toISOString()
           };
-          const zapierWebhookUrl = window.ZAPIER_WEBHOOK_URL || null;
-          if (zapierWebhookUrl && zapierWebhookUrl !== "YOUR_WEBHOOK_URL_HERE") {
-            await this.sendToZapier(zapierWebhookUrl, formData);
-          }
-          const formSubmitData = new FormData(event.target);
-          const response = await fetch(event.target.action, {
+          const response = await fetch("/api/contact", {
             method: "POST",
-            body: formSubmitData
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
           });
-          if (response.ok || response.type === "opaque") {
-            this.showSuccess = true;
-            setTimeout(() => {
-              this.resetForm();
-              window.location.href = "/contact/thank-you/";
-            }, 1500);
+          if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+              this.showSuccess = true;
+              setTimeout(() => {
+                this.resetForm();
+                window.location.href = "/contact/thank-you/";
+              }, 1500);
+            } else {
+              throw new Error(result.message || "Form submission failed");
+            }
           } else {
-            throw new Error("Form submission failed");
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.message || "Server error occurred");
           }
         } catch (error) {
           console.error("Form submission error:", error);
@@ -134,87 +139,6 @@
         } finally {
           this.isSubmitting = false;
         }
-      },
-      async sendToZapier(webhookUrl, data) {
-        console.log("Sending to Zapier webhook:", webhookUrl);
-        console.log("Form data:", data);
-        const methods = [
-          // Method 1: POST with no-cors (most reliable)
-          () => this.sendPostNoCORS(webhookUrl, data),
-          // Method 2: GET with query parameters (bypasses CORS preflight)
-          () => this.sendGetRequest(webhookUrl, data),
-          // Method 3: Form submission approach
-          () => this.sendViaForm(webhookUrl, data),
-          // Method 4: Image beacon (works even if page unloads)
-          () => this.sendViaImage(webhookUrl, data)
-        ];
-        for (let i = 0; i < methods.length; i++) {
-          try {
-            await methods[i]();
-            console.log(`Zapier method ${i + 1} completed`);
-            if (i < methods.length - 1) {
-              await new Promise((resolve) => setTimeout(resolve, 100));
-            }
-          } catch (error) {
-            console.log(`Zapier method ${i + 1} failed:`, error);
-          }
-        }
-      },
-      async sendPostNoCORS(webhookUrl, data) {
-        return fetch(webhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data),
-          mode: "no-cors"
-        });
-      },
-      async sendGetRequest(webhookUrl, data) {
-        const params = new URLSearchParams();
-        Object.keys(data).forEach((key) => {
-          params.append(key, data[key]);
-        });
-        const getUrl = webhookUrl + "?" + params.toString();
-        return fetch(getUrl, {
-          method: "GET",
-          mode: "no-cors"
-        });
-      },
-      async sendViaForm(webhookUrl, data) {
-        return new Promise((resolve) => {
-          const form = document.createElement("form");
-          form.method = "POST";
-          form.action = webhookUrl;
-          form.style.display = "none";
-          form.target = "_blank";
-          Object.keys(data).forEach((key) => {
-            const input = document.createElement("input");
-            input.type = "hidden";
-            input.name = key;
-            input.value = data[key];
-            form.appendChild(input);
-          });
-          document.body.appendChild(form);
-          form.submit();
-          setTimeout(() => {
-            document.body.removeChild(form);
-            resolve();
-          }, 1e3);
-        });
-      },
-      async sendViaImage(webhookUrl, data) {
-        return new Promise((resolve, reject) => {
-          const params = new URLSearchParams();
-          Object.keys(data).forEach((key) => {
-            params.append(key, data[key]);
-          });
-          const img = new Image();
-          img.onload = () => resolve();
-          img.onerror = () => resolve();
-          setTimeout(() => resolve(), 5e3);
-          img.src = webhookUrl + "?" + params.toString();
-        });
       },
       clearMessages() {
         this.showSuccess = false;
@@ -243,7 +167,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get("newsletter") === "success") {
           this.showSuccess = true;
-          window.history.replaceState({}, document.title, window.location.pathname);
+          window.history.replaceState({}, document.title, window.location.REDACTED_AIRTABLE_PAT);
         }
       },
       validateEmail() {
@@ -268,24 +192,33 @@
         }
         this.isSubmitting = true;
         try {
-          const formData = new FormData();
-          formData.append("email", this.email);
-          formData.append("_subject", "Newsletter Subscription");
-          formData.append("_captcha", "false");
-          formData.append("_template", "table");
-          const response = await fetch(event.target.action, {
+          const response = await fetch("/api/newsletter", {
             method: "POST",
-            body: formData
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify({
+              email: this.email.trim(),
+              source: "Newsletter Signup",
+              timestamp: (/* @__PURE__ */ new Date()).toISOString()
+            })
           });
           if (response.ok) {
-            this.showSuccess = true;
-            this.email = "";
+            const result = await response.json();
+            if (result.success) {
+              this.showSuccess = true;
+              this.email = "";
+            } else {
+              throw new Error(result.message || "Newsletter subscription failed");
+            }
           } else {
-            throw new Error("Network response was not ok");
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.message || "Server error occurred");
           }
         } catch (error) {
           this.showError = true;
-          this.errorMessage = "There was a problem with your subscription. Please try again.";
+          this.errorMessage = error.message || "There was a problem with your subscription. Please try again.";
         } finally {
           this.isSubmitting = false;
         }
@@ -306,7 +239,7 @@
       if (successElement) {
         successElement.style.display = "block";
       }
-      window.history.replaceState({}, document.title, window.location.pathname);
+      window.history.replaceState({}, document.title, window.location.REDACTED_AIRTABLE_PAT);
     }
   });
 })();

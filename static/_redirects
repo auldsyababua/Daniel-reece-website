@@ -1,0 +1,12 @@
+# Admin routes - serve SPA
+/admin/* /admin/index.html 200
+
+# API routes - forward to functions
+/api/contact /functions/contact 200
+/api/newsletter /functions/newsletter 200
+/api/webhook/* /functions/webhook 200
+
+# Legacy redirects
+/speech-coaching /services/1-1-speech-coaching 301
+/executive-training /services/executive-training-programs 301
+/group-training /services/group-communication-training 301

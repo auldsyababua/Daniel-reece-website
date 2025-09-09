@@ -1,0 +1,37 @@
+{
+  "name": "dan-reece-coaching",
+  "version": "2.0.0",
+  "description": "Dan Reece Executive Speech Coaching website - Cloudflare-first architecture",
+  "scripts": {
+    "dev": "hugo server --buildDrafts --buildFuture",
+    "build": "hugo --gc --minify",
+    "build:cf": "hugo -b $CF_PAGES_URL --gc --minify",
+    "preview": "hugo server --buildDrafts --buildFuture --environment production",
+    "css:watch": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch",
+    "css:build": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --minify",
+    "wrangler:dev": "wrangler pages dev public --port 8788",
+    "wrangler:deploy": "wrangler pages deploy public",
+    "d1:create": "wrangler d1 create coaching-db",
+    "d1:migrate": "wrangler d1 migrations apply coaching-db --local",
+    "d1:migrate:prod": "wrangler d1 migrations apply coaching-db",
+    "d1:console": "wrangler d1 execute coaching-db --command",
+    "worker:dev": "wrangler dev workers/contact-form.js",
+    "worker:deploy": "wrangler deploy workers/contact-form.js",
+    "test": "hugo check",
+    "lint": "hugo check --printI18nWarnings",
+    "clean": "rm -rf public resources"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "wrangler": "^3.28.2",
+    "hugo-extended": "^0.128.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "pnpm@8.0.0"
+}

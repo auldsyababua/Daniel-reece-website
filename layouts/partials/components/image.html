@@ -56,7 +56,7 @@
     {{ end }}
 
     <!-- image extension -->
-    {{ $imageExt := REDACTED_AIRTABLE_PAT $image }}
+    {{ $imageExt := path.Ext $image }}
 
     <!-- image height, width (if not svg) -->
     {{ if eq $imageExt `.svg` }}

@@ -1,1 +1,0 @@
-.claude/kiro/scripts/update-task.sh

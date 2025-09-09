@@ -1,0 +1,60 @@
+name = "dan-reece-coaching-form-handler"
+main = "src/worker.js"
+account_id = "befe6897af19663864dc6595d0dd2e49"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Pages Configuration (Note: build.destination_dir is configured in Pages dashboard)
+[build]
+command = "hugo -b $CF_PAGES_URL"
+cwd = ""
+# destination_dir = "public"  # This is set in Pages dashboard, not wrangler.toml
+
+[env.production]
+HUGO_VERSION = "0.128.0"
+HUGO_ENV = "production"
+
+[env.preview]
+HUGO_VERSION = "0.128.0"
+HUGO_ENV = "development"
+
+# D1 Database bindings
+[[d1_databases]]
+binding = "DB"
+database_name = "dan-reece-coaching-db"
+database_id = "06a9b019-bc6a-4851-a89c-40341573d06e"
+migrations_dir = "migrations"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "dan-reece-coaching-db"
+database_id = "06a9b019-bc6a-4851-a89c-40341573d06e"
+
+[[env.preview.d1_databases]]
+binding = "DB"
+database_name = "dan-reece-coaching-db"
+database_id = "06a9b019-bc6a-4851-a89c-40341573d06e"
+
+# KV bindings for caching and session storage (optional)
+[[env.production.kv_namespaces]]
+binding = "CACHE"
+id = "" # Will be populated during KV setup
+preview_id = ""
+
+# Environment variables for Workers
+[env.production.vars]
+ENVIRONMENT = "production"
+HUGO_BASEURL = "https://executivespeechcoachingnyc.com"
+
+[env.preview.vars]
+ENVIRONMENT = "preview"
+HUGO_BASEURL = ""
+
+# Security headers configuration (Note: Headers are configured in _headers file for Pages)
+# Headers should be configured in /static/_headers file for Cloudflare Pages
+# or via Transform Rules in Cloudflare dashboard
+
+# Worker script configuration (for contact form processing)
+# [[workers]]
+# script = "workers/contact-form.js"
+# binding = "CONTACT_FORM_WORKER"

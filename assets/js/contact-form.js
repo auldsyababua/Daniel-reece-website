@@ -4,8 +4,11 @@ function contactForm() {
         form: {
             name: '',
             email: '',
-            subject: '',
-            message: ''
+            message: '',
+            phone: '',
+            company: '',
+            role: '',
+            timeline: ''
         },
         errors: {},
         isSubmitting: false,
@@ -72,38 +75,40 @@ function contactForm() {
             return true;
         },
         
-        validateSubject() {
-            if (!this.form.subject) {
-                this.errors.subject = 'Please select a service area to help us route your inquiry';
-                return false;
+        validatePhone() {
+            const phone = this.form.phone.trim();
+            if (phone && phone.length > 0) {
+                const phoneRegex = /^[\+]?[\d\s\-\(\)\.]{10,}$/;
+                if (!phoneRegex.test(phone)) {
+                    this.errors.phone = 'Please enter a valid phone number';
+                    return false;
+                }
             }
-            delete this.errors.subject;
+            delete this.errors.phone;
             return true;
         },
         
         validateAll() {
             const isNameValid = this.validateName();
             const isEmailValid = this.validateEmail();
-            const isSubjectValid = this.validateSubject();
             const isMessageValid = this.validateMessage();
-            return isNameValid && isEmailValid && isSubjectValid && isMessageValid;
+            const isPhoneValid = this.validatePhone();
+            return isNameValid && isEmailValid && isMessageValid && isPhoneValid;
         },
         
         isFormValid() {
             return this.form.name.trim() && 
                    this.form.email.trim() && 
-                   this.form.subject && 
                    this.form.message.trim() && 
                    Object.keys(this.errors).length === 0;
         },
         
         getFormCompletionPercentage() {
             let completed = 0;
-            const total = 4;
+            const total = 3; // Only required fields: name, email, message
             
             if (this.form.name.trim() && !this.errors.name) completed++;
             if (this.form.email.trim() && !this.errors.email) completed++;
-            if (this.form.subject) completed++;
             if (this.form.message.trim() && !this.errors.message) completed++;
             
             return Math.round((completed / total) * 100);
@@ -120,41 +125,41 @@ function contactForm() {
             this.isSubmitting = true;
             
             try {
-                // Prepare data for automation
-                const formData = {
-                    name: this.form.name.trim(),
-                    email: this.form.email.trim(),
-                    subject: this.form.subject,
-                    message: this.form.message.trim(),
-                    source: 'Website Contact Form',
-                    timestamp: new Date().toISOString()
-                };
+                // Prepare form data
+                const formData = new FormData();
+                formData.append('name', this.form.name.trim());
+                formData.append('email', this.form.email.trim());
+                formData.append('message', this.form.message.trim());
                 
-                // Send to Zapier webhook with multiple fallback approaches
-                const zapierWebhookUrl = window.ZAPIER_WEBHOOK_URL || null;
+                // Add optional fields if provided
+                if (this.form.phone.trim()) formData.append('phone', this.form.phone.trim());
+                if (this.form.company.trim()) formData.append('company', this.form.company.trim());
+                if (this.form.role.trim()) formData.append('role', this.form.role.trim());
+                if (this.form.timeline.trim()) formData.append('timeline', this.form.timeline.trim());
                 
-                if (zapierWebhookUrl && zapierWebhookUrl !== 'YOUR_WEBHOOK_URL_HERE') {
-                    await this.sendToZapier(zapierWebhookUrl, formData);
-                }
-                
-                // Send to FormSubmit as primary/backup
-                const formSubmitData = new FormData(event.target);
-                const response = await fetch(event.target.action, {
+                // Submit to worker endpoint
+                const response = await fetch('https://dan-reece-coaching-form-handler.colinaulds.workers.dev/submit', {
                     method: 'POST',
-                    body: formSubmitData
+                    body: formData
                 });
                 
-                if (response.ok || response.type === 'opaque') {
-                    this.showSuccess = true;
-                    
-                    // Reset form after short delay
-                    setTimeout(() => {
-                        this.resetForm();
-                        // Redirect to thank you page
-                        window.location.href = '/contact/thank-you/';
-                    }, 1500);
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success) {
+                        this.showSuccess = true;
+                        
+                        // Reset form after short delay
+                        setTimeout(() => {
+                            this.resetForm();
+                            // Redirect to thank you page
+                            window.location.href = '/contact/thank-you/';
+                        }, 1500);
+                    } else {
+                        throw new Error(result.message || 'Form submission failed');
+                    }
                 } else {
-                    throw new Error('Form submission failed');
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.message || 'Server error occurred');
                 }
             } catch (error) {
                 console.error('Form submission error:', error);
@@ -162,108 +167,6 @@ function contactForm() {
             } finally {
                 this.isSubmitting = false;
             }
-        },
-        
-        async sendToZapier(webhookUrl, data) {
-            console.log('Sending to Zapier webhook:', webhookUrl);
-            console.log('Form data:', data);
-            
-            const methods = [
-                // Method 1: POST with no-cors (most reliable)
-                () => this.sendPostNoCORS(webhookUrl, data),
-                
-                // Method 2: GET with query parameters (bypasses CORS preflight)
-                () => this.sendGetRequest(webhookUrl, data),
-                
-                // Method 3: Form submission approach
-                () => this.sendViaForm(webhookUrl, data),
-                
-                // Method 4: Image beacon (works even if page unloads)
-                () => this.sendViaImage(webhookUrl, data)
-            ];
-            
-            // Try each method with a small delay between attempts
-            for (let i = 0; i < methods.length; i++) {
-                try {
-                    await methods[i]();
-                    console.log(`Zapier method ${i + 1} completed`);
-                    // Small delay before next method
-                    if (i < methods.length - 1) {
-                        await new Promise(resolve => setTimeout(resolve, 100));
-                    }
-                } catch (error) {
-                    console.log(`Zapier method ${i + 1} failed:`, error);
-                }
-            }
-        },
-        
-        async sendPostNoCORS(webhookUrl, data) {
-            return fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data),
-                mode: 'no-cors'
-            });
-        },
-        
-        async sendGetRequest(webhookUrl, data) {
-            const params = new URLSearchParams();
-            Object.keys(data).forEach(key => {
-                params.append(key, data[key]);
-            });
-            
-            const getUrl = webhookUrl + '?' + params.toString();
-            return fetch(getUrl, {
-                method: 'GET',
-                mode: 'no-cors'
-            });
-        },
-        
-        async sendViaForm(webhookUrl, data) {
-            return new Promise((resolve) => {
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = webhookUrl;
-                form.style.display = 'none';
-                form.target = '_blank'; // Open in new tab to avoid navigation
-                
-                Object.keys(data).forEach(key => {
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = key;
-                    input.value = data[key];
-                    form.appendChild(input);
-                });
-                
-                document.body.appendChild(form);
-                form.submit();
-                
-                // Clean up after a short delay
-                setTimeout(() => {
-                    document.body.removeChild(form);
-                    resolve();
-                }, 1000);
-            });
-        },
-        
-        async sendViaImage(webhookUrl, data) {
-            return new Promise((resolve, reject) => {
-                const params = new URLSearchParams();
-                Object.keys(data).forEach(key => {
-                    params.append(key, data[key]);
-                });
-                
-                const img = new Image();
-                img.onload = () => resolve();
-                img.onerror = () => resolve(); // Don't reject - image requests to APIs often "fail" but still work
-                
-                // Set a timeout to ensure we don't hang
-                setTimeout(() => resolve(), 5000);
-                
-                img.src = webhookUrl + '?' + params.toString();
-            });
         },
         
         clearMessages() {
@@ -275,8 +178,11 @@ function contactForm() {
             this.form = {
                 name: '',
                 email: '',
-                subject: '',
-                message: ''
+                message: '',
+                phone: '',
+                company: '',
+                role: '',
+                timeline: ''
             };
             this.errors = {};
             this.isSubmitting = false;
@@ -329,27 +235,35 @@ function newsletterForm() {
             this.isSubmitting = true;
             
             try {
-                // Submit to FormSubmit
-                const formData = new FormData();
-                formData.append('email', this.email);
-                formData.append('_subject', 'Newsletter Subscription');
-                formData.append('_captcha', 'false');
-                formData.append('_template', 'table');
-                
-                const response = await fetch(event.target.action, {
+                // Submit to Cloudflare Workers API
+                const response = await fetch('/api/newsletter', {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: this.email.trim(),
+                        source: 'Newsletter Signup',
+                        timestamp: new Date().toISOString()
+                    })
                 });
                 
                 if (response.ok) {
-                    this.showSuccess = true;
-                    this.email = '';
+                    const result = await response.json();
+                    if (result.success) {
+                        this.showSuccess = true;
+                        this.email = '';
+                    } else {
+                        throw new Error(result.message || 'Newsletter subscription failed');
+                    }
                 } else {
-                    throw new Error('Network response was not ok');
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.message || 'Server error occurred');
                 }
             } catch (error) {
                 this.showError = true;
-                this.errorMessage = 'There was a problem with your subscription. Please try again.';
+                this.errorMessage = error.message || 'There was a problem with your subscription. Please try again.';
             } finally {
                 this.isSubmitting = false;
             }

@@ -1,0 +1,107 @@
+baseURL: 'https://executivespeechcoachingnyc.com'
+title: 'Dan Reece Executive Speech Coaching'
+languageCode: en-us
+DefaultContentLanguage: en
+
+# Build Configuration
+enableEmoji: true
+enableGitInfo: true
+enableRobotsTXT: true
+canonifyURLs: false
+pagination:
+  pagerSize: 6
+
+# Security
+security:
+  enableInlineShortcodes: true
+  funcs:
+    getenv:
+      - ^HUGO_
+
+# Content Configuration
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: github
+    lineNos: true
+    codeFences: true
+
+# Taxonomies
+taxonomies:
+  category: categories
+  tag: tags
+
+# Menu Configuration
+menus:
+  main:
+    - name: Home
+      url: /
+      weight: 10
+    - name: About
+      url: /about/
+      weight: 20
+    - name: Services
+      url: /services/
+      weight: 30
+    - name: Blog
+      url: /posts/
+      weight: 40
+    - name: Contact
+      url: /contact/
+      weight: 50
+
+# Site Parameters
+params:
+  author: Dan Reece
+  description: "Transform your communication skills with NYC's premier executive speech coaching. Overcome public speaking anxiety, master executive presence, and deliver compelling presentations that drive results."
+  keywords: ["executive speech coaching", "public speaking", "NYC speech coach", "executive communication", "presentation skills", "leadership communication"]
+  
+  # SEO
+  og_image: /images/featured/dan-reece-executive-coaching.webp
+  
+  # Contact Information
+  contact:
+    email: Daniel@executivespeechcoachingnyc.com
+    phone: "(212) 555-0123"
+    phone_display: "(212) 555-0123"
+    phone_accepts: "Calls & Text Messages Welcome"
+    address: "Manhattan, New York City"
+    address_full: "Professional Executive Coaching Services\nManhattan, New York City, NY"
+    thank_you_page: "/contact/thank-you/"
+  
+  # Social Media
+  social:
+    linkedin: "https://linkedin.com/in/danreece"
+    twitter: "https://twitter.com/danreececoach"
+  
+  # Features
+  disable_theme_toggle: false
+  enable_search: true
+  enable_contact_form: true
+
+# Asset Processing
+build:
+  writeStats: true
+  
+# Deployment (Cloudflare Pages)
+deployment:
+  targets:
+    - name: cloudflare
+      URL: cloudflare://executivespeechcoachingnyc.com
+      
+# Processing
+imaging:
+  resampleFilter: lanczos
+  quality: 85
+  anchor: smart
+
+# Minification
+minify:
+  disableCSS: false
+  disableHTML: false
+  disableJS: false
+  disableJSON: false
+  disableSVG: false
+  disableXML: false

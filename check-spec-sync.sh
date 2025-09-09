@@ -1,1 +1,0 @@
-.claude/kiro/scripts/check-spec-sync.sh
